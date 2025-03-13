@@ -7,13 +7,11 @@ const MainLayout = () => {
   return (
     <>
     <header>
-
-    </header>
-    <div className="bg-[#EEF5FF]">
       <Navbar></Navbar>
+    </header>
+    <main className="bg-[#EEF5FF] min-h-[calc(100vh-337px)]">
       <Outlet></Outlet>
-    </div>
-
+    </main>
     <footer>
       <Footer />
     </footer>

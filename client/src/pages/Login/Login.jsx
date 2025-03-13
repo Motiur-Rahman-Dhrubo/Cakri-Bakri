@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-
+import Lottie from "lottie-react";
+import loginAnimation from "../../assets/LoginAnimation.json";
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -18,13 +19,14 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row py-5">
+    <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center p-8">
         {/* Lottie Animation Placeholder */}
-        <div className="w-full max-w-md">
-          {/* <Lottie animationData={loginAnimation} /> */}
-          <img src="/login-animation-placeholder.svg" alt="Login Animation" />
+        <div className="w-full max-w-lg">
+          <Lottie 
+          animationData={loginAnimation} />
+          
         </div>
       </div>
 

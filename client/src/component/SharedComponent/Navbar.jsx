@@ -33,8 +33,8 @@ export default function Navbar() {
         </ul>
       </div>
       {/* <div className="navbar-end">
-    <a className="btn">Button</a>
-  </div> */}
+          <a className="btn">Button</a>
+        </div> */}
     </div>
   )
 }
