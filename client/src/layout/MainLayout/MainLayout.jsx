@@ -6,13 +6,13 @@ import Footer from "../../component/SharedComponent/Footer";
 const MainLayout = () => {
   return (
     <>
-    <header>
+    <header className="bg-cb-primary shadow-sm">
       <Navbar></Navbar>
     </header>
     <main className="bg-[#EEF5FF] min-h-[calc(100vh-337px)]">
       <Outlet></Outlet>
     </main>
-    <footer>
+    <footer className="bg-cb-secondary ">
       <Footer />
     </footer>
     </>

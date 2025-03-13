@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router'
-
+import { Link, NavLink } from 'react-router'
+import logo from "/CB-logo.png"
 export default function Navbar() {
   const user = false;
   const navLink = <>
@@ -13,7 +13,7 @@ export default function Navbar() {
       <li><NavLink to={'register'}>Register</NavLink></li></>}
       </>
   return (
-    <div className="navbar bg-cb-primary shadow-sm">
+    <div className="navbar w-11/12 mx-auto ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost bg-[#176B87] lg:hidden">
@@ -25,7 +25,9 @@ export default function Navbar() {
             {navLink}
           </ul>
         </div>
-        <NavLink to={'/'} className="btn btn-ghost text-xl">Cakri-Bakri</NavLink>
+        <Link to={'/'} className="w-16 rounded-lg">
+          <img src={logo} className='w-full rounded-lg' alt="Chakri_Bakri.logo" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

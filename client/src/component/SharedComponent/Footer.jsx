@@ -1,21 +1,23 @@
 import { FaFacebook, FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
-
+import logo from "/CB-logo.png"
 export default function Footer() {
   return (
-    <footer className="bg-cb-secondary text-cb-white py-8">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
+    <footer className="w-11/12 mx-auto text-cb-white py-8">
+      <div className="container mx-auto ">
+        <div className="grid grid-cols-1 md:grid-cols-12 justify-between items-center md:items-start">
           
           {/* Company Info */}
-          <div className="mb-6 md:mb-0 text-center md:text-left">
-            <h2 className="text-2xl font-bold">Cakri-Bakri</h2>
+          <div className="lg:col-span-3 mb-6 md:mb-0 text-center md:text-left">
+            <div className="w-28">
+              <img src={logo} className="w-full rounded-lg" alt="" />
+            </div>
             <p className="mt-2">
               Your trusted hiring and communication platform, connecting job seekers and recruiters efficiently.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="flex space-x-8">
+          <div className="lg:col-span-6 flex justify-evenly space-x-8">
             <div>
               <h3 className="font-semibold text-lg">Quick Links</h3>
               <ul className="mt-2 space-y-2">
@@ -38,7 +40,7 @@ export default function Footer() {
           </div>
 
           {/* Social Media Links */}
-          <div className="mt-6 md:mt-0">
+          <div className="lg:col-span-3 mt-6 md:mt-0">
             <h3 className="font-semibold text-lg text-center md:text-left">Follow Us</h3>
             <div className="flex justify-center md:justify-start space-x-4 mt-2">
               <a href="https://www.facebook.com/" className="text-blue-100 hover:text-blue-50"><FaFacebook size={24} /></a>
@@ -51,8 +53,8 @@ export default function Footer() {
         </div>
 
         {/* Copyright Section */}
-        <div className="text-center mt-8 text-white text-sm">
-          &copy; {new Date().getFullYear()} Cakri-Bakri. All rights reserved.
+        <div className="text-center mt-8 text-white opacity-60 text-sm">
+          &copy; {new Date().getFullYear()} Chakri-Bakri. All rights reserved.
         </div>
       </div>
     </footer>
