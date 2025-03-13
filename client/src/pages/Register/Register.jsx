@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/LoginAnimation.json";
+import { Link } from "react-router";
 export default function Register() {
   const [formData, setFormData] = useState({
     name: "",
@@ -91,9 +92,9 @@ export default function Register() {
         </form>
         <p className="text-cb-secondary mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-cb-primary hover:underline">
+          <Link to="/login" className="text-cb-primary hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
       </div>
