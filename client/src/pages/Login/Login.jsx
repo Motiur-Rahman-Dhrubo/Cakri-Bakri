@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -7,34 +8,73 @@ export default function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleLogin = async () => {
+    console.log(formData);
+  };
+
+  const handleGoogleLogin = () => {
+    // Google login logic here
+    console.log("Google login");
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      {/* Lottie Animation Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center p-4">
-        {/* <Lottie animationData={loginAnimation} className="w-full max-w-md" /> */}
+      {/* Animation Section */}
+      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+        {/* Lottie Animation Placeholder */}
+        <div className="w-full max-w-md">
+          {/* <Lottie animationData={loginAnimation} /> */}
+          <img src="/login-animation-placeholder.svg" alt="Login Animation" />
+        </div>
       </div>
 
       {/* Login Form Section */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8">
-        <h2 className="text-3xl font-bold mb-6">Welcome Back</h2>
-        <form className="w-full max-w-sm space-y-4">
-          <input 
-            type="email" name="email" placeholder="Email" 
-            onChange={handleChange} required 
-            className="w-full p-3 border rounded-md"
+      <div className="w-full md:w-1/2 bg-cb-card flex flex-col justify-center items-center p-8">
+        <h2 className="text-4xl text-cb-primary font-bold mb-6">
+          Welcome Back
+        </h2>
+        <form className="w-full max-w-sm  space-y-6">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
           />
-          <input 
-            type="password" name="password" placeholder="Password" 
-            onChange={handleChange} required 
-            className="w-full p-3 border rounded-md"
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-projectBlue-light"
           />
-          <button className="w-full bg-blue-500 text-white py-3 rounded-md">
+          <button
+            type="button"
+            onClick={handleLogin}
+            className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-projectBlue-primary transition"
+          >
             Login
           </button>
+
+          {/* Google Login Button */}
+          <button
+            type="button"
+            onClick={handleLogin}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Login with Google
+          </button>
         </form>
-        <p className="mt-4">Don't have an account? <a href="/register" className="text-blue-500">Register</a></p>
+        <p className="text-cb-secondary mt-4">
+          Don't have an account?{" "}
+          <a href="/register" className="text-cb-primary hover:underline">
+            Register
+          </a>
+        </p>
       </div>
     </div>
   );
-};
-
+}

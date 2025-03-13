@@ -1,7 +1,98 @@
-import React from 'react'
-
+import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 export default function Register() {
+  const [formData, setFormData] = useState({
+    name: "",
+    photoUrl: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async () => {
+    console.log(formData);
+  };
+
+  const handleGoogleRegister = () => {
+    console.log("Google Register");
+  };
+
   return (
-    <div>Register</div>
-  )
+    <div className="flex flex-col md:flex-row h-screen">
+      {/* Animation Section */}
+      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+        <div className="w-full max-w-md">
+          {/* <Lottie animationData={registerAnimation} /> */}
+        </div>
+      </div>
+
+      {/* Register Form Section */}
+      <div className="w-full md:w-1/2 bg-cb-card flex flex-col justify-center items-center p-8">
+        <h2 className="text-4xl text-cb-primary font-bold mb-6">
+          Create an Account
+        </h2>
+        <form className="w-full max-w-sm space-y-6">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+          />
+          <input
+            type="url"
+            name="photoUrl"
+            placeholder="Photo url..."
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+          />
+          <button
+            type="button"
+            onClick={handleRegister}
+            className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
+          >
+            Register
+          </button>
+
+          {/* Google Register Button */}
+          <button
+            type="button"
+            onClick={handleGoogleRegister}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Register with Google
+          </button>
+        </form>
+        <p className="text-cb-secondary mt-4">
+          Already have an account?{" "}
+          <a href="/login" className="text-cb-primary hover:underline">
+            Login
+          </a>
+        </p>
+      </div>
+    </div>
+  );
 }
+
