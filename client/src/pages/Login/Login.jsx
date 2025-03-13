@@ -18,7 +18,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row py-5">
       {/* Animation Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center p-8">
         {/* Lottie Animation Placeholder */}
@@ -29,51 +29,54 @@ export default function Login() {
       </div>
 
       {/* Login Form Section */}
-      <div className="w-full md:w-1/2 bg-cb-card flex flex-col justify-center items-center p-8">
-        <h2 className="text-4xl text-cb-primary font-bold mb-6">
-          Welcome Back
-        </h2>
-        <form className="w-full max-w-sm  space-y-6">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            required
-            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-            className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-projectBlue-light"
-          />
-          <button
-            type="button"
-            onClick={handleLogin}
-            className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-projectBlue-primary transition"
-          >
-            Login
-          </button>
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8">
+        <div className="bg-cb-card p-10 text-center rounded-lg">
+          <h2 className="text-4xl text-cb-primary font-bold mb-3">
+            Welcome Back
+          </h2>
+          <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
+          <form className="w-full max-w-lg space-y-6">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-projectBlue-light"
+            />
+            <button
+              type="button"
+              onClick={handleLogin}
+              className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-projectBlue-primary transition"
+            >
+              Login
+            </button>
 
-          {/* Google Login Button */}
-          <button
-            type="button"
-            onClick={handleLogin}
-            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
-          >
-            <FcGoogle className="text-2xl mr-3" />
-            Login with Google
-          </button>
-        </form>
-        <p className="text-cb-secondary mt-4">
-          Don't have an account?{" "}
-          <a href="/register" className="text-cb-primary hover:underline">
-            Register
-          </a>
-        </p>
+            {/* Google Login Button */}
+            <button
+              type="button"
+              onClick={handleLogin}
+              className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+            >
+              <FcGoogle className="text-2xl mr-3" />
+              Login with Google
+            </button>
+          </form>
+          <p className="text-cb-secondary mt-4">
+            Don't have an account?{" "}
+            <a href="/register" className="text-cb-primary hover:underline">
+              Register
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

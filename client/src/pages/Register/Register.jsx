@@ -21,7 +21,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row py-5">
       {/* Animation Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center p-8">
         <div className="w-full max-w-md">
@@ -30,11 +30,13 @@ export default function Register() {
       </div>
 
       {/* Register Form Section */}
-      <div className="w-full md:w-1/2 bg-cb-card flex flex-col justify-center items-center p-8">
+      <div className="w-full md:w-1/2  flex flex-col justify-center items-center p-8">
+      <div className="bg-cb-card p-10 text-center rounded-lg">
         <h2 className="text-4xl text-cb-primary font-bold mb-6">
           Create an Account
         </h2>
-        <form className="w-full max-w-sm space-y-6">
+        <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
+        <form className="w-full max-w-lg space-y-6">
           <input
             type="text"
             name="name"
@@ -91,6 +93,7 @@ export default function Register() {
             Login
           </a>
         </p>
+      </div>
       </div>
     </div>
   );
