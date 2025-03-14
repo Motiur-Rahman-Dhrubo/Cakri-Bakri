@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
-import registerAnimation from "../../assets/LoginAnimation.json";
+import registerAnimation from "../../assets/registrationAnimation.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
@@ -50,15 +50,15 @@ const Registration = () => {
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+      <div className="w-full md:w-1/2 flex justify-center items-center max-sm:px-3 max-sm:py-5 md:p-8">
         <div className="w-full max-w-lg">
           <Lottie animationData={registerAnimation} />
         </div>
       </div>
 
       {/* Register Form Section */}
-      <div className="w-full md:w-1/2  flex flex-col justify-center items-center p-8">
-        <div className="bg-cb-card p-10 text-center rounded-lg">
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center max-sm:px-3 max-sm:py-5 md:p-8">
+        <div className="bg-cb-card p-5 lg:p-10 text-center rounded-lg">
           <h2 className="text-4xl text-cb-primary font-bold mb-3">
             Create an Account
           </h2>
@@ -104,7 +104,7 @@ const Registration = () => {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition cursor-pointer"
+            className="w-full cursor-pointer text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
           >
             <FcGoogle className="text-2xl mr-3" />
             Register with Google
