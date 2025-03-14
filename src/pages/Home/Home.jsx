@@ -1,10 +1,15 @@
-import React from "react";
+
+import Banner from "../../component/HomePage/Banner";
+import StatsOverlay from "../../component/HomePage/StatsOverlay";
 
 const Home = () => {
   return (
-    <div>
-      <h1 className="text-center font-bold lg:text-5xl">This is home page </h1>
+    <>
+    <div className="h-[500px] w-full">
+    <Banner />
     </div>
+    <StatsOverlay />
+    </>
   );
 };
 
