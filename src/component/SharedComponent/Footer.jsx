@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-3 mb-6 md:mb-0 text-center md:text-left">
             <Link to="/">
-              <div className="w-28">
+              <div className="w-28 max-sm:mx-auto">
                 <img src={logo} className="w-full rounded-lg" alt="" />
               </div>
             </Link>
@@ -18,7 +18,7 @@ export default function Footer() {
               seekers and recruiters efficiently.
             </p>
           </div>
-
+          <div className="divider bg-cb-white h-[1px] mt-0 mb-4 opacity-50 md:hidden"></div>
           {/* Quick Links */}
           <div className="lg:col-span-6 flex justify-evenly space-x-8">
             <div>
@@ -73,7 +73,7 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-
+          <div className="divider bg-cb-white h-[1px] mt-4 mb-0 opacity-50 md:hidden"></div>
           {/* Social Media Links */}
           <div className="lg:col-span-3 mt-6 md:mt-0">
             <h3 className="font-semibold text-lg text-center md:text-left">

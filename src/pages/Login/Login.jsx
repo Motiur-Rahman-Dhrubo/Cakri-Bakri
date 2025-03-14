@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+      <div className="w-full md:w-1/2 flex justify-center items-center max-sm:px-3 max-sm:py-5 md:p-8">
         {/* Lottie Animation Placeholder */}
         <div className="w-full max-w-lg">
           <Lottie animationData={loginAnimation} />
@@ -41,8 +41,8 @@ const Login = () => {
       </div>
 
       {/* Login Form Section */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8">
-        <div className="bg-cb-card p-10 text-center rounded-lg">
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center max-sm:px-3 max-sm:py-5 md:p-8">
+        <div className="bg-cb-card p-5 lg:p-10 text-center rounded-lg">
           <h2 className="text-4xl text-cb-primary font-bold mb-3">
             Welcome Back
           </h2>
@@ -74,7 +74,7 @@ const Login = () => {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition cursor-pointer"
+            className="w-full cursor-pointer text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
           >
             <FcGoogle className="text-2xl mr-3" />
             Login with Google
