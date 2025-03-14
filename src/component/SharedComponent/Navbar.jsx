@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import logo from "/CB-logo.png";
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
   const handleSignOut = () => {
@@ -13,11 +13,14 @@ export default function Navbar() {
   };
   const navLink = (
     <>
-      <li className="text-cb-white">
-        <NavLink to={"login"}>Login</NavLink>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li className="text-cb-white">
-        <NavLink to={"register"}>Register</NavLink>
+      <li>
+        <NavLink to={"/all-jobs"}>All Jobs</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/about-us"}>About Us</NavLink>
       </li>
     </>
   );

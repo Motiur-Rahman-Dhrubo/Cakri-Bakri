@@ -14,7 +14,7 @@ const Login = () => {
       })
       .catch((error) => console.log(error));
   };
-  
+
   const handlLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -63,22 +63,23 @@ const Login = () => {
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-projectBlue-light"
             />
             <button
-              type="button"
+              type="submit"
               className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-projectBlue-primary transition"
             >
               Login
             </button>
-
-            {/* Google Login Button */}
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
-            >
-              <FcGoogle className="text-2xl mr-3" />
-              Login with Google
-            </button>
           </form>
+          <div className="divider text-cb-primary">OR</div>
+          {/* Google Login Button */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Login with Google
+          </button>
+          
           <p className="text-cb-secondary mt-4">
             Don't have an account?{" "}
             <Link to="/register" className="text-cb-primary hover:underline">

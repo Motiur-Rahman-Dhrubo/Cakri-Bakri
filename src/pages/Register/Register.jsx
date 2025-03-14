@@ -1,10 +1,10 @@
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/LoginAnimation.json";
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
+import { AuthContext } from "../../../../Cakri-Bakri/src/providers/AuthProvider";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -17,7 +17,8 @@ const Registration = () => {
       })
       .catch((error) => console.log(error));
   };
-  const handleRegister = (e) => {
+  // register trough name, image, email, pass
+  const handleRegister = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const photo = e.target.photo.value;
@@ -26,21 +27,25 @@ const Registration = () => {
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
-      alert("Your Password is invalid to use");
+      Swal.fire("Your Password is invalid to use");
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        console.log(
-          result.user &&
-            updateUserProfile({ displayName: name, photoURL: photo })
-        );
-
+    try {
+      const result = await createUser(email, password);
+      if (result.user) {
+        await updateUserProfile({ displayName: name, photoURL: photo });
         e.target.reset();
         navigate("/");
-      })
-      .catch((error) => alert("Invalid Request", error.message));
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message,
+      });
+    }
   };
   return (
     <div className="flex flex-col md:flex-row ">
@@ -58,7 +63,7 @@ const Registration = () => {
             Create an Account
           </h2>
           <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
-          <form className="w-full max-w-md space-y-6" onSubmit={handleRegister}>
+          <form onSubmit={handleRegister} className="w-full max-w-md space-y-6">
             <input
               type="text"
               name="name"
@@ -88,22 +93,22 @@ const Registration = () => {
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
             <button
-              type="button"
+              type="submit"
               className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
             >
               Register
             </button>
-
-            {/* Google Register Button */}
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
-            >
-              <FcGoogle className="text-2xl mr-3" />
-              Register with Google
-            </button>
           </form>
+          <div className="divider text-cb-primary">OR</div>
+          {/* Google Register Button */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Register with Google
+          </button>
           <p className="text-cb-secondary mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-cb-primary hover:underline">
