@@ -1,7 +1,11 @@
+import { FcGoogle } from "react-icons/fc";
+import Lottie from "lottie-react";
+import loginAnimation from "../../assets/LoginAnimation.json";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 const Login = () => {
+  const navigate = useNavigate();
   const { loginUser, signInWithGoogle } = useContext(AuthContext);
   const handleGoogleLogin = () => {
     signInWithGoogle()
@@ -10,7 +14,7 @@ const Login = () => {
       })
       .catch((error) => console.log(error));
   };
-  const navigate = useNavigate();
+
   const handlLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,56 +31,61 @@ const Login = () => {
       });
   };
   return (
-    <div className="hero bg-base-200 min-h-screen rounded-3xl">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handlLogin} className="card-body">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div>
-              <p>
-                New User here? If yes, do{" "}
-                <span className="text-blue-500 underline">
-                  <Link to="/register">Register</Link>
-                </span>
-              </p>
-            </div>
-            <div className="form-control mt-6 flex justify-center">
-              <button className="btn btn-primary rounded-3xl w-full">
-                Login
-              </button>
-            </div>
-            <div className="divider">OR</div>
-            <div className="flex flex-col items-center justify-center space-y-3">
-              <p>You can log in with</p>
-              <button onClick={handleGoogleLogin} className="btn btn-outline">
-                Google
-              </button>
-            </div>
+    <div className="flex flex-col md:flex-row ">
+      {/* Animation Section */}
+      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+        {/* Lottie Animation Placeholder */}
+        <div className="w-full max-w-lg">
+          <Lottie animationData={loginAnimation} />
+        </div>
+      </div>
+
+      {/* Login Form Section */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8">
+        <div className="bg-cb-card p-10 text-center rounded-lg">
+          <h2 className="text-4xl text-cb-primary font-bold mb-3">
+            Welcome Back
+          </h2>
+          <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
+          <form className="w-full max-w-lg space-y-6" onSubmit={handlLogin}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-projectBlue-light"
+            />
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-cb-primary text-white py-3 rounded-md hover:bg-projectBlue-primary transition"
+            >
+              Login
+            </button>
           </form>
+          <div className="divider text-cb-primary">OR</div>
+          {/* Google Login Button */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition cursor-pointer"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Login with Google
+          </button>
+          
+          <p className="text-cb-secondary mt-4">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-cb-primary hover:underline">
+              Register
+            </Link>
+          </p>
         </div>
       </div>
     </div>

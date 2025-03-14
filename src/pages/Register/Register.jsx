@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import Lottie from "lottie-react";
+import registerAnimation from "../../assets/LoginAnimation.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
@@ -14,7 +17,8 @@ const Registration = () => {
       })
       .catch((error) => console.log(error));
   };
-  const handleRegister = (e) => {
+  // register trough name, image, email, pass
+  const handleRegister = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const photo = e.target.photo.value;
@@ -23,95 +27,94 @@ const Registration = () => {
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
-      alert("Your Password is invalid to use");
+      Swal.fire("Your Password is invalid to use");
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        console.log(
-          result.user &&
-            updateUserProfile({ displayName: name, photoURL: photo })
-        );
-
+    try {
+      const result = await createUser(email, password);
+      if (result.user) {
+        await updateUserProfile({ displayName: name, photoURL: photo });
         e.target.reset();
         navigate("/");
-      })
-      .catch((error) => alert("Invalid Request", error.message));
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message,
+      });
+    }
   };
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex md:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleRegister} className="card-body">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">PhotoURL</span>
-              </label>
-              <input
-                type="text"
-                name="photo"
-                placeholder="Your Photo"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
-            </div>
-          </form>
-          <div className="text-center">
-            <p className="py-6">
-              Register in our website if you are an new user but if you are an
-              old user please{" "}
-              <span className="text-blue-900">
-                {" "}
-                <Link to="/login">Login</Link>{" "}
-              </span>
-            </p>
-          </div>
-          <div>
-            <button onClick={handleGoogleLogin} className="btn btn-outline">
-              Google
+    <div className="flex flex-col md:flex-row ">
+      {/* Animation Section */}
+      <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+        <div className="w-full max-w-lg">
+          <Lottie animationData={registerAnimation} />
+        </div>
+      </div>
+
+      {/* Register Form Section */}
+      <div className="w-full md:w-1/2  flex flex-col justify-center items-center p-8">
+        <div className="bg-cb-card p-10 text-center rounded-lg">
+          <h2 className="text-4xl text-cb-primary font-bold mb-3">
+            Create an Account
+          </h2>
+          <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
+          <form onSubmit={handleRegister} className="w-full max-w-md space-y-6">
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <input
+              type="url"
+              name="photo"
+              placeholder="Photo url..."
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
+            />
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
+            >
+              Register
             </button>
-          </div>
+          </form>
+          <div className="divider text-cb-primary">OR</div>
+          {/* Google Register Button */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition cursor-pointer"
+          >
+            <FcGoogle className="text-2xl mr-3" />
+            Register with Google
+          </button>
+          <p className="text-cb-secondary mt-4">
+            Already have an account?{" "}
+            <Link to="/login" className="text-cb-primary hover:underline">
+              Login
+            </Link>
+          </p>
         </div>
       </div>
     </div>
