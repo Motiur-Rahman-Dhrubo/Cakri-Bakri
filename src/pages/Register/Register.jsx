@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/registrationAnimation.json";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../../../Cakri-Bakri/src/providers/AuthProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -94,7 +94,7 @@ const Registration = () => {
             />
             <button
               type="submit"
-              className="w-full bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
+              className="w-full cursor-pointer bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
             >
               Register
             </button>
@@ -104,7 +104,7 @@ const Registration = () => {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
+            className="w-full cursor-pointer text-cb-primary flex items-center justify-center border border-cb-secondary py-3 rounded-md hover:bg-cb-white transition"
           >
             <FcGoogle className="text-2xl mr-3" />
             Register with Google
