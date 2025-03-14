@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
-import registerAnimation from "../../assets/LoginAnimation.json";
+import registerAnimation from "../../assets/registrationAnimation.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../Cakri-Bakri/src/providers/AuthProvider";
 
