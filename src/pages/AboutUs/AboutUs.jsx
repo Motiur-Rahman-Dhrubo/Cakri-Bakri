@@ -35,7 +35,7 @@ export default function AboutUs() {
       github: "https://github.com/mahmud819",
     },
     {
-      name: "Emily Davis",
+      name: "Sharful Islam Mahir",
       title: "Fullstack Web Developer",
       description: "Fullstack web developer who is passionate about making beautiful websites.",
       image: "https://002stupid-wilderness.surge.sh/assets/WhatsApp%20Image%202025-02-05%20at%2019.23.28_b6334d59-ZL8vXAUU.jpg",
@@ -60,7 +60,7 @@ export default function AboutUs() {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-cb-primary flex flex-col p-6 rounded-lg shadow-lg text-center hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] transition-all duration-500"
+              className="bg-cb-primary flex flex-col p-6 rounded-lg shadow-lg text-center hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] transition-all duration-500"
             >
               <img
                 src={member.image}

@@ -52,7 +52,7 @@ const Registration = () => {
       {/* Animation Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center max-sm:px-3 max-sm:py-5 md:p-8">
         <div className="w-full max-w-lg">
-          {/* <Lottie animationData={registerAnimation} /> */}
+          <Lottie animationData={registerAnimation} />
         </div>
       </div>
 
