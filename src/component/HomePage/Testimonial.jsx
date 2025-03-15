@@ -33,10 +33,10 @@ export default function Testimonials() {
         <p className="text-lg text-cb-secondary/80 mt-4">See how Cakri-Bakri has helped professionals grow.</p>
       </div>
       <div className="divider w-11/12 mx-auto my-0"></div>
-      <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 mt-4 md:mt-8">
+      <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2">
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="carousel-item w-full justify-center">
-            <div className="bg-cb-primary p-6 rounded-lg shadow-lg max-w-lg mx-4 flex flex-col items-center text-center">
+            <div className="bg-cb-primary p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
               <FaQuoteLeft className="text-4xl text-cb-white mb-3" />
               <p className="text-cb-white/95 text-lg font-medium">{testimonial.message}</p>
               <div className="mt-4 flex items-center gap-3">
