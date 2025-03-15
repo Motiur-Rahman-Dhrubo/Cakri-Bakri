@@ -21,7 +21,7 @@ export default function Banner() {
       <button className="mt-6 btn text-lg bg-cb-btn md:bg-cb-white text-cb-secondary md:text-cb-secondary">Explore Jobs</button>
     </div>
 
-    <div className="w-11/12 mx-auto rounded-lg">
+    <div className="md:hidden w-11/12 mx-auto rounded-lg">
     <img 
       src={banner} 
       alt="Chakri Bakri Banner" 
