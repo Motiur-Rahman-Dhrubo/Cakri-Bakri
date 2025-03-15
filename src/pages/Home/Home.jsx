@@ -1,6 +1,7 @@
 
 import Banner from "../../component/HomePage/Banner";
 import LeteastJobs from "../../component/HomePage/LeteastJobs";
+import Overview from "../../component/HomePage/Overview";
 import StatsOverlay from "../../component/HomePage/StatsOverlay";
 import Testimonials from "../../component/HomePage/Testimonial";
 
@@ -11,7 +12,7 @@ const Home = () => {
     <Banner />
     </div>
     <StatsOverlay />
-
+    <Overview />
     <LeteastJobs />
 
     <Testimonials />
