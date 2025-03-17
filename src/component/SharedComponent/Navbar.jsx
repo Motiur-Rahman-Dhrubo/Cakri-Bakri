@@ -13,14 +13,14 @@ export default function Navbar() {
   };
   const navLink = (
     <>
-      <li>
-        <NavLink to={"/"}>Home</NavLink>
+      <li >
+        <NavLink className="max-sm:text-xl" to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/all-jobs"}>All Jobs</NavLink>
+        <NavLink className="max-sm:text-xl" to={"/all-jobs"}>All Jobs</NavLink>
       </li>
       <li>
-        <NavLink to={"/about-us"}>About Us</NavLink>
+        <NavLink className="max-sm:text-xl" to={"/about-us"}>About Us</NavLink>
       </li>
     </>
   );
@@ -86,7 +86,7 @@ export default function Navbar() {
                     tabIndex={0}
                     className="dropdown-content menu bg-cb-primary text-cb-white rounded-box z-[1] w-52 p-2 shadow"
                   >
-                    <button className="btn btn-outline" onClick={handleSignOut}>
+                    <button className="btn btn-outline max-sm:text-xl" onClick={handleSignOut}>
                       Sign Out
                     </button>
                   </ul>
@@ -95,10 +95,10 @@ export default function Navbar() {
             ) : (
               <>
                 <li>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink className="max-sm:text-xl" to="/login">Login</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register">Register</NavLink>
+                  <NavLink className="max-sm:text-xl" to="/register">Register</NavLink>
                 </li>
 
               </>
