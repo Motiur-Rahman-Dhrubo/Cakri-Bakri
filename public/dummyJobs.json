@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer",
+    "company": {
+      "name": "Tech Solutions Ltd.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaHRyJZbS-1oIIOwxfO5sBWWRh-iweFC_PWw&s",
+      "rating": 4.5
+    },
+    "location": "Remote",
+    "employmentType": "Full-time",
+    "salary": "$60,000 - $80,000 per year",
+    "postedDate": "2025-03-15",
+    "expiryDate": "2025-04-15",
+    "skillsRequired": ["React.js", "Tailwind CSS", "JavaScript"],
+    "responsibilities": [
+      "Develop and maintain UI components.",
+      "Optimize application performance.",
+      "Collaborate with designers and backend developers."
+    ],
+    "qualifications": [
+      "Bachelor’s degree in Computer Science or relevant field.",
+      "2+ years of frontend development experience."
+    ],
+    "experienceLevel": "Mid (2-5 years)",
+    "perks": ["Remote Work", "Health Insurance"],
+    "jobLink": "https://chakribakri.com/job/frontend-dev"
+  },
+  {
+    "id": 2,
+    "title": "Backend Developer",
+    "company": {
+      "name": "CloudSync Inc.",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQEDZF98nJDx9Q/company-logo_200_200/company-logo_200_200/0/1720515771059/cloud_sync_systems_logo?e=2147483647&v=beta&t=Zmf7T5LuCFZovaSrvZC0YW020OR4G1btIL_M2rPlc2w",
+      "rating": 4.8
+    },
+    "location": "New York, USA",
+    "employmentType": "Contract",
+    "salary": "$40 - $60 per hour",
+    "postedDate": "2025-03-10",
+    "expiryDate": "2025-04-10",
+    "skillsRequired": ["Node.js", "Express.js", "MongoDB"],
+    "responsibilities": [
+      "Design and maintain RESTful APIs.",
+      "Ensure database optimization and security.",
+      "Work closely with frontend teams."
+    ],
+    "qualifications": [
+      "3+ years experience in backend development.",
+      "Strong knowledge of databases and server-side logic."
+    ],
+    "experienceLevel": "Mid (3-5 years)",
+    "perks": ["401(k) Plan", "Performance Bonuses"],
+    "jobLink": "https://chakribakri.com/job/backend-dev"
+  },
+  {
+    "id": 3,
+    "title": "Full-Stack Engineer",
+    "company": {
+      "name": "NextGen Startups",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUjCRohinZdM7y0hbIKYKJA0hJvt-VvC7aDw&s",
+      "rating": 4.6
+    },
+    "location": "London, UK",
+    "employmentType": "Full-time",
+    "salary": "£70,000 - £90,000 per year",
+    "postedDate": "2025-03-18",
+    "expiryDate": "2025-04-18",
+    "skillsRequired": ["React.js", "Node.js", "GraphQL"],
+    "responsibilities": [
+      "Develop and integrate frontend and backend features.",
+      "Implement secure authentication and authorization.",
+      "Ensure high performance across platforms."
+    ],
+    "qualifications": [
+      "Bachelor’s degree in Computer Science.",
+      "5+ years experience in full-stack development."
+    ],
+    "experienceLevel": "Senior (5+ years)",
+    "perks": ["Stock Options", "Hybrid Work"],
+    "jobLink": "https://chakribakri.com/job/fullstack-engineer"
+  },
+  {
+    "id": 4,
+    "title": "UI/UX Designer",
+    "company": {
+      "name": "Creative Minds",
+      "logo": "https://www.arena-multimedia.com/uploads/creative_minds/workshop/Creative_Minds_black_-_workshop1.jpg",
+      "rating": 4.7
+    },
+    "location": "Berlin, Germany",
+    "employmentType": "Full-time",
+    "salary": "€50,000 - €70,000 per year",
+    "postedDate": "2025-03-12",
+    "expiryDate": "2025-04-12",
+    "skillsRequired": ["Figma", "Adobe XD", "User Research"],
+    "responsibilities": [
+      "Design and prototype UI/UX elements.",
+      "Conduct user research and A/B testing.",
+      "Collaborate with developers for seamless implementation."
+    ],
+    "qualifications": [
+      "2+ years of UI/UX design experience.",
+      "Strong portfolio showcasing design skills."
+    ],
+    "experienceLevel": "Mid (2-5 years)",
+    "perks": ["Flexible Hours", "Work From Home"],
+    "jobLink": "https://chakribakri.com/job/ui-ux-designer"
+  },
+  {
+    "id": 5,
+    "title": "DevOps Engineer",
+    "company": {
+      "name": "Cloud Innovators",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQGnhl4PkcyrWg/company-logo_200_200/company-logo_200_200/0/1631324669573?e=2147483647&v=beta&t=d4ax6ICI5D4WAg8cnkE78WI2JF6RvjkXJFLzZCesoJg",
+      "rating": 4.9
+    },
+    "location": "San Francisco, USA",
+    "employmentType": "Remote",
+    "salary": "$90,000 - $110,000 per year",
+    "postedDate": "2025-03-20",
+    "expiryDate": "2025-04-20",
+    "skillsRequired": ["AWS", "Docker", "Kubernetes"],
+    "responsibilities": [
+      "Maintain CI/CD pipelines.",
+      "Ensure system scalability and security.",
+      "Optimize cloud infrastructure."
+    ],
+    "qualifications": [
+      "3+ years experience in DevOps.",
+      "Expertise in cloud platforms and automation tools."
+    ],
+    "experienceLevel": "Senior (5+ years)",
+    "perks": ["Stock Options", "Paid Time Off"],
+    "jobLink": "https://chakribakri.com/job/devops-engineer"
+  },
+  {
+    "id": 6,
+    "title": "QA Engineer",
+    "company": {
+      "name": "TestPro Ltd.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4xxVvlRNZbAeZSRHRvhtrLmROz3d08ngZCg&s",
+      "rating": 4.3
+    },
+    "location": "Remote",
+    "employmentType": "Contract",
+    "salary": "$30 - $50 per hour",
+    "postedDate": "2025-03-05",
+    "expiryDate": "2025-04-05",
+    "skillsRequired": ["Selenium", "Jest", "Automation Testing"],
+    "responsibilities": [
+      "Develop and execute test cases.",
+      "Ensure software meets quality standards.",
+      "Collaborate with developers to fix issues."
+    ],
+    "qualifications": [
+      "2+ years experience in software testing.",
+      "Experience with automated and manual testing."
+    ],
+    "experienceLevel": "Mid (2-5 years)",
+    "perks": ["Remote Work", "Project Bonuses"],
+    "jobLink": "https://chakribakri.com/job/qa-engineer"
+  },
+  {
+    "id": 7,
+    "title": "Product Manager",
+    "company": {
+      "name": "Visionary Tech",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2V88TBNVvzFKxAkQT9iDMOQM89ntlxmrrlQ&s",
+      "rating": 4.8
+    },
+    "location": "Singapore",
+    "employmentType": "Full-time",
+    "salary": "$100,000 - $130,000 per year",
+    "postedDate": "2025-03-14",
+    "expiryDate": "2025-04-14",
+    "skillsRequired": ["Agile Methodologies", "Scrum", "Data Analytics"],
+    "responsibilities": [
+      "Define product roadmap and strategy.",
+      "Work closely with developers and stakeholders.",
+      "Ensure timely delivery of features."
+    ],
+    "qualifications": [
+      "5+ years experience in product management.",
+      "Proven track record in software product development."
+    ],
+    "experienceLevel": "Senior (5+ years)",
+    "perks": ["Equity Shares", "Flexible Hours"],
+    "jobLink": "https://chakribakri.com/job/product-manager"
+  },
+  {
+    "id": 8,
+    "title": "Digital Marketing Specialist",
+    "company": {
+      "name": "Growth Hackers",
+      "logo": "https://growthmethod.com/wp-content/uploads/2022/02/Growth-Hackers-splash.jpeg",
+      "rating": 4.4
+    },
+    "location": "Sydney, Australia",
+    "employmentType": "Full-time",
+    "salary": "AU$75,000 - AU$95,000 per year",
+    "postedDate": "2025-03-11",
+    "expiryDate": "2025-04-11",
+    "skillsRequired": ["SEO", "Google Ads", "Content Marketing"],
+    "responsibilities": [
+      "Develop and execute digital marketing campaigns.",
+      "Optimize SEO and SEM strategies.",
+      "Analyze data to improve conversions."
+    ],
+    "qualifications": [
+      "3+ years experience in digital marketing.",
+      "Strong analytical and creative skills."
+    ],
+    "experienceLevel": "Mid (2-5 years)",
+    "perks": ["Training Programs", "Flexible Work Hours"],
+    "jobLink": "https://chakribakri.com/job/digital-marketing"
+  }
+]
