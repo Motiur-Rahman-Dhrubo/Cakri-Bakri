@@ -19,11 +19,11 @@ const ManageUsers = () => {
   );
 
   return (
-    <section className="p-6">
-      <h2 className="text-2xl font-semibold text-cb-secondary mb-4">Manage Users</h2>
+    <section className="p-3 md:p-6">
+      <h2 className="text-3xl md:text-5xl font-semibold text-cb-secondary mb-4">Manage Users</h2>
 
       {/* Search & Filter */}
-      <div className="flex gap-4 mb-4">
+      <div className="w-fit flex max-sm:flex-col gap-4 mb-4">
         <div className="relative w-full">
           <input
             type="text"

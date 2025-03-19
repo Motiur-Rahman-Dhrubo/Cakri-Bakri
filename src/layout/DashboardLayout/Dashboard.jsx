@@ -14,13 +14,11 @@ import Navbar from "../../component/SharedComponent/Navbar";
 
 const Dashboard = () => {
   const role = {
-    isAdmin: true,
+    isAdmin: false,
+    isJobPublisher: true,
+    isJobSeeker: false,
   };
-  const [openCloseMenu, setOpenCloseMenu] = useState(true);
 
-  const handleOpenCloseMenu = () => {
-    setOpenCloseMenu(!openCloseMenu);
-  };
 
   return (
     <>
@@ -31,20 +29,20 @@ const Dashboard = () => {
         <div className="min-h-screen flex bg-cb-white">
           {/* Sidebar */}
           <aside
-            className={`fixed transform ease-in-out duration-700 w-16 md:ms-5 my-5 bg-cb-card shadow-lg rounded-lg`}
+            className={`fixed z-50 transform ease-in-out duration-700 w-12 md:w-16 md:ms-5 my-5 bg-cb-card shadow-lg rounded-lg`}
           >
             {/* Sidebar Content */}
-            <div className=" h-full flex flex-col">
+            <div className="h-full flex flex-col">
               <nav>
-                {role.isAdmin && (
+              {role.isJobPublisher && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink
-                      to="/dashboard"
+                      to="/dashboard/overview"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex max-sm:flex-col items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex max-sm:flex-col items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="dashboard-tooltip"
                       data-tooltip-content="Dashboard Overview"
@@ -58,13 +56,14 @@ const Dashboard = () => {
                       to="/dashboard/manage-jobs"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="manage-jobs-tooltip"
                       data-tooltip-content="Manage Job Posts"
                     >
                       <FaBriefcase className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px] text-center">Manage Jobs</small>
                     </NavLink>
 
                     {/* Manage Users */}
@@ -72,14 +71,14 @@ const Dashboard = () => {
                       to="/dashboard/manage-users"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex max-sm:flex-col items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex max-sm:flex-col items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex  max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="manage-users-tooltip"
                       data-tooltip-content="Manage Users"
                     >
                       <FaUsers className="w-6 h-6" />
-                      <small className="hidden max-sm:block text-[8px]">Manage Users</small>
+                      <small className="hidden max-sm:block text-[8px]">Users</small>
                     </NavLink>
 
                     {/* Job Applications */}
@@ -87,13 +86,14 @@ const Dashboard = () => {
                       to="/dashboard/job-applications"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="job-applications-tooltip"
                       data-tooltip-content="Job Applications"
                     >
                       <FaFileAlt className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Applications</small>
                     </NavLink>
 
                     {/* Reports & Analytics */}
@@ -101,13 +101,14 @@ const Dashboard = () => {
                       to="/dashboard/reports"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="reports-tooltip"
                       data-tooltip-content="Reports & Analytics"
                     >
                       <FaChartBar className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Reports</small>
                     </NavLink>
 
                     {/* Settings */}
@@ -115,13 +116,124 @@ const Dashboard = () => {
                       to="/dashboard/settings"
                       className={({ isActive }) =>
                         isActive
-                          ? "flex items-center justify-center p-3 bg-cb-primary text-white rounded-lg"
-                          : "flex items-center justify-center p-3 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
                       data-tooltip-id="settings-tooltip"
                       data-tooltip-content="Settings"
                     >
                       <FaCog className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Settings</small>
+                    </NavLink>
+
+                    {/* Tooltips */}
+                    <Tooltip id="dashboard-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                    <Tooltip id="manage-jobs-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                    <Tooltip id="manage-users-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                    <Tooltip id="job-applications-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                    <Tooltip id="reports-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                    <Tooltip id="settings-tooltip" place="right" effect="solid" 
+                    style={{ backgroundColor: "#176b87", color: "#ffffff", padding: "8px 10px", borderRadius: "5px", fontSize: "14px" }} />
+                  </>
+                )}
+
+
+                {/* links for admin */}
+                {role.isAdmin && (
+                  <>
+                    {/* Dashboard Overview */}
+                    <NavLink
+                      to="/dashboard/overview"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="dashboard-tooltip"
+                      data-tooltip-content="Dashboard Overview"
+                    >
+                      <FaTachometerAlt className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Overview</small>
+                    </NavLink>
+
+                    {/* Manage Jobs */}
+                    <NavLink
+                      to="/dashboard/manage-jobs"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="manage-jobs-tooltip"
+                      data-tooltip-content="Manage Job Posts"
+                    >
+                      <FaBriefcase className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px] text-center">Manage Jobs</small>
+                    </NavLink>
+
+                    {/* Manage Users */}
+                    <NavLink
+                      to="/dashboard/manage-users"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex  max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="manage-users-tooltip"
+                      data-tooltip-content="Manage Users"
+                    >
+                      <FaUsers className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Users</small>
+                    </NavLink>
+
+                    {/* Job Applications */}
+                    <NavLink
+                      to="/dashboard/job-applications"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="job-applications-tooltip"
+                      data-tooltip-content="Job Applications"
+                    >
+                      <FaFileAlt className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Applications</small>
+                    </NavLink>
+
+                    {/* Reports & Analytics */}
+                    <NavLink
+                      to="/dashboard/reports"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="reports-tooltip"
+                      data-tooltip-content="Reports & Analytics"
+                    >
+                      <FaChartBar className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Reports</small>
+                    </NavLink>
+
+                    {/* Settings */}
+                    <NavLink
+                      to="/dashboard/settings"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="settings-tooltip"
+                      data-tooltip-content="Settings"
+                    >
+                      <FaCog className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">Settings</small>
                     </NavLink>
 
                     {/* Tooltips */}
@@ -144,7 +256,7 @@ const Dashboard = () => {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 ms-[60px] md:ms-[84px] bg-sand">
+          <main className="flex-1 ms-[50px] md:ms-[84px] bg-cb-white">
             <section>
               <Outlet />
             </section>
