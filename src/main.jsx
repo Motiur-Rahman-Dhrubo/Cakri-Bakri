@@ -17,6 +17,10 @@ import JobDetails from "./pages/SingleJobDetails/JobDetails";
 import Dashboard from "./layout/DashboardLayout/Dashboard";
 import DashboardOverview from "./pages/DashboardPages/Overview";
 import ManageUsers from "./pages/DashboardPages/ManageUser";
+import PostJob from "./pages/DashboardPages/JobPublisher/PostJob";
+import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOverview";
+import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
+import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -35,6 +39,13 @@ ReactDOM.createRoot(root).render(
           <Route path="/dashboard" element={<Dashboard />}>
           <Route path="/dashboard/overview" element={<DashboardOverview />} />
           <Route path="/dashboard/manage-users" element={<ManageUsers />} />
+
+
+          {/* job publisher routes */}
+          <Route path="/dashboard/publisher-overview" element={<PublisherOverview />} />
+          <Route path="/dashboard/manage-jobs" element={<ManageJobs />} />
+          <Route path="/dashboard/manage-applications" element={<ManageApplications />} />
+          <Route path="/dashboard/post-job" element={<PostJob />} />
           </Route>
         </Routes>
       </QueryClientProvider>
