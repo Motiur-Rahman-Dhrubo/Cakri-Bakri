@@ -33,7 +33,7 @@ ReactDOM.createRoot(root).render(
             <Route path="register" element={<Register></Register>} />
           </Route>
           <Route path="/dashboard" element={<Dashboard />}>
-          <Route index element={<DashboardOverview />} />
+          <Route path="/dashboard/overview" element={<DashboardOverview />} />
           <Route path="/dashboard/manage-users" element={<ManageUsers />} />
           </Route>
         </Routes>
