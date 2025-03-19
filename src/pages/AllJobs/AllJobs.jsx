@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router";
 export default function AllJobs() {
-  const { data: allJobs = [], isLoading } = useQuery({
+const { data: allJobs = [], isLoading} = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
       const { data } = await axios.get("/dummyJobs.json");
