@@ -11,7 +11,7 @@ export default function AllJobs() {
 const { data: allJobs = [], isLoading} = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const { data } = await axios.get("/dummyJobs.json");
+      const { data } = await axios.get("http://localhost:5000/jobs");
       return data;
     },
   });
@@ -98,7 +98,7 @@ const { data: allJobs = [], isLoading} = useQuery({
                 <div className="grow"></div>
                 <div>
                   <Link
-                    to={`/job-details/${job.id}`}
+                    to={`/job-details/${job._id}`}
                     className="mt-5 inline-block w-full text-center bg-cb-secondary text-white py-2 rounded-lg"
                   >
                     View Job
