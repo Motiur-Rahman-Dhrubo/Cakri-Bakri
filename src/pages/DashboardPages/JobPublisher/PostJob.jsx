@@ -8,44 +8,105 @@ import {
   FaCogs,
   FaListUl,
 } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export default function PostJob() {
   const [formData, setFormData] = useState({
-    jobTitle: "",
-    companyName: "",
-    logoUrl: "",
+    title: "",
+    company: {
+      name: "",
+      logo: "",
+      rating: 0,
+    },
     location: "",
     employmentType: "",
     salary: "",
     postedDate: "",
     expiryDate: "",
-    skills: "",
-    responsibilities: "",
-    qualifications: "",
+    skillsRequired: [],
+    responsibilities: [],
+    qualifications: [],
     experienceLevel: "",
-    perks: "",
+    perks: [],
     jobLink: "",
   });
 
   // Handle change for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === "companyName") {
+      setFormData({
+        ...formData,
+        company: { ...formData.company, name: value },
+      });
+    } else if (name === "companyLogo") {
+      setFormData({
+        ...formData,
+        company: { ...formData.company, logo: value },
+      });
+    } else if (name === "skills") {
+      setFormData({
+        ...formData,
+        skillsRequired: value.split(",").map((skill) => skill.trim()),
+      });
+    } else if (name === "perks") {
+      setFormData({
+        ...formData,
+        perks: value.split(",").map((perk) => perk.trim()),
+      });
+    } else if (name === "responsibilities") {
+      setFormData({
+        ...formData,
+        responsibilities: value.split("\n").map((resp) => resp.trim()),
+      });
+    } else if (name === "qualifications") {
+        setFormData({
+            ...formData,
+            qualifications: value.split("\n").map((qual) => qual.trim()),
+        });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Handle form submission
-  const handlePostJob = async(e) => {
+  const handlePostJob = async (e) => {
     e.preventDefault();
     console.log("Job Post Data:", formData);
 
-    // You can now send `formData` to your API
-    try{
-      const {data} = await axios.post(`${import.meta.env.SERVER_API_URL}/add-job`, formData);
-      if(data.insertedId){
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_SERVER_API_URL}/add-job`,
+        formData
+      );
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Successfully post the job",
+          text: "Please scheack the 'All Jobs' page",
+          icon: "success",
+        });
         e.target.reset();
-        console.log("Successfully added the job data!!!")
+        setFormData({ // Reset form data to initial state
+          title: "",
+          company: {
+            name: "",
+            logo: "",
+            rating: 0,
+          },
+          location: "",
+          employmentType: "",
+          salary: "",
+          postedDate: "",
+          expiryDate: "",
+          skillsRequired: [],
+          responsibilities: [],
+          qualifications: [],
+          experienceLevel: "",
+          perks: [],
+          jobLink: "",
+        });
       }
-    }catch(err){
+    } catch (err) {
       console.log("Job adding ERROR-->", err);
     }
   };
@@ -69,8 +130,8 @@ export default function PostJob() {
             </label>
             <input
               type="text"
-              name="jobTitle"
-              value={formData.jobTitle}
+              name="title"
+              value={formData.title}
               onChange={handleChange}
               placeholder="e.g., UI/UX Designer"
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
@@ -86,7 +147,7 @@ export default function PostJob() {
             <input
               type="text"
               name="companyName"
-              value={formData.companyName}
+              value={formData.company.name}
               onChange={handleChange}
               required
               placeholder="e.g., Creative Minds"
@@ -101,8 +162,8 @@ export default function PostJob() {
             </label>
             <input
               type="url"
-              name="logoUrl"
-              value={formData.logoUrl}
+              name="companyLogo"
+              value={formData.company.logo}
               onChange={handleChange}
               required
               placeholder="https://example.com/logo.jpg"
@@ -169,12 +230,14 @@ export default function PostJob() {
             <input
               type="text"
               name="skills"
-              value={formData.skills}
+              value={formData.skillsRequired.join(", ")}
               onChange={handleChange}
               placeholder="e.g., Figma, Adobe XD, User Research"
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
-            <small className="text-gray-500">Separate skills with commas</small>
+            <small className="text-gray-500">
+              Separate skills with commas
+            </small>
           </div>
 
           {/* Perks */}
@@ -185,7 +248,7 @@ export default function PostJob() {
             <input
               type="text"
               name="perks"
-              value={formData.perks}
+              value={formData.perks.join(", ")}
               onChange={handleChange}
               placeholder="e.g., Flexible Hours, Work From Home"
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
@@ -218,7 +281,7 @@ export default function PostJob() {
             </label>
             <textarea
               name="responsibilities"
-              value={formData.responsibilities}
+              value={formData.responsibilities.join("\n")}
               onChange={handleChange}
               placeholder="Enter responsibilities, one per line..."
               rows="4"
@@ -233,7 +296,7 @@ export default function PostJob() {
             </label>
             <textarea
               name="qualifications"
-              value={formData.qualifications}
+              value={formData.qualifications.join("\n")}
               onChange={handleChange}
               placeholder="Enter qualifications, one per line..."
               rows="4"
@@ -268,6 +331,20 @@ export default function PostJob() {
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
           </div>
+            {/* Job Link */}
+            <div className="col-span-1">
+            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+              Job Link
+            </label>
+            <input
+              type="text"
+              name="jobLink"
+              value={formData.jobLink}
+              onChange={handleChange}
+              placeholder="Enter Job Link"
+              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            />
+          </div>
 
           {/* Submit Button */}
           <div className="col-span-1 md:col-span-2 lg:col-span-3">
@@ -283,3 +360,4 @@ export default function PostJob() {
     </>
   );
 }
+

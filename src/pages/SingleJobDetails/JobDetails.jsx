@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import {
   FaMapMarkerAlt,
   FaMoneyBillWave,
@@ -11,16 +11,16 @@ import {
 import { useEffect, useState } from "react";
 export default function JobDetails() {
   const { id } = useParams();
-  const [job, setJob] = useState({});
 
-  useEffect(() => {
-    const handleJob = async () => {
-      const { data } = await axios.get("/dummyJobs.json");
-      const filteredJob = await data.find((job) => job.id == id);
-      setJob(filteredJob);
-    };
-    handleJob();
-  }, [id]);
+  const { data: job = {}, isLoading } = useQuery({
+    queryKey: ["jobDetails"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_API_URL}/job-details/${id}`
+      );
+      return data;
+    },
+  });
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function JobDetails() {
               <img
                 src={job?.company?.logo}
                 alt={job?.company?.name}
-                className="w-16 h-16 object-contain"
+                className="w-20 h-20 border-2 border-cb-card rounded-lg object-center shadow-[0px_0_15px_1px_rgba(10,172,247,0.5)]"
               />
               <div>
                 <h1 className="text-2xl font-bold text-cb-secondary">
@@ -44,12 +44,15 @@ export default function JobDetails() {
                 </p>
               </div>
             </div>
-            <a
-              // href={job?.jobLink}
-              className="btn bg-cb-primary text-white px-6 py-2"
-            >
-              Apply Now
-            </a>
+            <div className="space-x-2">
+              <Link
+                // href={job?.jobLink}
+                className="btn bg-cb-primary text-white px-6 py-2 transition-shadow duration-1000 hover:shadow-[0px_0_15px_1px_rgba(10,172,247,0.5)]"
+              >
+                Apply Now
+              </Link>
+              <button className="btn border border-cb-primary bg-transparent text-cb-secondary hover:bg-cb-primary hover:text-cb-white">Add To Favourite</button>
+            </div>
           </div>
 
           {/* Job Meta Information */}

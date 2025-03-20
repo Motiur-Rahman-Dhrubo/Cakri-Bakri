@@ -11,7 +11,7 @@ export default function AllJobs() {
   const { data: allJobs = [], isLoading } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const { data } = await axios.get("/dummyJobs.json");
+      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_API_URL}/jobs`);
       return data;
     },
   });
@@ -51,7 +51,7 @@ export default function AllJobs() {
           {allJobs.length > 0 ? (
             allJobs.map((job) => (
               <div
-                key={job.id}
+                key={job._id}
                 className="flex flex-col bg-cb-card p-6 rounded-xl hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
               >
                 <div className="flex items-center gap-3">
@@ -65,7 +65,7 @@ export default function AllJobs() {
                       {job.title}
                     </h3>
                     <p className="text-cb-primary">
-                      {job?.company?.name} | ⭐ {job?.company?.rating}
+                      {job?.company?.name} | ⭐ 4.3
                     </p>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export default function AllJobs() {
                 <div className="grow"></div>
                 <div>
                   <Link
-                    to={`/job-details/${job.id}`}
+                    to={`/job-details/${job._id}`}
                     className="mt-5 inline-block w-full text-center bg-cb-secondary text-white py-2 rounded-lg"
                   >
                     View Job
