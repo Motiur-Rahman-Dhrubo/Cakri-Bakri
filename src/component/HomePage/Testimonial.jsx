@@ -27,23 +27,23 @@ export default function Testimonials() {
     },
   ];
   return (
-    <section className="py-12 bg-[#EEF5FF]">
+    <section className="py-5 bg-cb-card mb-12">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-[#176B87]">What Our Users Say</h2>
-        <p className="text-lg text-gray-600 mt-2">See how Cakri-Bakri has helped professionals grow.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">What Our Users Say</h2>
+        <p className="text-lg text-cb-secondary/80 mt-4">See how Cakri-Bakri has helped professionals grow.</p>
       </div>
       <div className="divider w-11/12 mx-auto my-0"></div>
-      <div className="carousel w-11/12 mx-auto grid grid-cols-3 mt-8">
+      <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2">
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="carousel-item w-full justify-center">
-            <div className="bg-[#B4D4FF] p-6 rounded-lg shadow-lg max-w-lg mx-4 flex flex-col items-center text-center">
-              <FaQuoteLeft className="text-4xl text-[#176B87] mb-3" />
-              <p className="text-gray-800 text-lg font-medium">{testimonial.message}</p>
+            <div className="bg-cb-primary p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
+              <FaQuoteLeft className="text-4xl text-cb-white mb-3" />
+              <p className="text-cb-white/95 text-lg font-medium">{testimonial.message}</p>
               <div className="mt-4 flex items-center gap-3">
-                <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-[#176B87]" />
-                <div>
-                  <h4 className="text-[#176B87] font-semibold">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-700">{testimonial.role}</p>
+                <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-cb-white/80" />
+                <div className="text-left">
+                  <h4 className="text-cb-white/85 font-semibold">{testimonial.name}</h4>
+                  <p className="text-sm text-cb-white/70">{testimonial.role}</p>
                 </div>
               </div>
             </div>
