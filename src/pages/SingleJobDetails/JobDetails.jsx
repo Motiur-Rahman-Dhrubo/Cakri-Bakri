@@ -15,9 +15,10 @@ export default function JobDetails() {
 
   useEffect(() => {
     const handleJob = async () => {
-      const { data } = await axios.get("/dummyJobs.json");
-      const filteredJob = await data.find((job) => job.id == id);
-      setJob(filteredJob);
+      const { data } = await axios.get(
+        `http://localhost:5000/job-details/${id}`
+      );
+      setJob(data);
     };
     handleJob();
   }, [id]);
