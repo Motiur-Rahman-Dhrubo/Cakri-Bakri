@@ -33,9 +33,9 @@ export default function Testimonials() {
         <p className="text-lg text-cb-secondary/80 mt-4">See how Cakri-Bakri has helped professionals grow.</p>
       </div>
       <div className="divider w-11/12 mx-auto my-0"></div>
-      <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2">
+      <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2 ">
         {testimonials.map((testimonial) => (
-          <div key={testimonial.id} className="carousel-item w-full justify-center">
+          <div key={testimonial.id} className="carousel-item w-full justify-center transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="bg-cb-primary p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
               <FaQuoteLeft className="text-4xl text-cb-white mb-3" />
               <p className="text-cb-white/95 text-lg font-medium">{testimonial.message}</p>
@@ -53,7 +53,7 @@ export default function Testimonials() {
 
       <div className="flex justify-center gap-2 mt-4">
         {testimonials.map((_, index) => (
-          <a href={`#slide${index}`} key={index} className="btn h-5 w-5 btn-circle bg-[#176B87] text-white"></a>
+          <a href={`#slide${index}`} key={index} className="btn h-5 w-5 btn-circle bg-[#176B87] text-white "></a>
         ))}
       </div>
     </section>
