@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import axios from "axios";
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   FaMapMarkerAlt,
   FaMoneyBillWave,
@@ -8,19 +9,59 @@ import {
   FaCalendarAlt,
   FaStar,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 export default function JobDetails() {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [job, setJob] = useState({});
 
+  // get specifice job details
   useEffect(() => {
     const handleJob = async () => {
-      const { data } = await axios.get("/dummyJobs.json");
-      const filteredJob = await data.find((job) => job.id == id);
-      setJob(filteredJob);
+      const { data } = await axios.get(
+        `http://localhost:5000/job-details/${id}`
+      );
+      setJob(data);
     };
     handleJob();
   }, [id]);
+
+  const handleApply = async () => {
+    if (user) {
+      const application = {
+        email: user?.email,
+        jobId: job?._id,
+        status: "pending",
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to apply for this job!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, apply job!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await axios.post(
+            "http://localhost:5000/apply-job",
+            application
+          );
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Successfull !",
+              text: "Your application has been saved.",
+              icon: "success",
+            });
+          }
+        }
+      });
+    } else {
+      window.location.href = "/login";
+    }
+  };
 
   return (
     <>
@@ -46,6 +87,7 @@ export default function JobDetails() {
             </div>
             <a
               // href={job?.jobLink}
+              onClick={handleApply}
               className="btn bg-cb-primary text-white px-6 py-2"
             >
               Apply Now
