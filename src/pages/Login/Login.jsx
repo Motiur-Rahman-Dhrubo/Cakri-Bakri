@@ -4,6 +4,7 @@ import loginAnimation from "../../assets/LoginAnimation.json";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
   const { loginUser, signInWithGoogle } = useContext(AuthContext);
@@ -23,6 +24,14 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log("Logged in", result.user);
+        const user = { email: email };
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
         navigate("/");
       })
       .catch((error) => {
@@ -79,7 +88,7 @@ const Login = () => {
             <FcGoogle className="text-2xl mr-3" />
             Login with Google
           </button>
-          
+
           <p className="text-cb-secondary mt-4">
             Don't have an account?{" "}
             <Link to="/register" className="text-cb-primary hover:underline">
