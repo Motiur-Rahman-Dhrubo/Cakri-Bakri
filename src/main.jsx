@@ -22,6 +22,9 @@ import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOver
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
+import JobSeekerProfile from "./pages/DashboardPages/JobSeekersPage/JobSeekerProfile";
+import AppliedJobs from "./pages/DashboardPages/JobSeekersPage/AppliedJobs";
+import FavouriteJobs from "./pages/DashboardPages/JobSeekersPage/FavouriteJobs";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -37,6 +40,9 @@ ReactDOM.createRoot(root).render(
             <Route path="login" element={<Login></Login>} />
             <Route path="register" element={<Register></Register>} />
           </Route>
+
+
+          {/* admin page routes */}
           <Route path="/dashboard" element={<Dashboard />}>
           <Route path="/dashboard/overview" element={<DashboardOverview />} />
           <Route path="/dashboard/manage-users" element={<ManageUsers />} />
@@ -48,6 +54,12 @@ ReactDOM.createRoot(root).render(
           <Route path="/dashboard/update-job/:id" element={<UpdateJob />} />
           <Route path="/dashboard/manage-applications" element={<ManageApplications />} />
           <Route path="/dashboard/post-job" element={<PostJob />} />
+
+
+           {/* job seeker routes */}
+           <Route path="/dashboard/user-profile" element={<JobSeekerProfile />} />
+           <Route path="/dashboard/applied-jobs" element={<AppliedJobs />} />
+           <Route path="/dashboard/favorite-jobs" element={<FavouriteJobs />} />
           </Route>
         </Routes>
       </QueryClientProvider>

@@ -12,12 +12,14 @@ import {
   FaBookmark,
 } from "react-icons/fa";
 import Navbar from "../../component/SharedComponent/Navbar";
+import { ImProfile } from "react-icons/im";
+import { MdFavoriteBorder } from "react-icons/md";
 
 const Dashboard = () => {
   const role = {
     isAdmin: false,
-    isJobPublisher: true,
-    isJobSeeker: false,
+    isJobPublisher: false,
+    isJobSeeker: true,
   };
 
   return (
@@ -34,7 +36,6 @@ const Dashboard = () => {
             {/* Sidebar Content */}
             <div className="h-full flex flex-col">
               <nav>
-
                 {/* links for job publishers */}
                 {role.isJobPublisher && (
                   <>
@@ -106,8 +107,6 @@ const Dashboard = () => {
                       </small>
                     </NavLink>
 
-                    
-
                     {/* Tooltips */}
                     <Tooltip
                       id="dashboard-tooltip"
@@ -157,7 +156,6 @@ const Dashboard = () => {
                         fontSize: "14px",
                       }}
                     />
-                   
                   </>
                 )}
 
@@ -329,6 +327,100 @@ const Dashboard = () => {
                     />
                     <Tooltip
                       id="settings-tooltip"
+                      place="right"
+                      effect="solid"
+                      style={{
+                        backgroundColor: "#176b87",
+                        color: "#ffffff",
+                        padding: "8px 10px",
+                        borderRadius: "5px",
+                        fontSize: "14px",
+                      }}
+                    />
+                  </>
+                )}
+
+                {/* links for job seeker */}
+                {role.isJobSeeker && (
+                  <>
+                    {/* User Profile */}
+                    <NavLink
+                      to="/dashboard/user-profile"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="user-profile-tooltip"
+                      data-tooltip-content="My Profile"
+                    >
+                      <ImProfile className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">
+                        My Profile
+                      </small>
+                    </NavLink>
+
+                    {/* Applied Jobs */}
+                    <NavLink
+                      to="/dashboard/applied-jobs"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="applied-jobs-tooltip"
+                      data-tooltip-content="Applied Jobs"
+                    >
+                      <FaBriefcase className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">
+                        Applied Jobs
+                      </small>
+                    </NavLink>
+
+                    {/* Favorite Jobs */}
+                    <NavLink
+                      to="/dashboard/favorite-jobs"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="favorite-jobs-tooltip"
+                      data-tooltip-content="Favorite Jobs"
+                    >
+                      <MdFavoriteBorder className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px] text-center">
+                        Favorite Jobs
+                      </small>
+                    </NavLink>
+
+                    {/* Tooltips */}
+                    <Tooltip
+                      id="user-profile-tooltip"
+                      place="right"
+                      effect="solid"
+                      style={{
+                        backgroundColor: "#176b87",
+                        color: "#ffffff",
+                        padding: "8px 10px",
+                        borderRadius: "5px",
+                        fontSize: "14px",
+                      }}
+                    />
+                    <Tooltip
+                      id="applied-jobs-tooltip"
+                      place="right"
+                      effect="solid"
+                      style={{
+                        backgroundColor: "#176b87",
+                        color: "#ffffff",
+                        padding: "8px 10px",
+                        borderRadius: "5px",
+                        fontSize: "14px",
+                      }}
+                    />
+                    <Tooltip
+                      id="favorite-jobs-tooltip"
                       place="right"
                       effect="solid"
                       style={{
