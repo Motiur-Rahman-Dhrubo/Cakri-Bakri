@@ -33,6 +33,10 @@ export default function JobDetails() {
         email: user?.email,
         jobId: job?._id,
         status: "pending",
+        jobTitle: job?.title,
+        companyName: job?.company?.name,
+        employmentType: job?.employmentType,
+        salary: job?.salary
       };
 
       Swal.fire({
