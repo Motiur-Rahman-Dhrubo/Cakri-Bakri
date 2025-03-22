@@ -34,9 +34,9 @@ ReactDOM.createRoot(root).render(
             <Route path="register" element={<Register></Register>} />
           </Route>
           <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="/dashboard/overview" element={<DashboardOverview />} />
-          <Route path="/dashboard/manage-users" element={<ManageUsers />} />
-          <Route path="/dashboard/applied-Jobs" element={<AppliedJobs/>} />
+            <Route path="/dashboard/overview" element={<DashboardOverview />} />
+            <Route path="/dashboard/manage-users" element={<ManageUsers />} />
+            <Route path="/dashboard/applied-Jobs" element={<AppliedJobs />} />
           </Route>
         </Routes>
       </QueryClientProvider>
