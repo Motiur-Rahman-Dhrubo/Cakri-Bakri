@@ -18,7 +18,7 @@ export default function Banner() {
       <p className="mt-4 text-lg text-cb-primary/80 md:text-cb-white/85 md:w-[450px]">
         Find Your Dream Job. Connect with Top Employers. A seamless platform for job seekers and recruiters.
       </p>
-      <button className="mt-6 btn text-lg bg-cb-btn md:bg-cb-white text-cb-secondary md:text-cb-secondary">Explore Jobs</button>
+      <button className="mt-6 btn text-lg bg-cb-btn md:bg-cb-white text-cb-secondary md:text-cb-secondary transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">Explore Jobs</button>
     </div>
 
     <div className="md:hidden w-11/12 mx-auto rounded-lg">
