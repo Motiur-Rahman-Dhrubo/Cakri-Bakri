@@ -1,44 +1,39 @@
-import React, { useContext } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { AuthContext } from "../../providers/AuthProvider";
-import {
-  FaSearch,
-  FaMapMarkerAlt,
-  FaBriefcase,
-  FaDollarSign,
-} from "react-icons/fa";
-import { NavLink } from "react-router";
+import React, { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { FaSearch } from 'react-icons/fa';
+import { NavLink } from 'react-router';
 
-const AppliedJobs = () => {
-  const { user } = useContext(AuthContext);
-  // console.log(user)
+const FavoriteJobs = () => {
 
-  // use tanstak query for data fatching
-
-  const {
-    isPending,
-    error,
-    data: appliedJobs = [],
-  } = useQuery({
-    queryKey: [`applied-jobs?email=${user?.email}`],
-    queryFn: async () => {
-      const { data } = await axios.get(
-        `http://localhost:5000/applied-jobs?email=${user?.email}`
-      );
-      return data;
-    },
-  });
-
-  if (isPending) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-  console.log(appliedJobs);
-
-  return (
-    <div className="w-11/12 mx-auto">
+     const { user } = useContext(AuthContext);
+      // console.log(user)
+    
+      // use tanstak query for data fatching
+    
+      const {
+        isPending,
+        error,
+        data: favoriteJobs = [],
+      } = useQuery({
+        queryKey: [`applied-jobs?email=${user?.email}`],
+        queryFn: async () => {
+          const { data } = await axios.get(
+            `http://localhost:5000/favorite-jobs?email=${user?.email}`
+          );
+          return data;
+        },
+      });
+    
+      if (isPending) return "Loading...";
+    
+      if (error) return "An error has occurred: " + error.message;
+      
+    return (
+        <div className="w-11/12 mx-auto">
         <div className="py-4">
-            <h1 className="font-bold text-4xl text-center mx-auto">Total Applied Jobs: {appliedJobs?.length}</h1>
+            <h1 className="font-bold text-4xl text-center mx-auto">My Favorite Jobs : {favoriteJobs?.length}</h1>
         </div>
       <section>
         {/* search and filter section */}
@@ -73,7 +68,7 @@ const AppliedJobs = () => {
       {/* applied jobs data table section */}
       <section>
         <div>
-          {appliedJobs?.length == 0 ? (
+          {favoriteJobs?.length == 0 ? (
             <div className="flex justify-center items-center min-h-screen">
               <h1 className="text-4xl font-bold text-center my-4">
                 No job apply yet
@@ -89,12 +84,11 @@ const AppliedJobs = () => {
                     <th>Job Title</th>
                     <th>Job Type</th>
                     <th>Salay</th>
-                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {appliedJobs?.map((data) => (
+                  {favoriteJobs?.map((data) => (
                     <tr>
                       <td>
                         <h1 className="font-bold ">{data.companyName}</h1>
@@ -102,14 +96,13 @@ const AppliedJobs = () => {
                       <td>{data?.jobTitle}</td>
                       <td>{data?.employmentType}</td>
                       <td>{data?.salary}</td>
-                      <td>{data?.status}</td>
                       <th>
                         <div className="flex">
                           <button
                             
                             className="btn btn-ghost btn-xs"
                           >
-                            Delete
+                            Remove from Favorite
                           </button>
                           <NavLink to={`/job-details/${data._id}`}>
                             <button className="btn btn-ghost btn-xs ml-2 ">
@@ -127,7 +120,7 @@ const AppliedJobs = () => {
         </div>
       </section>
     </div>
-  );
+    );
 };
 
-export default AppliedJobs;
+export default FavoriteJobs;
