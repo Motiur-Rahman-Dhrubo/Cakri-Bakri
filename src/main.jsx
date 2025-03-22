@@ -19,6 +19,7 @@ import DashboardOverview from "./pages/DashboardPages/Overview";
 import ManageUsers from "./pages/DashboardPages/ManageUser";
 import AppliedJobs from "./pages/AppliedJobs/AppliedJobs";
 import FavoriteJobs from "./pages/FavoriteJobs/FavoriteJobs";
+import Myprofile from "./pages/Myprofile/Myprofile";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -37,6 +38,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard/overview" element={<DashboardOverview />} />
             <Route path="/dashboard/manage-users" element={<ManageUsers />} />
+            <Route path="/dashboard/myprofile" element={<Myprofile/>} />
             <Route path="/dashboard/applied-Jobs" element={<AppliedJobs />} />
             <Route path="/dashboard/favorite-Jobs" element={<FavoriteJobs />} />
           </Route>
