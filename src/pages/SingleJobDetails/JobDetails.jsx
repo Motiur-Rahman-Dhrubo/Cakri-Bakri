@@ -27,12 +27,17 @@ export default function JobDetails() {
     handleJob();
   }, [id]);
 
+  // Job apply function
   const handleApply = async () => {
     if (user) {
       const application = {
         email: user?.email,
         jobId: job?._id,
         status: "pending",
+        jobTitle: job?.title,
+        companyName: job?.company?.name,
+        employmentType: job?.employmentType,
+        salary: job?.salary,
       };
 
       Swal.fire({
@@ -53,6 +58,46 @@ export default function JobDetails() {
             Swal.fire({
               title: "Successfull !",
               text: "Your application has been saved.",
+              icon: "success",
+            });
+          }
+        }
+      });
+    } else {
+      window.location.href = "/login";
+    }
+  };
+
+  // Job add to favorite function    
+  const handleFavorite = async () => {
+    if (user) {
+      const application = {
+        email: user?.email,
+        jobId: job?._id,
+        jobTitle: job?.title,
+        companyName: job?.company?.name,
+        employmentType: job?.employmentType,
+        salary: job?.salary,
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to add this job in your Favorite List!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Add to Favorite!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await axios.post(
+            "http://localhost:5000/favorite-jobs",
+            application
+          );
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Successfull !",
+              text: "This job has been added to your Favorite List.",
               icon: "success",
             });
           }
@@ -85,13 +130,22 @@ export default function JobDetails() {
                 </p>
               </div>
             </div>
-            <a
-              // href={job?.jobLink}
-              onClick={handleApply}
-              className="btn bg-cb-primary text-white px-6 py-2"
-            >
-              Apply Now
-            </a>
+            <div className="flex flex-col gap-y-2">
+              <a
+                // href={job?.jobLink}
+                onClick={handleApply}
+                className="btn bg-cb-primary text-white px-6 py-2"
+              >
+                Apply Now
+              </a>
+              <a
+                // href={job?.jobLink}
+                onClick={handleFavorite}
+                className="btn btn-outline btn-secondary px-6 py-2"
+              >
+                Add To Favorite
+              </a>
+            </div>
           </div>
 
           {/* Job Meta Information */}

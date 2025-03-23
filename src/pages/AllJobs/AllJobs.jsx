@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router";
 export default function AllJobs() {
-  const { data: allJobs = [], isLoading } = useQuery({
+const { data: allJobs = [], isLoading} = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/jobs");
@@ -25,8 +25,8 @@ export default function AllJobs() {
               type="text"
               placeholder="Search for jobs..."
               className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-              // value={searchQuery}
-              // onChange={(e) => setSearchQuery(e.target.value)}
+            // value={searchQuery}
+            // onChange={(e) => setSearchQuery(e.target.value)}
             />
             <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
           </div>
