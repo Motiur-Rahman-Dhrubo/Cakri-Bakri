@@ -24,22 +24,24 @@ const AppliedJobs = () => {
     queryKey: [`applied-jobs?email=${user?.email}`],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/applied-jobs?email=${user?.email}`
+        `https://cakri-bakri-server.vercel.app/applied-jobs?email=${user?.email}`
       );
       return data;
     },
   });
 
-  if (isPending) return "Loading..."
+  if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
   console.log(appliedJobs);
 
   return (
     <div className="w-11/12 mx-auto">
-        <div className="py-4">
-            <h1 className="font-bold text-4xl text-center mx-auto">Total Applied Jobs: {appliedJobs?.length}</h1>
-        </div>
+      <div className="py-4">
+        <h1 className="font-bold text-4xl text-center mx-auto">
+          Total Applied Jobs: {appliedJobs?.length}
+        </h1>
+      </div>
       <section>
         {/* search and filter section */}
         <div className="flex flex-col md:flex-row gap-2 items-center justify-between bg-cb-card p-4 rounded-2xl shadow-lg">
@@ -105,13 +107,10 @@ const AppliedJobs = () => {
                       <td>{data?.status}</td>
                       <th>
                         <div className="flex">
-                          <button
-                            
-                            className="btn btn-ghost btn-xs"
-                          >
+                          <button className="btn btn-ghost btn-xs">
                             Delete
                           </button>
-                          <NavLink to={`/job-details/${data._id}`}>
+                          <NavLink to={`/job-details/${data.jobId}`}>
                             <button className="btn btn-ghost btn-xs ml-2 ">
                               Details
                             </button>
