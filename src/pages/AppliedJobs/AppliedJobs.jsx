@@ -30,7 +30,7 @@ const AppliedJobs = () => {
     },
   });
 
-  if (isPending) return "Loading...";
+  if (isPending) return "Loading..."
 
   if (error) return "An error has occurred: " + error.message;
   console.log(appliedJobs);
