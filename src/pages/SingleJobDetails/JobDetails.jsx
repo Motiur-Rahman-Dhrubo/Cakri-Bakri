@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import axios from "axios";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   FaMapMarkerAlt,
   FaMoneyBillWave,
@@ -8,19 +9,104 @@ import {
   FaCalendarAlt,
   FaStar,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 export default function JobDetails() {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
+  const [job, setJob] = useState({});
 
-  const { data: job = {}, isLoading } = useQuery({
-    queryKey: ["jobDetails"],
-    queryFn: async () => {
+  // get specifice job details
+  useEffect(() => {
+    const handleJob = async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_API_URL}/job-details/${id}`
+        `http://localhost:5000/job-details/${id}`
       );
-      return data;
-    },
-  });
+      setJob(data);
+    };
+    handleJob();
+  }, [id]);
+
+  // Job apply function
+  const handleApply = async () => {
+    if (user) {
+      const application = {
+        email: user?.email,
+        jobId: job?._id,
+        status: "pending",
+        jobTitle: job?.title,
+        companyName: job?.company?.name,
+        employmentType: job?.employmentType,
+        salary: job?.salary,
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to apply for this job!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, apply job!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await axios.post(
+            "http://localhost:5000/apply-job",
+            application
+          );
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Successfull !",
+              text: "Your application has been saved.",
+              icon: "success",
+            });
+          }
+        }
+      });
+    } else {
+      window.location.href = "/login";
+    }
+  };
+
+  // Job add to favorite function    
+  const handleFavorite = async () => {
+    if (user) {
+      const application = {
+        email: user?.email,
+        jobId: job?._id,
+        jobTitle: job?.title,
+        companyName: job?.company?.name,
+        employmentType: job?.employmentType,
+        salary: job?.salary,
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to add this job in your Favorite List!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Add to Favorite!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await axios.post(
+            "http://localhost:5000/favorite-jobs",
+            application
+          );
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Successfull !",
+              text: "This job has been added to your Favorite List.",
+              icon: "success",
+            });
+          }
+        }
+      });
+    } else {
+      window.location.href = "/login";
+    }
+  };
 
   return (
     <>
@@ -32,7 +118,7 @@ export default function JobDetails() {
               <img
                 src={job?.company?.logo}
                 alt={job?.company?.name}
-                className="w-20 h-20 border-2 border-cb-card rounded-lg object-center shadow-[0px_0_15px_1px_rgba(10,172,247,0.5)]"
+                className="w-16 h-16 object-contain"
               />
               <div>
                 <h1 className="text-2xl font-bold text-cb-secondary">
@@ -44,14 +130,21 @@ export default function JobDetails() {
                 </p>
               </div>
             </div>
-            <div className="space-x-2">
-              <Link
+            <div className="flex flex-col gap-y-2">
+              <a
                 // href={job?.jobLink}
-                className="btn bg-cb-primary text-white px-6 py-2 transition-shadow duration-1000 hover:shadow-[0px_0_15px_1px_rgba(10,172,247,0.5)]"
+                onClick={handleApply}
+                className="btn bg-cb-primary text-white px-6 py-2"
               >
                 Apply Now
-              </Link>
-              <button className="btn border border-cb-primary bg-transparent text-cb-secondary hover:bg-cb-primary hover:text-cb-white">Add To Favourite</button>
+              </a>
+              <a
+                // href={job?.jobLink}
+                onClick={handleFavorite}
+                className="btn btn-outline btn-secondary px-6 py-2"
+              >
+                Add To Favorite
+              </a>
             </div>
           </div>
 

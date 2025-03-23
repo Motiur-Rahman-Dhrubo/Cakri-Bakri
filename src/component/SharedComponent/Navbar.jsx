@@ -134,11 +134,6 @@ export default function Navbar() {
                     Login
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink className="max-sm:text-xl" to="/register">
-                    Register
-                  </NavLink>
-                </li>
               </>
             )}
           </ul>

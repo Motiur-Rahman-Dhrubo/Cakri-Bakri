@@ -10,3 +10,10 @@
   --color-cb-white: #F4F4F4;
   --color-cb-card: #B4D4FF;
 }
+.button:hover{
+  background-color: aliceblue;
+  color: black;
+}
+.active{
+  border-bottom: 2px solid;
+}

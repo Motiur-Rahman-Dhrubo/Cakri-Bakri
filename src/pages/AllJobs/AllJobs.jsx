@@ -8,10 +8,10 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router";
 export default function AllJobs() {
-  const { data: allJobs = [], isLoading } = useQuery({
+const { data: allJobs = [], isLoading} = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_API_URL}/jobs`);
+      const { data } = await axios.get("http://localhost:5000/jobs");
       return data;
     },
   });
@@ -25,8 +25,8 @@ export default function AllJobs() {
               type="text"
               placeholder="Search for jobs..."
               className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-              // value={searchQuery}
-              // onChange={(e) => setSearchQuery(e.target.value)}
+            // value={searchQuery}
+            // onChange={(e) => setSearchQuery(e.target.value)}
             />
             <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
           </div>
@@ -51,7 +51,7 @@ export default function AllJobs() {
           {allJobs.length > 0 ? (
             allJobs.map((job) => (
               <div
-                key={job._id}
+                key={job.id}
                 className="flex flex-col bg-cb-card p-6 rounded-xl hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
               >
                 <div className="flex items-center gap-3">
@@ -65,7 +65,7 @@ export default function AllJobs() {
                       {job.title}
                     </h3>
                     <p className="text-cb-primary">
-                      {job?.company?.name} | ⭐ 4.3
+                      {job?.company?.name} | ⭐ {job?.company?.rating}
                     </p>
                   </div>
                 </div>
