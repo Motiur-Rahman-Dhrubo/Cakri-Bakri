@@ -11,7 +11,7 @@ export default function AllJobs() {
 const { data: allJobs = [], isLoading} = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:5000/jobs");
+      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_API_URL}/jobs`);
       return data;
     },
   });
@@ -46,6 +46,9 @@ const { data: allJobs = [], isLoading} = useQuery({
           </button>
         </div>
 
+{
+  isLoading && <h3 className="py-10 text-3xl text-center text-cb-primary/70">Loading...</h3>
+}
         {/* Job Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {allJobs.length > 0 ? (
