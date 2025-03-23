@@ -258,7 +258,7 @@ const Dashboard = () => {
                   <>
                     {/* User Profile */}
                     <NavLink
-                      to="/dashboard/myprofile1"
+                      to="/dashboard/myprofile"
                       className={({ isActive }) =>
                         isActive
                           ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
