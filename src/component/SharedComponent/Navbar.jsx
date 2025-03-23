@@ -16,17 +16,17 @@ export default function Navbar() {
   const navLink = (
     <>
       <li>
-        <NavLink className="max-sm:text-xl" to={"/"}>
+        <NavLink className="button max-sm:text-xl" to={"/"}>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="max-sm:text-xl" to={"/all-jobs"}>
+        <NavLink className="button max-sm:text-xl" to={"/all-jobs"}>
           All Jobs
         </NavLink>
       </li>
       <li>
-        <NavLink className="max-sm:text-xl" to={"/about-us"}>
+        <NavLink className="button max-sm:text-xl" to={"/about-us"}>
           About Us
         </NavLink>
       </li>

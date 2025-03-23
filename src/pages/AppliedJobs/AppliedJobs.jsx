@@ -111,9 +111,9 @@ const AppliedJobs = () => {
                           >
                             Delete
                           </button>
-                          <NavLink to={`/updateMyPost/${data?._id}`}>
+                          <NavLink to={`/job-details/${data._id}`}>
                             <button className="btn btn-ghost btn-xs ml-2 ">
-                              Update
+                              Details
                             </button>
                           </NavLink>
                         </div>
