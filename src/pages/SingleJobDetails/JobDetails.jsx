@@ -20,7 +20,7 @@ export default function JobDetails() {
   useEffect(() => {
     const handleJob = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/job-details/${id}`
+        `https://cakri-bakri-server.vercel.app/job-details/${id}`
       );
       setJob(data);
     };
@@ -51,7 +51,7 @@ export default function JobDetails() {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const { data } = await axios.post(
-            "http://localhost:5000/apply-job",
+            "https://cakri-bakri-server.vercel.app/apply-job",
             application
           );
           if (data.insertedId) {
@@ -91,7 +91,7 @@ export default function JobDetails() {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const { data } = await axios.post(
-            "http://localhost:5000/favorite-jobs",
+            "https://cakri-bakri-server.vercel.app/favorite-jobs",
             application
           );
           if (data.insertedId) {
