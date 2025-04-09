@@ -13,8 +13,10 @@ import {
 import Navbar from "../../component/SharedComponent/Navbar";
 import { ImProfile } from "react-icons/im";
 import { MdFavoriteBorder } from "react-icons/md";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
+  const [isadmin] = useAdmin();
   const role = {
     isAdmin: false,
     isJobPublisher: false,
