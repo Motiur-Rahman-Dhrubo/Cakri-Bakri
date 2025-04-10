@@ -29,16 +29,16 @@ export default function Banner() {
 
         <div className="relative">
           <motion.div
-            animate={{
-              x: [0, 10, 10, 0, 0],
-              y: [0, 0, -10, -10, 0],
-            }}
-            transition={{
-              delay: 1,
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            // animate={{
+            //   x: [0, 10, 10, 0, 0],
+            //   y: [0, 0, -10, -10, 0],
+            // }}
+            // transition={{
+            //   delay: 1,
+            //   duration: 4,
+            //   repeat: Infinity,
+            //   ease: "easeInOut",
+            // }}
             className="lg:w-[380px] absolute -top-16"
           >
             <img
@@ -49,16 +49,16 @@ export default function Banner() {
           </motion.div>
 
           <motion.div
-            animate={{
-              x: [10, 0, 0, 10, 10],
-              y: [0, 0, 10, 10, 0],
-            }}
-            transition={{
-              delay: 1,
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            // animate={{
+            //   x: [10, 0, 0, 10, 10],
+            //   y: [0, 0, 10, 10, 0],
+            // }}
+            // transition={{
+            //   delay: 1,
+            //   duration: 4,
+            //   repeat: Infinity,
+            //   ease: "easeInOut",
+            // }}
             className="lg:w-[380px] absolute left-40 top-24"
           >
             <img
