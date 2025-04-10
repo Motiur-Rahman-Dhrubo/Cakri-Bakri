@@ -19,13 +19,14 @@ import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  const [isSeeker] = usePublisher();
-  const [isPublisher] = useSeeker();
-  const role = {
-    isAdmin: false,
-    isJobPublisher: true,
-    isJobSeeker: false,
-  };
+  const [isPublisher] = usePublisher();
+  const [isSeeker] = useSeeker();
+  console.log(isAdmin, isPublisher, isSeeker)
+  // const role = {
+  //   isAdmin: true,
+  //   isJobPublisher: false,
+  //   isJobSeeker: false,
+  // };
 
   return (
     <>
