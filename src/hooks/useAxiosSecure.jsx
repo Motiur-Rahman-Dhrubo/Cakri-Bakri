@@ -25,8 +25,9 @@ export default function useAxiosSecure() {
             navigate('/login')
         }
         if(status === 403){
-            navigate
+            navigate('/dashboard/forbidden')
         }
+        return Promise.reject(error)
     })
-  return 
+  return axiosSecure
 }
