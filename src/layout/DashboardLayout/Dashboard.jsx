@@ -18,15 +18,11 @@ import usePublisher from "../../hooks/usePublisher";
 import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
-  const [isadmin] = useAdmin();
-  const [isPublisher] =usePublisher();
-  const [isSeeker] = useSeeker();
-  console.log(isadmin,isPublisher,isSeeker)
-  // const role = {
-  //   isAdmin: true,
-  //   isJobPublisher: false,
-  //   isJobSeeker: false,
-  // };
+  const role = {
+    isAdmin: false,
+    isJobPublisher: true,
+    isJobSeeker: false,
+  };
 
   return (
     <>
