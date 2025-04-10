@@ -18,6 +18,9 @@ import usePublisher from "../../hooks/usePublisher";
 import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
+  const [isAdmin] = useAdmin();
+  const [isSeeker] = usePublisher();
+  const [isPublisher] = useSeeker();
   const role = {
     isAdmin: false,
     isJobPublisher: true,
@@ -39,7 +42,7 @@ const Dashboard = () => {
             <div className="h-full flex flex-col">
               <nav>
                 {/* links for job publishers */}
-                {role.isJobPublisher && (
+                {isPublisher && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink
@@ -162,7 +165,7 @@ const Dashboard = () => {
                 )}
 
                 {/* links for admin */}
-                {isadmin && (
+                {isAdmin && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink

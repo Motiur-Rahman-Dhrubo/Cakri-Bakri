@@ -9,7 +9,7 @@ export default function Overview() {
       <div className="w-11/12 mx-auto text-center">
         {/* Section Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary mb-4">
-          Three Simple Steps to Land Your Dream Job or Hire Top Talent
+          Three Simple Steps to Land Your Dream Job
         </h2>
         <p className="text-gray-700 mb-3 max-sm:hidden">
           Effortlessly navigate your hiring journey with our streamlined
