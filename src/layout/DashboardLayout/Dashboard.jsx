@@ -17,8 +17,8 @@ import { MdFavoriteBorder } from "react-icons/md";
 const Dashboard = () => {
   const role = {
     isAdmin: false,
-    isJobPublisher: false,
-    isJobSeeker: true,
+    isJobPublisher: true,
+    isJobSeeker: false,
   };
 
   return (
