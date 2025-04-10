@@ -5,9 +5,13 @@ import Lottie from "lottie-react";
 import registerAnimation from "../../assets/registrationAnimation.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useForm } from "react-hook-form";
 
 const Registration = () => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm()
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic()
   const { createUser, signInWithGoogle, updateUserProfile } =
     useContext(AuthContext);
   const handleGoogleLogin = () => {
@@ -18,35 +22,63 @@ const Registration = () => {
       .catch((error) => console.log(error));
   };
   // register trough name, image, email, pass
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+  //   const name = e.target.name.value;
+  //   const photo = e.target.photo.value;
+  //   const email = e.target.email.value;
+  //   const password = e.target.password.value;
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    if (!passwordRegex.test(password)) {
-      Swal.fire("Your Password is invalid to use");
-      return;
-    }
+  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  //   if (!passwordRegex.test(password)) {
+  //     Swal.fire("Your Password is invalid to use");
+  //     return;
+  //   }
 
-    try {
-      const result = await createUser(email, password);
-      if (result.user) {
-        await updateUserProfile({ displayName: name, photoURL: photo });
-        e.target.reset();
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Registration error:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Registration Failed",
-        text: error.message,
-      });
-    }
-  };
+  //   try {
+  //     const result = await createUser(email, password);
+  //     if (result.user) {
+  //       await updateUserProfile({ displayName: name, photoURL: photo });
+  //       e.target.reset();
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     console.error("Registration error:", error);
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Registration Failed",
+  //       text: error.message,
+  //     });
+  //   }
+  // };
+  const onSubmit = data => {
+    console.log(data)
+    createUser(data.email, data.password)
+      .then(result => {
+        const user = result.user
+        console.log(user)
+        navigate('/')
+        updateUserProfile(data.name, data.photoUrl)
+          .then(() => {
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              role: data.role,
+              photoUrl: data.photoUrl
+            }
+            axiosPublic.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  console.log('user added database')
+                  reset()
+                  navigate('/')
+                }
+              })
+          })
+          .catch(error => console.log(error))
+      })
+
+  }
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
@@ -63,35 +95,51 @@ const Registration = () => {
             Create an Account
           </h2>
           <div className="divider mt-0 h-[1px] bg-cb-secondary opacity-30"></div>
-          <form onSubmit={handleRegister} className="w-full max-w-md space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
             <input
               type="text"
-              name="name"
+              {...register("name", { required: true })}
               placeholder="Full Name"
               required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
+            {errors.name && <span>This field is required</span>}
             <input
               type="url"
-              name="photo"
+              {...register("photoUrl", { required: true })}
               placeholder="Photo url..."
               required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
+            {errors.photoUrl && <span>This field is required</span>}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Role</span>
+              </label>
+              <select defaultValue={'default'} {...register("role")}
+                className="select select-bordered w-full ">
+                <option disabled value={'default'}>Select ROle</option>
+                <option value="seeker">seeker</option>
+                <option value="publisher">Publiser</option>
+              </select>
+              {errors.photoUrl && <span>This field is required</span>}
+            </div>
             <input
               type="email"
-              name="email"
+              {...register("email", { required: true })}
               placeholder="Email"
               required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
+            {errors.email && <span>This field is required</span>}
             <input
               type="password"
-              name="password"
+              {...register("password", { required: true })}
               placeholder="Password"
               required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
+            {errors.password && <span>This field is required</span>}
             <button
               type="submit"
               className="w-full cursor-pointer bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
