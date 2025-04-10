@@ -8,18 +8,17 @@ import {
   FaCalendarAlt,
   FaStar,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 export default function JobDetails() {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
+const {user} = useContext(AuthContext);
   const { data: job = {}, isLoading } = useQuery({
     queryKey: ["jobDetails"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://cakri-bakri-server.vercel.app/job-details/${id}`
+        `${import.meta.env.VITE_SERVER_API_URL}/job-details/${id}`
       );
       return data;
     },
@@ -49,21 +48,14 @@ export default function JobDetails() {
         confirmButtonText: "Yes, apply job!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await axios.post(
-<<<<<<< HEAD
-            `http://localhost:5000/apply-job`,
-=======
-            "https://cakri-bakri-server.vercel.app/apply-job",
->>>>>>> 4a308da0f8d0929d6e11c0e1f4b117574f8bc689
-            application
-          );
-          if (data.message == "Already applied for the job.") {
+          const { data } = await axios.post(`${import.meta.env.VITE_SERVER_API_URL}/apply-job`, application);
+          if(data.message == "Already applied for the job."){
             return Swal.fire({
               title: "What's wrong!",
               text: "Already applied for the job.",
               icon: "info",
             });
-          }
+           }
           if (data.insertedId) {
             Swal.fire({
               title: "Successfull!!!",
@@ -79,8 +71,8 @@ export default function JobDetails() {
   };
 
 
-  // Job add to favorite function    
-  const handleFavorite = async () => {
+   // Job add to favorite function    
+   const handleFavorite = async () => {
     if (user) {
       const application = {
         email: user?.email,
@@ -101,15 +93,8 @@ export default function JobDetails() {
         confirmButtonText: "Yes, Add to Favorite!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await axios.post(
-<<<<<<< HEAD
-            `http://localhost:5000/favorite-jobs`,
-=======
-            "https://cakri-bakri-server.vercel.app/favorite-jobs",
->>>>>>> 4a308da0f8d0929d6e11c0e1f4b117574f8bc689
-            application
-          );
-          if (data.message === "Already added in the favourite job list.") {
+          const { data } = await axios.post(`${import.meta.env.VITE_SERVER_API_URL}/favorite-jobs`, application);
+          if(data.message === "Already added in the favourite job list."){
             return Swal.fire({
               title: "What's wrong!",
               text: "Already added in the favourite job list.",
@@ -160,9 +145,9 @@ export default function JobDetails() {
               >
                 Apply Now
               </button>
-              <button
-                onClick={handleFavorite}
-                className="btn border border-cb-primary bg-transparent text-cb-secondary hover:bg-cb-primary hover:text-cb-white">Add To Favourite</button>
+              <button 
+              onClick={handleFavorite}
+              className="btn border border-cb-primary bg-transparent text-cb-secondary hover:bg-cb-primary hover:text-cb-white">Add To Favourite</button>
             </div>
           </div>
 
