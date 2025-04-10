@@ -9,7 +9,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 
 const Registration = () => {
-  const  { register, handleSubmit, reset, formState: { errors } } =useForm()
+  const { register, handleSubmit, reset, formState: { errors } } = useForm()
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic()
   const { createUser, signInWithGoogle, updateUserProfile } =
@@ -51,34 +51,34 @@ const Registration = () => {
   //     });
   //   }
   // };
- const onSubmit = data=>{
-  console.log(data)
-  createUser(data.email,data.password)
-  .then(result=>{
-    const user = result.user 
-    console.log(user)
-    navigate('/')
-    updateUserProfile(data.name,data.photoUrl)
-    .then(()=>{
-      const userInfo ={
-        name: data.name,
-        email: data.email,
-        role: data.role,
-        photoUrl: data.photoUrl
-      }
-      axiosPublic.post('/users',userInfo)
-      .then(res=>{
-        if(res.data.insertedId){
-          console.log('user added database')
-          reset()
-          navigate('/')
-        }
+  const onSubmit = data => {
+    console.log(data)
+    createUser(data.email, data.password)
+      .then(result => {
+        const user = result.user
+        console.log(user)
+        navigate('/')
+        updateUserProfile(data.name, data.photoUrl)
+          .then(() => {
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              role: data.role,
+              photoUrl: data.photoUrl
+            }
+            axiosPublic.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  console.log('user added database')
+                  reset()
+                  navigate('/')
+                }
+              })
+          })
+          .catch(error => console.log(error))
       })
-    })
-    .catch(error =>console.log(error))
-  })
 
- }
+  }
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
@@ -113,17 +113,17 @@ const Registration = () => {
             />
             {errors.photoUrl && <span>This field is required</span>}
             <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Role</span>
-                            </label>
-                            <select defaultValue={'default'} {...register("role")}
-                                className="select select-bordered w-full ">
-                                <option disabled value={'default'}>Select ROle</option>
-                                <option value="seccker">Seccker</option>
-                                <option value="publisher">Publiser</option>
-                            </select>
-                            {errors.photoUrl && <span>This field is required</span>}
-                        </div>
+              <label className="label">
+                <span className="label-text">Role</span>
+              </label>
+              <select defaultValue={'default'} {...register("role")}
+                className="select select-bordered w-full ">
+                <option disabled value={'default'}>Select ROle</option>
+                <option value="seeker">seeker</option>
+                <option value="publisher">Publiser</option>
+              </select>
+              {errors.photoUrl && <span>This field is required</span>}
+            </div>
             <input
               type="email"
               {...register("email", { required: true })}
@@ -134,7 +134,7 @@ const Registration = () => {
             {errors.email && <span>This field is required</span>}
             <input
               type="password"
-              {...register("password", { required: true })} 
+              {...register("password", { required: true })}
               placeholder="Password"
               required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
