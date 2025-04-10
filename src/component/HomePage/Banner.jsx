@@ -15,46 +15,55 @@ export default function Banner() {
             Find Your Dream Job. Connect with Top Employers. A seamless platform
             for job seekers and recruiters.
           </p>
-         
+          <div className="mt-10 w-md h-14 flex items-center">
+            <div className="w-full h-full">
+              <label className="input w-full h-full rounded-l-2xl rounded-r-none">
+                 <input type="text" className="focus:outline-0" placeholder="What are you looking for?" required />
+              </label>
+              
+            </div>
+            <button className="btn px-8 bg-cb-primary h-[58px] text-md font-bold uppercase text-white join-item rounded-r-2xl rounded-l-none">Search</button>
+          </div>
+          <h3 className="pt-6 text-md font-semibold text-gray-500">Trending Keywords: developer, design, IT company, UI/UX Designer</h3>
         </div>
 
         <div className="relative">
           <motion.div
-            // animate={{
-            //   x: [0, 10, 10, 0, 0],
-            //   y: [0, 0, -10, -10, 0],
-            // }}
-            // transition={{
-            //   delay: 1,
-            //   duration: 4,
-            //   repeat: Infinity,
-            //   ease: "easeInOut",
-            // }}
-            className="md:w-[350px] absolute -top-24"
+            animate={{
+              x: [0, 10, 10, 0, 0],
+              y: [0, 0, -10, -10, 0],
+            }}
+            transition={{
+              delay: 1,
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="lg:w-[380px] absolute -top-16"
           >
             <img
               src={img1}
               alt=""
-              className="w-full border-l-[12px] border-cb-primary/70 rounded-tl-[50px] rounded-br-4xl"
+              className="w-full border-l-[12px] border-cb-primary/90 rounded-tl-[50px] rounded-br-4xl"
             />
           </motion.div>
 
           <motion.div
-            // animate={{
-            //   x: [10, 0, 0, 10, 10],
-            //   y: [0, 0, 10, 10, 0],
-            // }}
-            // transition={{
-            //   delay: 1,
-            //   duration: 4,
-            //   repeat: Infinity,
-            //   ease: "easeInOut",
-            // }}
-            className="md:w-[350px] absolute left-36 top-20"
+            animate={{
+              x: [10, 0, 0, 10, 10],
+              y: [0, 0, 10, 10, 0],
+            }}
+            transition={{
+              delay: 1,
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="lg:w-[380px] absolute left-40 top-24"
           >
             <img
               src={img2}
-              className="w-full border-l-[12px] border-l-cb-primary/80 rounded-tl-[50px] rounded-br-[50px]"
+              className="w-full border-l-[12px] border-l-cb-primary/95 rounded-tl-[50px] rounded-br-[50px]"
               alt=""
             />
           </motion.div>

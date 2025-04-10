@@ -8,7 +8,6 @@ import {
   FaCalendarAlt,
   FaStar,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -49,10 +48,7 @@ const {user} = useContext(AuthContext);
         confirmButtonText: "Yes, apply job!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await axios.post(
-            `${import.meta.env.VITE_SERVER_API_URL}/apply-job`,
-            application
-          );
+          const { data } = await axios.post(`${import.meta.env.VITE_SERVER_API_URL}/apply-job`, application);
           if(data.message == "Already applied for the job."){
             return Swal.fire({
               title: "What's wrong!",
@@ -97,10 +93,7 @@ const {user} = useContext(AuthContext);
         confirmButtonText: "Yes, Add to Favorite!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const { data } = await axios.post(
-            `${import.meta.env.VITE_SERVER_API_URL}/favorite-jobs`,
-            application
-          );
+          const { data } = await axios.post(`${import.meta.env.VITE_SERVER_API_URL}/favorite-jobs`, application);
           if(data.message === "Already added in the favourite job list."){
             return Swal.fire({
               title: "What's wrong!",
