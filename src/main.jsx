@@ -27,6 +27,7 @@ import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOver
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
+import Forbidden from "./pages/Forbidden";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -47,7 +48,7 @@ ReactDOM.createRoot(root).render(
           {/* admin dashboard pages */}
             <Route path="/dashboard/overview" element={<DashboardOverview />} />
             <Route path="/dashboard/manage-users" element={<ManageUsers />} />
-
+            <Route path='/dashboard/forbidden' element={<Forbidden></Forbidden>}/>
 
             {/* employer dashboard pages routes */}
             <Route path="/dashboard/myprofile" element={<Myprofile />} />

@@ -13,6 +13,9 @@ import {
 import Navbar from "../../component/SharedComponent/Navbar";
 import { ImProfile } from "react-icons/im";
 import { MdFavoriteBorder } from "react-icons/md";
+import useAdmin from "../../hooks/useAdmin";
+import usePublisher from "../../hooks/usePublisher";
+import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
   const role = {
@@ -36,7 +39,7 @@ const Dashboard = () => {
             <div className="h-full flex flex-col">
               <nav>
                 {/* links for job publishers */}
-                {role.isJobPublisher && (
+                {isPublisher && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink
@@ -159,7 +162,7 @@ const Dashboard = () => {
                 )}
 
                 {/* links for admin */}
-                {role.isAdmin && (
+                {isadmin && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink
@@ -340,7 +343,7 @@ const Dashboard = () => {
                 )}
 
                 {/* links for job seeker */}
-                {role.isJobSeeker && (
+                {isSeeker && (
                   <>
                     {/* User Profile */}
                     <NavLink
