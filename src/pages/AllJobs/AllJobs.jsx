@@ -12,6 +12,7 @@ export default function AllJobs() {
     queryKey: ["jobs"],
     queryFn: async () => {
       const { data } = await axios.get(`http://localhost:5000/jobs`);
+      const { data } = await axios.get("https://cakri-bakri-server.vercel.app/jobs");
       return data;
     },
   });

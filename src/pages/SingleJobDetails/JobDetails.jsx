@@ -19,7 +19,7 @@ export default function JobDetails() {
     queryKey: ["jobDetails"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/job-details/${id}`
+        `https://cakri-bakri-server.vercel.app/job-details/${id}`
       );
       return data;
     },
@@ -50,7 +50,11 @@ export default function JobDetails() {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const { data } = await axios.post(
+<<<<<<< HEAD
             `http://localhost:5000/apply-job`,
+=======
+            "https://cakri-bakri-server.vercel.app/apply-job",
+>>>>>>> 4a308da0f8d0929d6e11c0e1f4b117574f8bc689
             application
           );
           if (data.message == "Already applied for the job.") {
@@ -98,7 +102,11 @@ export default function JobDetails() {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const { data } = await axios.post(
+<<<<<<< HEAD
             `http://localhost:5000/favorite-jobs`,
+=======
+            "https://cakri-bakri-server.vercel.app/favorite-jobs",
+>>>>>>> 4a308da0f8d0929d6e11c0e1f4b117574f8bc689
             application
           );
           if (data.message === "Already added in the favourite job list.") {
