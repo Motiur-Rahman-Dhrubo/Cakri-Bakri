@@ -146,7 +146,7 @@ export default function UpdateJob() {
   };
 
   if (isLoading) {
-    return <div>Loading job details...</div>;
+    return <div>Loading job details..</div>;
   }
 
   return (
