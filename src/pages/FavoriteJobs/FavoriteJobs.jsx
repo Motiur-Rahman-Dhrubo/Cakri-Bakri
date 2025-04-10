@@ -71,7 +71,7 @@ const FavoriteJobs = () => {
           {favoriteJobs?.length == 0 ? (
             <div className="flex justify-center items-center min-h-screen">
               <h1 className="text-4xl font-bold text-center my-4">
-                No job apply yet
+                No job added yet
               </h1>
             </div>
           ) : (

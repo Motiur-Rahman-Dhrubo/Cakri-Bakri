@@ -16,17 +16,17 @@ export default function Navbar() {
   const navLink = (
     <>
       <li>
-        <NavLink className="button max-sm:text-xl" to={"/"}>
+        <NavLink className="max-sm:text-xl" to={"/"}>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="button max-sm:text-xl" to={"/all-jobs"}>
+        <NavLink className="max-sm:text-xl" to={"/all-jobs"}>
           All Jobs
         </NavLink>
       </li>
       <li>
-        <NavLink className="button max-sm:text-xl" to={"/about-us"}>
+        <NavLink className="max-sm:text-xl" to={"/about-us"}>
           About Us
         </NavLink>
       </li>
@@ -93,29 +93,34 @@ export default function Navbar() {
             tabIndex={0}
             className={`${
               location.pathname.includes("dashboard") ? "hidden" : ""
-            } menu menu-sm absolute right-0 dropdown-content bg-cb-primary text-cb-white border border-cb-card rounded-box z-1 mt-3 w-52 p-2 shadow`}
+            } menu menu-sm absolute right-0 dropdown-content bg-cb-primary text-cb-white border border-cb-card rounded-box z-1 mt-3 w-52 p-2 shadow uppercase`}
           >
             {navLink}
             {user ? (
               <>
+                {/* <li>
+                  <Link
+                    className="my-3 btn bg-cb-white text-base text-cb-primary"
+                    to={"/dashboard/become-employer"}
+                  >
+                    Become Employer
+                  </Link>
+                </li> */}
                 <div className="divider h-[1px] bg-white/70"></div>
                 <img
-                  className="w-10 h-10 mx-auto rounded-full"
+                  className="w-14 h-14 mx-auto border-2 border-cb-card rounded-full"
                   src={user.photoURL}
                   alt=""
                 />
-                <h1 className="text-center text-xl md:text-2xl">
+                <h1 className="my-3 text-center text-white/70 text-xl md:text-2xl">
                   {user.displayName}
                 </h1>
-                <div className="text-center pt-2 flex flex-col gap-3">
-                  <Link
-                    className="text-xl font-semibold  hover:underline"
-                    to="/dashboard"
-                  >
+                <div className="text-center  py-2 flex flex-col gap-2">
+                  <Link className="hover:underline uppercase" to="/dashboard">
                     Dashboard
                   </Link>
                   <button
-                    className="text-xl font-semibold  hover:underline"
+                    className="hover:underline uppercase"
                     onClick={handleSignOut}
                   >
                     Sign Out
@@ -127,11 +132,6 @@ export default function Navbar() {
                 <li>
                   <NavLink className="max-sm:text-xl" to="/login">
                     Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="max-sm:text-xl" to="/register">
-                    Register
                   </NavLink>
                 </li>
               </>
@@ -156,9 +156,12 @@ export default function Navbar() {
       <div className="navbar-end hidden lg:flex gap-x-4">
         {user ? (
           <>
-            {!location.pathname.includes("dashboard") && (
-              <h1 className="mr-2 text-lg">{user?.displayName}</h1>
-            )}
+            {/* <Link
+              className="btn border border-transparent text-cb-primary bg-cb-white hover:bg-transparent hover:text-cb-white hover:border-cb-white"
+              to="/dashboard/become-employer"
+            >
+              Become Employer
+            </Link> */}
             <div
               className={`relative dropdown dropdown-hover ${
                 location.pathname.includes("dashboard")
@@ -166,19 +169,25 @@ export default function Navbar() {
                   : ""
               }`}
             >
-              <img
-                className={` w-10 h-10 rounded-full border-2 border-cb-white`}
+              
+              {!location.pathname.includes("dashboard") && (
+                <>
+                <img
+                className={`w-10 h-10 rounded-full border-2 border-cb-white`}
                 referrerPolicy="no-referrer"
                 src={user?.photoURL}
-                alt=""
+                alt={user?.displayName}
               />
-              {!location.pathname.includes("dashboard") && (
                 <ul
                   tabIndex={0}
-                  className="absolute right-0 text-center space-y-3 dropdown-content menu bg-cb-white text-cb-primary rounded-box z-[1] px-6 py-4 shadow"
+                  className="absolute w-[260px] top-11 right-0 text-center space-y-3 dropdown-content menu bg-cb-white text-cb-primary rounded-box z-[1] px-3 py-4 shadow"
                 >
+                  <h1 className="text-xl font-bold text-cb-secondary/90">
+                    {user ? user?.displayName : "Guest"}
+                  </h1>
+                  <div className="divider my-0"></div>
                   <Link
-                    className="text-md font-semibold  hover:underline"
+                    className="text-md font-semibold hover:underline"
                     to="/dashboard"
                   >
                     Dashboard
@@ -190,6 +199,7 @@ export default function Navbar() {
                     Sign Out
                   </button>
                 </ul>
+                </>
               )}
               {location.pathname.includes("dashboard") && (
                 <>
@@ -203,9 +213,6 @@ export default function Navbar() {
           <>
             <Link to="/login">
               <button className="btn btn-outline mr-1">Login</button>
-            </Link>
-            <Link to="/register">
-              <button className="btn btn-outline mr-2">Register</button>
             </Link>
           </>
         )}
