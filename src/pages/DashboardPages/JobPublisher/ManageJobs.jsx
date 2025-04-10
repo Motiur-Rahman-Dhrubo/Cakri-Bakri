@@ -14,7 +14,7 @@ const ManageJobs = () => {
     queryKey: ["jobs"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/jobs`
+        `${import.meta.env.VITE_SERVER_API_URL}/jobs`
       );
       return data;
     },
@@ -34,7 +34,7 @@ const ManageJobs = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const { data } = await axios.delete(
-            `http://localhost:5000/delete-job/${id}`
+            `${import.meta.env.VITE_SERVER_API_URL}/delete-job/${id}`
           );
           if (data.deletedCount) {
             Swal.fire({

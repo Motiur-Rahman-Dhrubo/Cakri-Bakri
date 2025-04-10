@@ -60,10 +60,10 @@ export default function PostJob() {
         responsibilities: value.split("\n").map((resp) => resp.trim()),
       });
     } else if (name === "qualifications") {
-      setFormData({
-        ...formData,
-        qualifications: value.split("\n").map((qual) => qual.trim()),
-      });
+        setFormData({
+            ...formData,
+            qualifications: value.split("\n").map((qual) => qual.trim()),
+        });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -76,7 +76,7 @@ export default function PostJob() {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/add-job`,
+        `${import.meta.env.VITE_SERVER_API_URL}/add-job`,
         formData
       );
       if (data.insertedId) {
@@ -331,8 +331,8 @@ export default function PostJob() {
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
           </div>
-          {/* Job Link */}
-          <div className="col-span-1">
+            {/* Job Link */}
+            <div className="col-span-1">
             <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
               Job Link
             </label>

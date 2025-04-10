@@ -39,7 +39,7 @@ const Dashboard = () => {
             <div className="h-full flex flex-col">
               <nav>
                 {/* links for job publishers */}
-                {isPublisher && (
+                {role.isJobPublisher && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink
