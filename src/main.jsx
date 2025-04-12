@@ -27,6 +27,7 @@ import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOver
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
+import CategorisedJobs from "./pages/Home/CategorisedJobs";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -38,6 +39,7 @@ ReactDOM.createRoot(root).render(
             <Route index element={<Home />} />
             <Route path="all-jobs" element={<AllJobs />} />
             <Route path={`job-details/:id`} element={<JobDetails />} />
+            <Route path={`jobs-category/:category`} element={<CategorisedJobs />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="login" element={<Login></Login>} />
             <Route path="register" element={<Register></Register>} />

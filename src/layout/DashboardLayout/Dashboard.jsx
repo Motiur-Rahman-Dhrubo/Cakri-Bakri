@@ -18,10 +18,10 @@ import usePublisher from "../../hooks/usePublisher";
 import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
-  const [isadmin] = useAdmin();
+  const [isAdmin] = useAdmin();
   const [isPublisher] = usePublisher();
   const [isSeeker] = useSeeker();
-  console.log(isadmin, isPublisher, isSeeker)
+  console.log(isAdmin, isPublisher, isSeeker)
   // const role = {
   //   isAdmin: true,
   //   isJobPublisher: false,
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 )}
 
                 {/* links for admin */}
-                {isadmin && (
+                {isAdmin && (
                   <>
                     {/* Dashboard Overview */}
                     <NavLink

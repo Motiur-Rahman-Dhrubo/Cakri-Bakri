@@ -18,6 +18,7 @@ export default function PostJob() {
       logo: "",
       rating: 0,
     },
+    category: "",
     location: "",
     employmentType: "",
     salary: "",
@@ -60,10 +61,10 @@ export default function PostJob() {
         responsibilities: value.split("\n").map((resp) => resp.trim()),
       });
     } else if (name === "qualifications") {
-        setFormData({
-            ...formData,
-            qualifications: value.split("\n").map((qual) => qual.trim()),
-        });
+      setFormData({
+        ...formData,
+        qualifications: value.split("\n").map((qual) => qual.trim()),
+      });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -86,13 +87,15 @@ export default function PostJob() {
           icon: "success",
         });
         e.target.reset();
-        setFormData({ // Reset form data to initial state
+        setFormData({
+          // Reset form data to initial state
           title: "",
           company: {
             name: "",
             logo: "",
             rating: 0,
           },
+          category: "",
           location: "",
           employmentType: "",
           salary: "",
@@ -171,6 +174,32 @@ export default function PostJob() {
             />
           </div>
 
+          {/* category */}
+          <div className="col-span-1">
+            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+              Job Category
+            </label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            >
+              <option value="">Select Category</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Design & Creative">Design & Creative</option>
+              <option value="Marketing & Sales">Marketing & Sales</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Advertising & Media">Advertising & Media</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Security Services">Security Services</option>
+            </select>
+          </div>
+
           {/* Location */}
           <div className="col-span-1">
             <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
@@ -235,9 +264,7 @@ export default function PostJob() {
               placeholder="e.g., Figma, Adobe XD, User Research"
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
-            <small className="text-gray-500">
-              Separate skills with commas
-            </small>
+            <small className="text-gray-500">Separate skills with commas</small>
           </div>
 
           {/* Perks */}
@@ -275,7 +302,7 @@ export default function PostJob() {
           </div>
 
           {/* Responsibilities */}
-          <div className="col-span-1 md:col-span-3">
+          <div className="col-span-1 md:col-span-2">
             <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
               <FaListUl className="mr-2" /> Responsibilities
             </label>
@@ -331,8 +358,8 @@ export default function PostJob() {
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
           </div>
-            {/* Job Link */}
-            <div className="col-span-1">
+          {/* Job Link */}
+          <div className="col-span-1">
             <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
               Job Link
             </label>
@@ -360,4 +387,3 @@ export default function PostJob() {
     </>
   );
 }
-
