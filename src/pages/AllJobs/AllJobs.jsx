@@ -15,6 +15,7 @@ const { data: allJobs = [], isLoading} = useQuery({
       return data;
     },
   });
+  
   return (
     <>
       <section className="w-11/12 mx-auto py-10">
