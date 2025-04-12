@@ -1,14 +1,5 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-
-// import required modules
-import { Autoplay } from "swiper/modules";
-
+import Marquee from "react-fast-marquee";
+import { Link } from "react-router";
 export const OurCompany = () => {
   const companyLogos = [
     {
@@ -71,27 +62,15 @@ export const OurCompany = () => {
 
       {/* scroling logo div */}
       <div className="py-10">
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          loop={true}
-          centeredSlides={true}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-            
-          }}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
+        <Marquee pauseOnHover={true} pauseOnClick={true}>
           {companyLogos?.map((logo, idx) => (
-            <div key={idx} >
-              <SwiperSlide>
-                <img src={logo?.logo} className="w-full h-28 object-center mx-4" alt="" />
-              </SwiperSlide>
+            <div key={idx} className="w-40 h-28 mx-4">
+              <Link className="w-full h-full" to="/">
+                <img src={logo?.logo} className="w-full h-full" alt={`logo-${idx}`} />
+              </Link>
             </div>
           ))}
-        </Swiper>
+        </Marquee>
       </div>
     </div>
   );

@@ -17,3 +17,7 @@
 .active{
   border-bottom: 2px solid;
 }
+
+.mySwiper .swiper-slide {
+  transition: transform 0.5s ease-in-out;
+}

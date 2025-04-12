@@ -1,7 +1,16 @@
 import { motion } from "motion/react";
 import img1 from "./../../assets/job-seeker1.png";
 import img2 from "./../../assets/job-seeker2.png";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 export default function Banner() {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState(null);
+
+  const handleJobSearch = async () => {
+    if (!search) return;
+    navigate(`jobs-category/${search}`);
+  };
   return (
     <section
       className={`bg-[url('/hero-bg.png')] bg-cover bg-no-repeat bg-center w-full md:h-[500px]`}
@@ -18,13 +27,26 @@ export default function Banner() {
           <div className="mt-10 w-md h-14 flex items-center">
             <div className="w-full h-full">
               <label className="input w-full h-full rounded-l-2xl rounded-r-none">
-                 <input type="text" className="focus:outline-0" placeholder="What are you looking for?" required />
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="text"
+                  className="outline-0 focus:outline-0"
+                  placeholder="What are you looking for?"
+                  required
+                />
               </label>
-              
             </div>
-            <button className="btn px-8 bg-cb-primary h-[58px] text-md font-bold uppercase text-white join-item rounded-r-2xl rounded-l-none">Search</button>
+            <button
+              onClick={handleJobSearch}
+              className="btn px-8 bg-cb-primary h-[58px] text-md font-bold uppercase text-white join-item rounded-r-2xl rounded-l-none"
+            >
+              Search
+            </button>
           </div>
-          <h3 className="pt-6 text-md font-semibold text-gray-500">Trending Keywords: developer, design, IT company, UI/UX Designer</h3>
+          <h3 className="pt-6 text-md font-semibold text-gray-500">
+            Trending Keywords: Software Development, Marketing &
+            Sales, Engineering, Healthcare, Education, Security Services
+          </h3>
         </div>
 
         <div className="relative">
