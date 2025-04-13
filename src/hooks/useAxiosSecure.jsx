@@ -3,7 +3,7 @@ import { AuthContext } from '../providers/AuthProvider'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 const axiosSecure = axios.create({
-    baseURL:'http://localhost:5000',withCredentials: true
+    baseURL:`${import.meta.env.VITE_SERVER_API_URL}`,withCredentials: true
 })
 export default function useAxiosSecure() {
     const {logout} =useContext(AuthContext)
