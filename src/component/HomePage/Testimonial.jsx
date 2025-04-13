@@ -27,7 +27,7 @@ export default function Testimonials() {
     },
   ];
   return (
-    <section className="py-5 bg-cb-card mb-12">
+    <section className="py-5 bg-blue-100 mb-12">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">What Our Users Say</h2>
         <p className="text-lg text-cb-secondary/80 mt-4">See how Cakri-Bakri has helped professionals grow.</p>
@@ -36,7 +36,7 @@ export default function Testimonials() {
       <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2 ">
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="carousel-item w-full justify-center transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
-            <div className="bg-cb-primary p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
+            <div className="bg-gradient-to-r from-[#175A87] to-[#177C87] p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
               <FaQuoteLeft className="text-4xl text-cb-white mb-3" />
               <p className="text-cb-white/95 text-lg font-medium">{testimonial.message}</p>
               <div className="mt-4 flex items-center gap-3">

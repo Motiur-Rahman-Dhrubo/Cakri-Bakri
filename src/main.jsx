@@ -27,7 +27,7 @@ import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOver
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
-import CategorisedJobs from "./pages/Home/CategorisedJobs";
+import CategorisedJobs from "./pages/CategorisedJobs/CategorisedJobs";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
