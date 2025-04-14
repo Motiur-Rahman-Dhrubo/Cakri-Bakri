@@ -19,7 +19,7 @@ import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
   const [isadmin] = useAdmin();
-  const [isPublisher] =usePublisher();
+  const [isPublisher] =usePublisher(true);
   const [isSeeker] = useSeeker();
   console.log(isadmin,isPublisher,isSeeker)
   // const role = {

@@ -180,7 +180,7 @@ export default function Navbar() {
               />
                 <ul
                   tabIndex={0}
-                  className="absolute w-[260px] top-11 right-0 text-center space-y-3 dropdown-content menu bg-cb-white text-cb-primary rounded-box z-[1] px-3 py-4 shadow"
+                  className="absolute w-[260px] top-10 right-0 text-center space-y-3 dropdown-content menu bg-cb-white text-cb-primary rounded-box z-[1] px-3 py-4 shadow"
                 >
                   <h1 className="text-xl font-bold text-cb-secondary/90">
                     {user ? user?.displayName : "Guest"}

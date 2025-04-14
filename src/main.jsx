@@ -21,7 +21,7 @@ import AppliedJobs from "./pages/AppliedJobs/AppliedJobs";
 import FavoriteJobs from "./pages/FavoriteJobs/FavoriteJobs";
 import Myprofile from "./pages/Myprofile/Myprofile";
 import ProfileUpdate from "./pages/Myprofile/ProfileUpdate";
-import ProfileUpdate from "./pages/Myprofile/ProfileUpdate";
+
 
 import PostJob from "./pages/DashboardPages/JobPublisher/PostJob";
 import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOverview";
@@ -29,6 +29,8 @@ import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplic
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
 import Forbidden from "./pages/Forbidden";
+import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
+import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -72,6 +74,8 @@ ReactDOM.createRoot(root).render(
               element={<ManageApplications />}
             />
             <Route path="/dashboard/post-job" element={<PostJob />} />
+            <Route path="/dashboard/employee-applications" element={<EmployeeApplications/>} />
+            <Route path={`/dashboard/live-chats/:id`} element={<LiveChats/>} />
           </Route>
           
         </Routes>
