@@ -1,33 +1,96 @@
-import banner from "../../assets/Banner-1.jpg"
+import { motion } from "motion/react";
+import img1 from "./../../assets/job-seeker1.png";
+import img2 from "./../../assets/job-seeker2.png";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 export default function Banner() {
-  return (
-    <section className="max-sm:pt-10 relative w-full md:h-[500px] flex flex-col max-sm:gap-y-4 md:flex-row items-center justify-center overflow-hidden">
-    {/* Background Image */}
-    <img 
-      src={banner} 
-      alt="Chakri Bakri Banner" 
-      className="max-sm:hidden absolute inset-0 w-full h-full " 
-    />
-  
-    {/* Overlay */}
-    <div className="max-sm:hidden absolute inset-0 bg-blue-800/20"></div>
-  
-    {/* Content */}
-    <div className="md:absolute z-10 left-14 max-sm:w-11/12">
-      <h1 className="text-5xl md:text-6xl text-cb-primary md:text-cb-white font-bold">Chakri Bakri</h1>
-      <p className="mt-4 text-lg text-cb-primary/80 md:text-cb-white/85 md:w-[450px]">
-        Find Your Dream Job. Connect with Top Employers. A seamless platform for job seekers and recruiters.
-      </p>
-      <button className="mt-6 btn text-lg bg-cb-btn md:bg-cb-white text-cb-secondary md:text-cb-secondary transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">Explore Jobs</button>
-    </div>
+  const navigate = useNavigate();
+  const [search, setSearch] = useState(null);
 
-    <div className="md:hidden w-11/12 mx-auto rounded-lg">
-    <img 
-      src={banner} 
-      alt="Chakri Bakri Banner" 
-      className="w-full h-full rounded-lg drop-shadow-[0_4px_10px_var(--color-cb-card)]" 
-    />
-    </div>
-  </section>
-  )
+  const handleJobSearch = async () => {
+    if (!search) return;
+    navigate(`jobs-category/${search}`);
+  };
+  return (
+    <section
+      className={`bg-[url('/hero-bg.png')] bg-cover bg-no-repeat bg-center w-full md:h-[500px]`}
+    >
+      <div className="w-11/12 h-full mx-auto grid grid-cols-2 content-center">
+        <div className="justify-self-start">
+          <h1 className="text-5xl md:text-6xl font-primary text-gray-800 uppercase font-bold">
+            Chakri <span className="text-cb-primary">Bakri</span>
+          </h1>
+          <p className="mt-4 text-lg text-gray-400/95 md:w-[450px]">
+            Find Your Dream Job. Connect with Top Employers. A seamless platform
+            for job seekers and recruiters.
+          </p>
+          <div className="mt-10 w-md h-14 flex items-center">
+            <div className="w-full h-full">
+              <label className="input w-full h-full rounded-l-2xl rounded-r-none">
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="text"
+                  className="outline-0 focus:outline-0"
+                  placeholder="What are you looking for?"
+                  required
+                />
+              </label>
+            </div>
+            <button
+              onClick={handleJobSearch}
+              className="btn px-8 bg-cb-primary h-[58px] text-md font-bold uppercase text-white join-item rounded-r-2xl rounded-l-none"
+            >
+              Search
+            </button>
+          </div>
+          <h3 className="pt-6 text-md font-semibold text-gray-500">
+            Trending Keywords: Software Development, Marketing &
+            Sales, Engineering, Healthcare, Education, Security Services
+          </h3>
+        </div>
+
+        <div className="relative">
+          <motion.div
+            // animate={{
+            //   x: [0, 10, 10, 0, 0],
+            //   y: [0, 0, -10, -10, 0],
+            // }}
+            // transition={{
+            //   delay: 1,
+            //   duration: 4,
+            //   repeat: Infinity,
+            //   ease: "easeInOut",
+            // }}
+            className="lg:w-[380px] absolute -top-16"
+          >
+            <img
+              src={img1}
+              alt=""
+              className="w-full border-l-[12px] border-cb-primary/90 rounded-tl-[50px] rounded-br-4xl"
+            />
+          </motion.div>
+
+          <motion.div
+            // animate={{
+            //   x: [10, 0, 0, 10, 10],
+            //   y: [0, 0, 10, 10, 0],
+            // }}
+            // transition={{
+            //   delay: 1,
+            //   duration: 4,
+            //   repeat: Infinity,
+            //   ease: "easeInOut",
+            // }}
+            className="lg:w-[380px] absolute left-40 top-24"
+          >
+            <img
+              src={img2}
+              className="w-full border-l-[12px] border-l-cb-primary/95 rounded-tl-[50px] rounded-br-[50px]"
+              alt=""
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

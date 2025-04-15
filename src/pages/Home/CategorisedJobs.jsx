@@ -1,57 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import {
-  FaSearch,
-  FaMapMarkerAlt,
-  FaBriefcase,
-  FaDollarSign,
-} from "react-icons/fa";
-import { Link } from "react-router";
-export default function AllJobs() {
-const { data: allJobs = [], isLoading} = useQuery({
-    queryKey: ["jobs"],
+import { useState } from "react";
+import { Link, useParams } from "react-router";
+
+export default function CategorisedJobs() {
+  const [serverError, setServerError] = useState("");
+  const { category } = useParams();
+  const { data: allJobs = [], isLoading } = useQuery({
+    queryKey: ["jobs", category],
     queryFn: async () => {
-      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_API_URL}/jobs`);
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_SERVER_API_URL
+        }/jobs-category?category=${category}`
+      );
+      if (data?.message) {
+        setServerError(data.message);
+      } else {
+        setServerError("");
+      }
       return data;
     },
   });
   
   return (
     <>
-      <section className="w-11/12 mx-auto py-10">
-        {/* Search and Filter Section */}
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between bg-cb-card p-4 rounded-2xl shadow-lg">
-          <div className="relative w-full ">
-            <input
-              type="text"
-              placeholder="Search for jobs..."
-              className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-            // value={searchQuery}
-            // onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
-          </div>
-          <div className="relative w-full md:w-1/3">
-            <select className="w-full bg-white p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0">
-              <option value="">All Categories</option>
-              <option value="frontend">Frontend Development</option>
-              <option value="backend">Backend Development</option>
-              <option value="fullstack">Full Stack Development</option>
-              <option value="uiux">UI/UX Design</option>
-              <option value="devops">DevOps</option>
-              <option value="qa">Quality Assurance</option>
-            </select>
-          </div>
-          <button className="btn bg-cb-primary text-white px-6 py-4 rounded-lg">
-            Filter
-          </button>
+      <div className="w-11/12 mx-auto py-10">
+        <div>
+          <h2 className="text-2xl md:text-4xl text-cb-secondary font-semibold ">
+            Job Category: <span className="font-bold">{category}</span>
+          </h2>
         </div>
-
-{
-  isLoading && <h3 className="py-10 text-3xl text-center text-cb-primary/70">Loading...</h3>
-}
-        {/* Job Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="divider"></div>
+        <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {allJobs.length > 0 ? (
             allJobs.map((job) => (
               <div
@@ -110,13 +91,17 @@ const { data: allJobs = [], isLoading} = useQuery({
                 </div>
               </div>
             ))
+          ) : serverError ? (
+            <p className="text-center col-span-3 text-gray-500">
+              {serverError}
+            </p>
           ) : (
             <p className="text-center col-span-3 text-gray-500">
               No jobs found.
             </p>
           )}
         </div>
-      </section>
+      </div>
     </>
   );
 }

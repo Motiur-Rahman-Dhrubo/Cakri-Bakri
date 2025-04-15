@@ -28,9 +28,13 @@ import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOver
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
+<<<<<<< HEAD
 import Forbidden from "./pages/Forbidden";
 import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
 import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
+=======
+import CategorisedJobs from "./pages/Home/CategorisedJobs";
+>>>>>>> 7fc7e9c45c9f41baa2d93eabb11fa28fd740086c
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
@@ -42,6 +46,7 @@ ReactDOM.createRoot(root).render(
             <Route index element={<Home />} />
             <Route path="all-jobs" element={<AllJobs />} />
             <Route path={`job-details/:id`} element={<JobDetails />} />
+            <Route path={`jobs-category/:category`} element={<CategorisedJobs />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="login" element={<Login></Login>} />
             <Route path="register" element={<Register></Register>} />
@@ -51,7 +56,7 @@ ReactDOM.createRoot(root).render(
           {/* admin dashboard pages */}
             <Route path="/dashboard/overview" element={<DashboardOverview />} />
             <Route path="/dashboard/manage-users" element={<ManageUsers />} />
-            <Route path='/dashboard/forbidden' element={<Forbidden></Forbidden>}/>
+
 
             {/* employer dashboard pages routes */}
             <Route path="/dashboard/myprofile" element={<Myprofile />} />

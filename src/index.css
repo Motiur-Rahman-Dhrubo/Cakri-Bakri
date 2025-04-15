@@ -17,6 +17,7 @@
 .active{
   border-bottom: 2px solid;
 }
+<<<<<<< HEAD
 /* #form{
   background: rgba(0, 0, 0, 0.15); 
   padding: 0.25rem; 
@@ -63,4 +64,9 @@ body {
 
 input, button {
   outline: none;
+=======
+
+.mySwiper .swiper-slide {
+  transition: transform 0.5s ease-in-out;
+>>>>>>> 7fc7e9c45c9f41baa2d93eabb11fa28fd740086c
 }

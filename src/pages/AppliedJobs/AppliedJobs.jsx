@@ -24,7 +24,7 @@ const AppliedJobs = () => {
     queryKey: [`applied-jobs?email=${user?.email}`],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/applied-jobs?email=${user?.email}`
+        `https://cakri-bakri-server.vercel.app/applied-jobs?email=${user?.email}`
       );
       return data;
     },
@@ -110,7 +110,7 @@ const AppliedJobs = () => {
                           <button className="btn btn-ghost btn-xs">
                             Delete
                           </button>
-                          <NavLink to={`/job-details/${data._id}`}>
+                          <NavLink to={`/job-details/${data.jobId}`}>
                             <button className="btn btn-ghost btn-xs ml-2 ">
                               Details
                             </button>
