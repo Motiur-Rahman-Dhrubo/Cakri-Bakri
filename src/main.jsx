@@ -21,20 +21,14 @@ import AppliedJobs from "./pages/AppliedJobs/AppliedJobs";
 import FavoriteJobs from "./pages/FavoriteJobs/FavoriteJobs";
 import Myprofile from "./pages/Myprofile/Myprofile";
 import ProfileUpdate from "./pages/Myprofile/ProfileUpdate";
-
-
 import PostJob from "./pages/DashboardPages/JobPublisher/PostJob";
 import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOverview";
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
-<<<<<<< HEAD
-import Forbidden from "./pages/Forbidden";
 import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
 import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
-=======
 import CategorisedJobs from "./pages/Home/CategorisedJobs";
->>>>>>> 7fc7e9c45c9f41baa2d93eabb11fa28fd740086c
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(

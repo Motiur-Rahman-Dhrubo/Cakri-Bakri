@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useState } from "react";
@@ -103,12 +103,4 @@ export default function ManageApplications() {
     </div>
   );
 }
-=======
-import React from 'react'
 
-export default function ManageApplications() {
-  return (
-    <div>ManageApplications</div>
-  )
-}
->>>>>>> 7fc7e9c45c9f41baa2d93eabb11fa28fd740086c

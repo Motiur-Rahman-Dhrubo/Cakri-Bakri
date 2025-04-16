@@ -53,7 +53,7 @@ const { data: allJobs = [], isLoading} = useQuery({
         {/* Job Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {allJobs.length > 0 ? (
-            allJobs.map((job) => (
+            allJobs?.map((job) => (
               <div
                 key={job.id}
                 className="flex flex-col bg-cb-card p-6 rounded-xl hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
