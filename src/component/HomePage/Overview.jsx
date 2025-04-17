@@ -5,7 +5,7 @@ import {
 } from "react-icons/ai";
 export default function Overview() {
   return (
-    <section className="bg-cb-card py-5 mt-12">
+    <section className="bg-blue-100 py-5 mt-12">
       <div className="w-11/12 mx-auto text-center">
         {/* Section Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary mb-4">
@@ -19,7 +19,7 @@ export default function Overview() {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Step 1 */}
-          <div className="bg-cb-primary rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineUserAdd />
             </div>
@@ -32,7 +32,7 @@ export default function Overview() {
             </p>
           </div>
           {/* Step 2 */}
-          <div className="bg-cb-primary rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineSearch />
             </div>
@@ -45,7 +45,7 @@ export default function Overview() {
             </p>
           </div>
           {/* Step 3 */}
-          <div className="bg-cb-primary rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineCheckCircle />
             </div>
