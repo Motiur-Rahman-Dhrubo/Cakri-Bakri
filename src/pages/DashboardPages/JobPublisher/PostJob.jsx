@@ -18,7 +18,6 @@ export default function PostJob() {
       logo: "",
       rating: 0,
     },
-    category: "",
     location: "",
     employmentType: "",
     salary: "",
@@ -70,6 +69,94 @@ export default function PostJob() {
     }
   };
 
+  // generate html email content
+  const generateEmailContent = (formData) => {
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Job Alert: ${formData.title}</title>
+          <style>
+            @media only screen and (max-width: 600px) {
+              .container { width: 100% !important; }
+              .button { padding: 10px 20px !important; font-size: 14px !important; }
+            }
+          </style>
+        </head>
+        <body style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <!-- Header -->
+            <tr>
+              <td style="padding: 20px; text-align: center; background-color: #007bff; border-radius: 8px 8px 0 0;">
+                <a href="https://cakribakri.com" style="text-decoration: none;">
+                  <img
+                    src="https://i.ibb.co/s9TkMXm8/CB-logo.png"
+                    alt="Cakribakri Logo"
+                    style="max-width: 100px; height: auto;"
+                  />
+                </a>
+              </td>
+            </tr>
+            <!-- Body -->
+            <tr>
+              <td style="padding: 30px; text-align: left;">
+                <h3 style="font-size: 24px; color: #333333; margin: 0 0 20px; font-weight: 600;">
+                  New Job Alert: ${formData.title}
+                </h3>
+                <p style="font-size: 16px; color: #666666; margin: 0 0 20px;">
+                  A new job opportunity has been posted that matches your interests.
+                </p>
+                <!-- Company Info -->
+                <table role="presentation" style="width: 100%; margin-bottom: 20px;">
+                  <tr>
+                    <td style="vertical-align: middle; padding-right: 15px;">
+                      <img
+                        src="${formData.company.logo}"
+                        alt="${formData.company.name} Logo"
+                        style="max-width: 60px; height: auto; border-radius: 4px;"
+                      />
+                    </td>
+                    <td style="vertical-align: middle;">
+                      <p style="font-size: 18px; color: #333333; margin: 0; font-weight: 500;">
+                        ${formData.title}
+                      </p>
+                      <p style="font-size: 16px; color: #666666; margin: 5px 0 0;">
+                        ${formData.company.name} • ${formData.employmentType}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+                <!-- CTA Button -->
+                <div style="text-align: center; margin: 30px 0;">
+                  <a
+                    href="https://cakribakri.com/all-jobs"
+                    style="display: inline-block; padding: 14px 30px; font-size: 16px; color: #ffffff; background-color: #28a745; text-decoration: none; border-radius: 6px; font-weight: 500;"
+                    class="button"
+                  >
+                    View All Jobs
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <!-- Footer -->
+            <tr>
+              <td style="padding: 20px; text-align: center; background-color: #f1f1f1; border-radius: 0 0 8px 8px; font-size: 14px; color: #888888;">
+                <p style="margin: 0;">
+                  You received this email because you subscribed to job alerts on <a href="https://cakribakri.com" style="color: #007bff; text-decoration: none;">Cakribakri</a>.
+                </p>
+                <p style="margin: 10px 0 0;">
+                  <a href="https://cakribakri.com/unsubscribe" style="color: #007bff; text-decoration: none;">Unsubscribe</a> • All rights reserved © 2024 Cakribakri
+                </p>
+              </td>
+            </tr>
+          </table>
+        </body>
+      </html>
+    `;
+  };
+
   // Handle form submission
   const handlePostJob = async (e) => {
     e.preventDefault();
@@ -81,6 +168,19 @@ export default function PostJob() {
         formData
       );
       if (data.insertedId) {
+        // email notification send to jobseeker
+        try {
+          const res = await axios.post(
+            `${import.meta.env.VITE_SERVER_API_URL}/send-email`,
+            {
+              subject: `New Job Opportunity: ${formData.title}`,
+              message: generateEmailContent(formData),
+            }
+          );
+          console.log("Email sent successfully", res.data);
+        } catch (error) {
+          console.log(error);
+        }
         Swal.fire({
           title: "Successfully post the job",
           text: "Please scheack the 'All Jobs' page",
@@ -95,7 +195,6 @@ export default function PostJob() {
             logo: "",
             rating: 0,
           },
-          category: "",
           location: "",
           employmentType: "",
           salary: "",
@@ -172,32 +271,6 @@ export default function PostJob() {
               placeholder="https://example.com/logo.jpg"
               className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
             />
-          </div>
-
-          {/* category */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Job Category
-            </label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            >
-              <option value="">Select Category</option>
-              <option value="Software Development">Software Development</option>
-              <option value="Design & Creative">Design & Creative</option>
-              <option value="Marketing & Sales">Marketing & Sales</option>
-              <option value="Human Resources">Human Resources</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Education">Education</option>
-              <option value="Advertising & Media">Advertising & Media</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Security Services">Security Services</option>
-            </select>
           </div>
 
           {/* Location */}
@@ -302,7 +375,7 @@ export default function PostJob() {
           </div>
 
           {/* Responsibilities */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-3">
             <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
               <FaListUl className="mr-2" /> Responsibilities
             </label>
