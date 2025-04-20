@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
 import {
   FaSearch,
   FaMapMarkerAlt,
@@ -8,54 +9,89 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router";
 export default function AllJobs() {
-const { data: allJobs = [], isLoading} = useQuery({
-    queryKey: ["jobs"],
+  const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const [serverError, setServerError] = useState("");
+  const {
+    data: allJobs = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["jobs", search, category],
     queryFn: async () => {
-      const { data } = await axios.get(`${import.meta.env.VITE_SERVER_API_URL}/jobs`);
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_SERVER_API_URL
+        }/jobs?search=${search}&category=${category}`
+      );
+      if (data.message) {
+        setServerError(data.message);
+      } else setServerError("");
       return data;
     },
   });
-  
+  const handleFilter = async (e) => {
+    e.preventDefault();
+    setSearch("");
+    setCategory("");
+    const formSearch = e.target.search.value;
+    const formCategory = e.target.category.value;
+    setSearch(formSearch);
+    setCategory(formCategory);
+    refetch();
+  };
   return (
     <>
       <section className="w-11/12 mx-auto py-10">
         {/* Search and Filter Section */}
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between bg-cb-card p-4 rounded-2xl shadow-lg">
+        <form
+          onSubmit={handleFilter}
+          className="flex flex-col md:flex-row gap-2 items-center justify-between bg-gradient-to-r from-[#177C87] to-[#64CCC5] p-4 rounded-2xl shadow-lg"
+        >
           <div className="relative w-full ">
             <input
               type="text"
               placeholder="Search for jobs..."
-              className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-            // value={searchQuery}
-            // onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/80 p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
+              name="search"
             />
             <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
           </div>
           <div className="relative w-full md:w-1/3">
-            <select className="w-full bg-white p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0">
+            <select
+              defaultValue={""}
+              name="category"
+              className="w-full bg-white/80 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
+            >
               <option value="">All Categories</option>
-              <option value="frontend">Frontend Development</option>
-              <option value="backend">Backend Development</option>
-              <option value="fullstack">Full Stack Development</option>
-              <option value="uiux">UI/UX Design</option>
-              <option value="devops">DevOps</option>
-              <option value="qa">Quality Assurance</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Design & Creative">Design & Creative</option>
+              <option value="Marketing & Sales">Marketing & Sales</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Advertising & Media">Advertising & Media</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Security Services">Security Services</option>
             </select>
           </div>
-          <button className="btn bg-cb-primary text-white px-6 py-4 rounded-lg">
+          <button className="btn border border-white bg-transparent hover:bg-white text-white hover:text-[#177C87] px-6 py-4 rounded-lg">
             Filter
           </button>
-        </div>
+        </form>
 
-{
-  isLoading && <h3 className="py-10 text-3xl text-center text-cb-primary/70">Loading...</h3>
-}
+        {isLoading && (
+          <h3 className="py-10 text-3xl text-center text-cb-primary/70">
+            Loading...
+          </h3>
+        )}
         {/* Job Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {allJobs.length > 0 ? (
             allJobs?.map((job) => (
               <div
-                key={job.id}
+                key={job._id}
                 className="flex flex-col bg-cb-card p-6 rounded-xl hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
               >
                 <div className="flex items-center gap-3">
@@ -112,7 +148,7 @@ const { data: allJobs = [], isLoading} = useQuery({
             ))
           ) : (
             <p className="text-center col-span-3 text-gray-500">
-              No jobs found.
+              {serverError}
             </p>
           )}
         </div>

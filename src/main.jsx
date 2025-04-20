@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 import {
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -28,7 +27,7 @@ import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
 import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
 import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
-import CategorisedJobs from "./pages/Home/CategorisedJobs";
+import CategorisedJobs from "./pages/CategorisedJobs/CategorisedJobs";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
