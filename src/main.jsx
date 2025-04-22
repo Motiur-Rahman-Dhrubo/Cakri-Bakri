@@ -28,9 +28,12 @@ import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplic
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
 import CategorisedJobs from "./pages/CategorisedJobs/CategorisedJobs";
+import store from "./app/store";
+import {Provider} from 'react-redux';
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(root).render(
+  <Provider store={store}>
   <AuthProvider>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
@@ -77,4 +80,5 @@ ReactDOM.createRoot(root).render(
       </QueryClientProvider>
     </BrowserRouter>
   </AuthProvider>
+  </Provider>
 );
