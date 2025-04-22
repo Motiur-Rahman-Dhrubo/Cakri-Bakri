@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 import {
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -21,12 +20,13 @@ import AppliedJobs from "./pages/AppliedJobs/AppliedJobs";
 import FavoriteJobs from "./pages/FavoriteJobs/FavoriteJobs";
 import Myprofile from "./pages/Myprofile/Myprofile";
 import ProfileUpdate from "./pages/Myprofile/ProfileUpdate";
-
 import PostJob from "./pages/DashboardPages/JobPublisher/PostJob";
 import PublisherOverview from "./pages/DashboardPages/JobPublisher/PublisherOverview";
 import ManageApplications from "./pages/DashboardPages/JobPublisher/ManageApplications";
 import ManageJobs from "./pages/DashboardPages/JobPublisher/ManageJobs";
 import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
+import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
+import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
 import CategorisedJobs from "./pages/CategorisedJobs/CategorisedJobs";
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
@@ -72,7 +72,10 @@ ReactDOM.createRoot(root).render(
               element={<ManageApplications />}
             />
             <Route path="/dashboard/post-job" element={<PostJob />} />
+            <Route path="/dashboard/employee-applications" element={<EmployeeApplications/>} />
+            <Route path={`/dashboard/live-chats/:id`} element={<LiveChats/>} />
           </Route>
+          
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>

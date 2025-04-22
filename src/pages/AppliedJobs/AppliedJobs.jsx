@@ -115,6 +115,11 @@ const AppliedJobs = () => {
                               Details
                             </button>
                           </NavLink>
+                          <NavLink to={`/dashboard/live-chats/${data._id}`}>
+                            <button className="btn btn-ghost btn-xs ml-2 ">
+                              Contact
+                            </button>
+                          </NavLink>
                         </div>
                       </th>
                     </tr>
