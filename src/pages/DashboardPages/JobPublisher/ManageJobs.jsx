@@ -13,11 +13,10 @@ const ManageJobs = () => {
   } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const res = await axios.get(
+      const { data } = await axios.get(
         `${import.meta.env.VITE_SERVER_API_URL}/jobs`
       );
-      console.log(data)
-      return res.data;
+      return data;
     },
   });
 

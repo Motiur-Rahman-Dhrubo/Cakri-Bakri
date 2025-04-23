@@ -18,6 +18,8 @@ import usePublisher from "../../hooks/usePublisher";
 import useSeeker from "../../hooks/useSeeker";
 
 const Dashboard = () => {
+  // const [isadmin] = useAdmin();
+  // const [isPublisher] =usePublisher(true);
   const [isAdmin] = useAdmin();
   const [isPublisher] = usePublisher();
   const [isSeeker] = useSeeker();

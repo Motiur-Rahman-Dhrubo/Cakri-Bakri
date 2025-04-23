@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
@@ -26,11 +27,11 @@ export default function CategorisedJobs() {
   return (
     <>
       <div className="w-11/12 mx-auto py-10">
-        {allJobs.length > 0 && <div>
+        <div>
           <h2 className="text-2xl md:text-4xl text-cb-secondary font-semibold ">
             Job Category: <span className="font-bold">{category}</span>
           </h2>
-        </div>}
+        </div>
         <div className="divider"></div>
         <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {allJobs.length > 0 ? (
