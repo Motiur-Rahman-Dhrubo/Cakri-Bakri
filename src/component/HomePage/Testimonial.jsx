@@ -8,7 +8,7 @@ export default function Testimonials() {
       id: 1,
       name: "Alice Johnson",
       role: "Software Engineer",
-      message: "This platform helped me land my dream job! The interface is user-friendly and the opportunities are vast.",
+      message: "This platform helped me land my  dream job! The interface is user-friendly and the opportunities are vast.",
       image: "https://randomuser.me/api/portraits/women/1.jpg",
     },
     {
