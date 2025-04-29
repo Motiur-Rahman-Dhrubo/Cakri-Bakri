@@ -187,7 +187,7 @@ const Dashboard = () => {
                       </small>
                     </NavLink>
 
-                    {/* Manage Jobs */}
+                    {/* Manage Jobs
                     <NavLink
                       to="/dashboard/manage-jobs"
                       className={({ isActive }) =>
@@ -202,7 +202,7 @@ const Dashboard = () => {
                       <small className="hidden max-sm:block text-[8px] text-center">
                         Manage Jobs
                       </small>
-                    </NavLink>
+                    </NavLink> */}
 
                     {/* Manage Users */}
                     <NavLink
@@ -222,7 +222,7 @@ const Dashboard = () => {
                     </NavLink>
 
                     {/* Job Applications */}
-                    <NavLink
+                    {/* <NavLink
                       to="/dashboard/employee-applications"
                       className={({ isActive }) =>
                         isActive
@@ -236,10 +236,10 @@ const Dashboard = () => {
                       <small className="hidden max-sm:block text-[8px]">
                         Employee Applications
                       </small>
-                    </NavLink>
+                    </NavLink> */}
 
                     {/* Reports & Analytics */}
-                    <NavLink
+                    {/* <NavLink
                       to="/dashboard/reports"
                       className={({ isActive }) =>
                         isActive
@@ -253,10 +253,10 @@ const Dashboard = () => {
                       <small className="hidden max-sm:block text-[8px]">
                         Reports
                       </small>
-                    </NavLink>
+                    </NavLink> */}
 
                     {/* Settings */}
-                    <NavLink
+                    {/* <NavLink
                       to="/dashboard/settings"
                       className={({ isActive }) =>
                         isActive
@@ -270,7 +270,7 @@ const Dashboard = () => {
                       <small className="hidden max-sm:block text-[8px]">
                         Settings
                       </small>
-                    </NavLink>
+                    </NavLink> */}
 
                     {/* Tooltips */}
                     <Tooltip
