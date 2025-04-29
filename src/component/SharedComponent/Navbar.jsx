@@ -98,14 +98,14 @@ export default function Navbar() {
             {navLink}
             {user ? (
               <>
-                <li>
+                {/* <li>
                   <Link
                     className="my-3 btn bg-cb-white text-base text-cb-primary"
                     to={"/dashboard/become-employer"}
                   >
                     Become Employer
                   </Link>
-                </li>
+                </li> */}
                 <div className="divider h-[1px] bg-white/70"></div>
                 <img
                   className="w-14 h-14 mx-auto border-2 border-cb-card rounded-full"
@@ -156,12 +156,12 @@ export default function Navbar() {
       <div className="navbar-end hidden lg:flex gap-x-4">
         {user ? (
           <>
-            <Link
+            {/* <Link
               className="btn border border-transparent text-cb-primary bg-cb-white hover:bg-transparent hover:text-cb-white hover:border-cb-white"
               to="/dashboard/become-employer"
             >
               Become Employer
-            </Link>
+            </Link> */}
             <div
               className={`relative dropdown dropdown-hover ${
                 location.pathname.includes("dashboard")
