@@ -3,7 +3,7 @@ import logo from "/CB-logo.png";
 import { Link } from "react-router";
 export default function Footer() {
   return (
-    <footer className="w-11/12 mx-auto text-cb-card py-8">
+    <footer className="w-11/12 mx-auto text-cb-white py-8">
       <div className="container mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-12 justify-between items-center md:items-start">
           {/* Company Info */}
