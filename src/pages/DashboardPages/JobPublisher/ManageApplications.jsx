@@ -8,7 +8,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 export default function ManageApplications() {
 
   const {user} = useContext(AuthContext)
-
+  console.log(user)
  
   // Tanstak quiery for fetaching data form sever
 
@@ -18,11 +18,12 @@ export default function ManageApplications() {
     error,
     data: manageApplications = [],
   } = useQuery({
-    queryKey: [`manage-applications?email=${user?.email}`],
+    queryKey: [`applicant?email=${user?.email}`],
     queryFn: async () => {
       const { data } = await axios.get(
-      `http://localhost:5000/manage-applications?email=${user?.email}`
+      `http://localhost:5000/applicant?email=${user?.email}`
       );
+      console.log(data)
       return data;
     },
   });
@@ -64,8 +65,8 @@ export default function ManageApplications() {
                     </tr>
                   </thead>
                   <tbody>
-                    {manageApplications?.map((data) => (
-                      <tr>
+                    {manageApplications?.map((data ,index) => (
+                      <tr key={index}>
                         <td>
                           <h1 className="font-bold ">data not found</h1>
                           {/* {allUsers.find(user=>user?.email === data?.email? user?.name :'data not found')} */}

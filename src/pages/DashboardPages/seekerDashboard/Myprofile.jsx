@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 const Myprofile = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
 
   return (
       <div className="py-4">

@@ -33,7 +33,7 @@ const AppliedJobs = () => {
   if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
-  console.log(appliedJobs);
+  // console.log(appliedJobs);
 
   return (
     <div className="w-11/12 mx-auto">
