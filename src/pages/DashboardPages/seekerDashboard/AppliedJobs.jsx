@@ -97,7 +97,7 @@ const AppliedJobs = () => {
                 </thead>
                 <tbody>
                   {appliedJobs?.map((data) => (
-                    <tr>
+                    <tr >
                       <td>
                         <h1 className="font-bold ">{data.companyName}</h1>
                       </td>

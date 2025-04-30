@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isPublisher] = usePublisher();
   const [isSeeker] = useSeeker();
-  console.log(isAdmin, isPublisher, isSeeker)
+  // console.log(isAdmin, isPublisher, isSeeker)
   // const role = {
   //   isAdmin: true,
   //   isJobPublisher: false,

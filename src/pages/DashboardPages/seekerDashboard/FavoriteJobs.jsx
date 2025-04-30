@@ -20,7 +20,7 @@ const FavoriteJobs = () => {
         queryKey: [`applied-jobs?email=${user?.email}`],
         queryFn: async () => {
           const { data } = await axios.get(
-            `https://cakri-bakri-server.vercel.app/favorite-jobs?email=${user?.email}`
+            `http://localhost:5000/favorite-jobs?email=${user?.email}`
           );
           return data;
         },
@@ -88,8 +88,8 @@ const FavoriteJobs = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {favoriteJobs?.map((data) => (
-                    <tr>
+                  {favoriteJobs?.map((data,index) =>  ( 
+                    <tr key={index}>
                       <td>
                         <h1 className="font-bold ">{data.companyName}</h1>
                       </td>
