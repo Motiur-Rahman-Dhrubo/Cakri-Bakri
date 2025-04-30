@@ -3,7 +3,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 const ProfileUpdate = () => {
     const{user} = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Register Form Section */}

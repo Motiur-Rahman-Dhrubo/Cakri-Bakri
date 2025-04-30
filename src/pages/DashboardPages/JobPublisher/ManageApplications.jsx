@@ -8,7 +8,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 export default function ManageApplications() {
 
   const {user} = useContext(AuthContext)
-  console.log(user)
+  // console.log(user)
  
   // Tanstak quiery for fetaching data form sever
 
@@ -23,7 +23,7 @@ export default function ManageApplications() {
       const { data } = await axios.get(
       `http://localhost:5000/applicant?email=${user?.email}`
       );
-      console.log(data)
+      // console.log(data)
       return data;
     },
   });
@@ -31,7 +31,7 @@ export default function ManageApplications() {
   if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
-  console.log(manageApplications);
+  // console.log(manageApplications);
   
  
   return (

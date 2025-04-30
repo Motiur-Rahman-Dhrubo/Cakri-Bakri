@@ -8,7 +8,7 @@ export default function Navbar() {
   const handleSignOut = () => {
     logOut()
       .then(() => {
-        console.log("Signed Out");
+        // console.log("Signed Out");
       })
       .catch((error) => console.log(error));
   };
