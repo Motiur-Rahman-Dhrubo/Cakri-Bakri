@@ -96,8 +96,8 @@ const AppliedJobs = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {appliedJobs?.map((data) => (
-                    <tr >
+                  {appliedJobs?.map((data,index) => (
+                    <tr key={index}>
                       <td>
                         <h1 className="font-bold ">{data.companyName}</h1>
                       </td>
