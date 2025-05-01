@@ -33,7 +33,14 @@ const Registration = () => {
         });
         navigate("/");
       })
-      .catch((error) => console.error("Google login error:", error));
+      .catch((error) => {
+        console.error("Google login error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Google Sign-in Failed",
+          text: error.message,
+        });
+      });
   };
 
   const onSubmit = (data) => {
@@ -50,24 +57,45 @@ const Registration = () => {
               role: data.role,
               photoUrl: data.photoUrl,
             };
-            axiosPublic.post("/users", userInfo).then((res) => {
-              if (res.data.insertedId) {
-                reset();
+            axiosPublic.post("/users", userInfo)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    icon: "success",
+                    title: "Registration Successful",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              })
+              .catch((error) => {
+                console.error("Axios post error:", error);
                 Swal.fire({
-                  icon: "success",
-                  title: "Registration Successful",
-                  showConfirmButton: false,
-                  timer: 1500,
+                  icon: "error",
+                  title: "Failed to Save User",
+                  text: error.message || "An error occurred while saving user info.",
                 });
-                navigate("/");
-              }
-            });
+              });
           })
-          .catch((error) =>
-            console.error("Profile update error:", error)
-          );
+          .catch((error) => {
+            console.error("Profile update error:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Profile Update Failed",
+              text: error.message || "An error occurred while updating profile.",
+            });
+          });
       })
-      .catch((error) => console.error("User creation error:", error));
+      .catch((error) => {
+        console.error("User creation error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: error.message || "An error occurred during registration.",
+        });
+      });
   };
 
   return (
