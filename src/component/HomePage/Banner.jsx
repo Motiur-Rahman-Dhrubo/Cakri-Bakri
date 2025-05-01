@@ -18,7 +18,7 @@ export default function Banner() {
       <div className="w-11/12 h-full mx-auto grid grid-cols-2 content-center">
         <div className="justify-self-start">
           <h1 className="text-5xl md:text-6xl font-primary text-gray-800 uppercase font-bold">
-            Chakri <span className="text-cb-primary">Bakri</span>
+            Chakri <span className="text-cb-btn">Bakri</span>
           </h1>
           <p className="mt-4 text-lg text-gray-400/95 md:w-[450px]">
             Find Your Dream Job. Connect with Top Employers. A seamless platform
