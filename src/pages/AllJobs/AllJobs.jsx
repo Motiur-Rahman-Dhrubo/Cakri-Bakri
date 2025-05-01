@@ -42,7 +42,7 @@ export default function AllJobs() {
   };
   return (
     <>
-      <section className="w-11/12 mx-auto py-10">
+      <section className="w-1/5 mx-auto py-10">
         {/* Search and Filter Section */}
         <form
           onSubmit={handleFilter}
