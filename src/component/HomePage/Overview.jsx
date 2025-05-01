@@ -5,7 +5,7 @@ import {
 } from "react-icons/ai";
 export default function Overview() {
   return (
-    <section className="bg-blue-100 py-5 mt-12">
+    <section className="bg-blue-400 py-5 mt-12">
       <div className="w-11/12 mx-auto text-center">
         {/* Section Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary mb-4">
