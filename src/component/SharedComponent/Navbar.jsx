@@ -34,12 +34,12 @@ export default function Navbar() {
   );
 
   return (
-    <div className="navbar px-0 w-11/12 mx-auto text-blue-600">
+    <div className="navbar px-0 w-11/12 mx-auto text-white">
       {/* left side logo  */}
       <div className="navbar-start">
         <Link
           to={"/"}
-          className={`w-12 md:w-16 rounded-lg ${
+          className={`w-14 md:w-16 rounded-lg ${
             location.pathname.includes("dashboard")
               ? "flex items-center gap-1 md:gap-3"
               : ""
