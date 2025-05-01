@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-3 mb-6 md:mb-0 text-center md:text-left">
             <Link to="/">
-              <div className="min-w-24 max-sm:mx-auto">
+              <div className="w-28 max-sm:mx-auto">
                 <img src={logo} className="w-full rounded-lg" alt="" />
               </div>
             </Link>

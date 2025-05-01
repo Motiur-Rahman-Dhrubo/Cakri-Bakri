@@ -34,7 +34,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="navbar px-0 w-11/12 mx-auto text-white">
+    <div className="navbar px-0 w-11/12 mx-auto text-blue-600">
       {/* left side logo  */}
       <div className="navbar-start">
         <Link
