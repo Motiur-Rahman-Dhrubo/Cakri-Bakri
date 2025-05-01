@@ -58,7 +58,7 @@ const Dashboard = () => {
                       data-tooltip-id="dashboard-tooltip"
                       data-tooltip-content="Dashboard Overview"
                     >
-                      <FaTachometerAlt className="w-6 h-6" />
+                      <FaTachometerAlt className="w-3.5 h-6" />
                       <small className="hidden max-sm:block text-[8px]">
                         Overview
                       </small>
