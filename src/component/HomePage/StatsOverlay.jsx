@@ -21,7 +21,7 @@ export default function StatsOverlay() {
         </div>
         <div className="w-1/2 md:w-1/4 py-4 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
           <h2 className="text-3xl font-bold text-cb-white/90">1.2M+</h2>
-          <p className=" font-semibold text-cb-white/80">Applications Sent</p>
+          <p className="text-xl font-semibold text-cb-white/80">Applications Sent</p>
         </div>
       </div>
     </div>
