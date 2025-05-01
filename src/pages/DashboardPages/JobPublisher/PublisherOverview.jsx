@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../../providers/AuthProvider';
 export default function PublisherOverview() {
   const {user} = useContext(AuthContext)
+  console.log(user)
   const axiosPublic = useAxiosPublic()
   const { data = {}, isLoading } = useQuery({
     queryKey: ['userJobsAndApplicants', user.email],
