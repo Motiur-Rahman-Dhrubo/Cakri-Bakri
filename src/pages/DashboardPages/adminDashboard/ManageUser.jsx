@@ -23,7 +23,7 @@ const ManageUsers = () => {
       <h2 className="text-3xl md:text-5xl font-semibold text-cb-btn mb-4">Manage Users</h2>
 
       {/* Search & Filter */}
-      <div className="w-fit flex max-sm:flex-col gap-4 mb-4">
+      <div className="w-fit flex max-sm:flex-col gap-4 mb-2">
         <div className="relative w-full">
           <input
             type="text"
