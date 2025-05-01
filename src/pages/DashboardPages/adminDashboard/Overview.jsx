@@ -3,7 +3,7 @@ import { FaBriefcase, FaUsers, FaFileAlt, FaChartBar } from "react-icons/fa";
 const DashboardOverview = () => {
   return (
     <section className="p-6">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-4">Dashboard Overview</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Dashboard Overview</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Jobs Posted */}
@@ -17,7 +17,7 @@ const DashboardOverview = () => {
 
         {/* Total Applications */}
         <div className="bg-[#1f87aa] text-white p-6 rounded-lg shadow-md flex items-center">
-          <FaFileAlt className="text-4xl mr-1" />
+          <FaFileAlt className="text-4xl mr-4" />
           <div>
             <h3 className="text-xl font-bold">1,320</h3>
             <p className="text-sm">Total Job Applications</p>
