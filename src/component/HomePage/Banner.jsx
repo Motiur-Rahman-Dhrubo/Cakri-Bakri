@@ -13,7 +13,7 @@ export default function Banner() {
   };
   return (
     <section
-      className={`bg-[url('/hero-bg.png')] bg-cover bg-no-repeat bg-center w-full md:h-[500px]`}
+      className={`bg-[url('/hero-bg.png')] bg-cover bg-no-repeat bg-center w-2/3 md:h-[500px]`}
     >
       <div className="w-11/12 h-full mx-auto grid grid-cols-2 content-center">
         <div className="justify-self-start">
