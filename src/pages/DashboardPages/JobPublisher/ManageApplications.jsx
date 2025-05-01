@@ -46,7 +46,7 @@ export default function ManageApplications() {
           <div>
             {manageApplications?.length == 0 ? (
               <div className="flex justify-center items-center min-h-screen">
-                <h1 className="text-4xl font-bold text-center my-4">
+                <h1 className="text-4xl font-bold text-center my-6">
                   No job apply yet
                 </h1>
               </div>
