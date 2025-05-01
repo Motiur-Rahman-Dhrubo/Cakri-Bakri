@@ -30,7 +30,7 @@ export default function LeteastJobs() {
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-1">
-          <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">Latest Jobs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-cb-card">Latest Jobs</h2>
           <p className="text-cb-primary/80 mt-2 md:mt-4">Explore the newest job openings available.</p>
         </div>
         <div className="divider my-0"></div>
