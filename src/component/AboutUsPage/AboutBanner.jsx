@@ -3,7 +3,7 @@ import banner from "../../assets/Banner-2.jpg";
 
 export default function AboutBanner() {
   return (
-    <section className=" relative w-2/3 h-[400px] md:h-[500px] flex flex-col max-sm:gap-y-4 md:flex-row items-center justify-center overflow-hidden">
+    <section className=" relative w-full h-[400px] md:h-[500px] flex flex-col max-sm:gap-y-4 md:flex-row items-center justify-center overflow-hidden">
       {/* Background Image */}
       <img 
         src={banner} 
@@ -12,7 +12,7 @@ export default function AboutBanner() {
       />
     
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black"></div>
+      <div className="absolute inset-0 bg-black/80"></div>
     
       {/* Content */}
       <div className="absolute z-10 md:left-1/2 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 px-2 md:px-3 text-center">
