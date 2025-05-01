@@ -3,7 +3,7 @@ import banner from "../../assets/Banner-2.jpg";
 
 export default function AboutBanner() {
   return (
-    <section className=" relative w-full h-[400px] md:h-[500px] flex flex-col max-sm:gap-y-4 md:flex-row items-center justify-center overflow-hidden">
+    <section className=" relative w-2/3 h-[400px] md:h-[500px] flex flex-col max-sm:gap-y-4 md:flex-row items-center justify-center overflow-hidden">
       {/* Background Image */}
       <img 
         src={banner} 
