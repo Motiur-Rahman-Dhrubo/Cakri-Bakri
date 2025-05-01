@@ -33,7 +33,7 @@ const Dashboard = () => {
   return (
     <>
       <section>
-        <div className="bg-cb-primary">
+        <div className="bg-cb-white">
           <Navbar />
         </div>
         <div className="min-h-screen flex bg-cb-white">
