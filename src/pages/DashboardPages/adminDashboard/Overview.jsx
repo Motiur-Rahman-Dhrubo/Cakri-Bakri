@@ -17,7 +17,7 @@ const DashboardOverview = () => {
 
         {/* Total Applications */}
         <div className="bg-[#1f87aa] text-white p-6 rounded-lg shadow-md flex items-center">
-          <FaFileAlt className="text-4xl mr-4" />
+          <FaFileAlt className="text-4xl mr-1" />
           <div>
             <h3 className="text-xl font-bold">1,320</h3>
             <p className="text-sm">Total Job Applications</p>
