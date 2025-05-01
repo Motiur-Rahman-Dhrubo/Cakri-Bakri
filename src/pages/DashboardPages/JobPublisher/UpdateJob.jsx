@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 
 export default function UpdateJob() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const  = useParams();
 
   // Fetch job data
   const { data: job = {}, isLoading } = useQuery({
