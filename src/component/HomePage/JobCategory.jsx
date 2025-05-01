@@ -77,7 +77,7 @@ export default function JobCategory() {
   ];
   return (
     <>
-      <div className="mt-12 py-5  w-11/12 mx-auto">
+      <div className="mt-12 py-6  w-11/12 mx-auto">
         <div className="flex items-center gap-3">
           <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">
             Popular Categories
