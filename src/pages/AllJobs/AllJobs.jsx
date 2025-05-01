@@ -51,7 +51,7 @@ export default function AllJobs() {
           <div className="relative w-full ">
             <input
               type="text"
-              placeholder="Search for jobs..."
+              placeholder="Search for jobs.."
               className="w-full bg-white/80 p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
               name="search"
             />
