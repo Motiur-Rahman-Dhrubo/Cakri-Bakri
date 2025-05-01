@@ -3,7 +3,7 @@ import React from "react";
 export default function StatsOverlay() {
   return (
     <div className="mt-5 md:my-12 relative w-11/12 mx-auto bg-gradient-to-r from-[#175A87] via-[#177C87] to-[#64CCC5] text-primary-content py-4 md:py-6 rounded-lg">
-      <h2 className="text-center max-sm:px-3 text-cb-btn text-3xl md:text-4xl font-bold mb-4">Our Company Statistics</h2>
+      <h2 className="text-center max-sm:px-3 text-cb-white text-3xl md:text-4xl font-bold mb-4">Our Company Statistics</h2>
       <div className="divider w-11/12 mx-auto my-0"></div>
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 flex flex-wrap justify-between items-center text-center">
