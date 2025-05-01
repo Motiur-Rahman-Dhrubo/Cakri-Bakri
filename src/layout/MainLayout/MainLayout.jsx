@@ -6,7 +6,7 @@ import Navbar from "../../component/SharedComponent/Navbar";
 const MainLayout = () => {
   return (
     <>
-      <header className="bg-gradient-to-r from-[#175A87] via-[#177C87] to-[#64CCC5] shadow-sm">
+      <header className="sticky top-0 bg-white z-50">
         <Navbar />
       </header>
       <main className="bg-[#EEF5FF] min-h-[calc(100vh-337px)]">
