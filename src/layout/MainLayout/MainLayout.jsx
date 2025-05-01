@@ -12,7 +12,7 @@ const MainLayout = () => {
       <main className="bg-[#EEF5FF] min-h-[calc(100vh-337px)]">
         <Outlet></Outlet>
       </main>
-      <footer className="bg-cb-secondary ">
+      <footer className="bg-cb-btn ">
         <Footer />
       </footer>
     </>
