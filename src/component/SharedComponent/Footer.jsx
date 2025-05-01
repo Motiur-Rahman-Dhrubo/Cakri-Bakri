@@ -3,13 +3,13 @@ import logo from "/CB-logo.png";
 import { Link } from "react-router";
 export default function Footer() {
   return (
-    <footer className="w-11/12 mx-auto text-cb-primary py-8">
+    <footer className="w-11/12 mx-auto text-cb-white py-8">
       <div className="container mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-12 justify-between items-center md:items-start">
           {/* Company Info */}
           <div className="lg:col-span-3 mb-6 md:mb-0 text-center md:text-left">
             <Link to="/">
-              <div className="w-28 max-sm:mx-auto">
+              <div className="min-w-24 max-sm:mx-auto">
                 <img src={logo} className="w-full rounded-lg" alt="" />
               </div>
             </Link>
