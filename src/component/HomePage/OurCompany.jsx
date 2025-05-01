@@ -52,7 +52,7 @@ export const OurCompany = () => {
     },
   ];
   return (
-    <div className="py-5 mt-12 w-11/12 mx-auto">
+    <div className="py-5 mt-12 max-w-11/12 mx-auto">
       <div className="flex items-center gap-3">
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">
           Our Trustworthy Companies
