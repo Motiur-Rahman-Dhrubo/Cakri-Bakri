@@ -16,7 +16,7 @@ export default function UpdateJob() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // Fetch job data
+  // Fetch job 
   const { data: job = {}, isLoading } = useQuery({
     queryKey: ["jobDetails", id],
     queryFn: async () => {
