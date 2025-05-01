@@ -128,7 +128,7 @@ export default function UpdateJob() {
           text: "The job details have been updated.",
           icon: "success",
         });
-        navigate("/all-jobs")
+        navigate("/all-jobs");
       } else {
         Swal.fire({
           title: "No Changes Detected",
@@ -147,7 +147,7 @@ export default function UpdateJob() {
   };
 
   if (isLoading) {
-    return <div>Loading job details...</div>;
+    return <div className="min-h-screen">Loading job details...</div>;
   }
 
   return (
@@ -211,29 +211,29 @@ export default function UpdateJob() {
 
         {/* category */}
         <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Job Category
-            </label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            >
-              <option value="">Select Category</option>
-              <option value="Software Development">Software Development</option>
-              <option value="Design & Creative">Design & Creative</option>
-              <option value="Marketing & Sales">Marketing & Sales</option>
-              <option value="Human Resources">Human Resources</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Education">Education</option>
-              <option value="Advertising & Media">Advertising & Media</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Security Services">Security Services</option>
-            </select>
-          </div>
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Job Category
+          </label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          >
+            <option value="">Select Category</option>
+            <option value="Software Development">Software Development</option>
+            <option value="Design & Creative">Design & Creative</option>
+            <option value="Marketing & Sales">Marketing & Sales</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Education">Education</option>
+            <option value="Advertising & Media">Advertising & Media</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Security Services">Security Services</option>
+          </select>
+        </div>
 
         {/* Location */}
         <div className="col-span-1">
