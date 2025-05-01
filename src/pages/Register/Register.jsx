@@ -9,76 +9,67 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 
 const Registration = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const { createUser, signInWithGoogle, updateUserProfile } =
     useContext(AuthContext);
+
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
+        console.log("Google Sign-in user:", res.user);
+        Swal.fire({
+          icon: "success",
+          title: "Logged in with Google",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error("Google login error:", error));
   };
-  // register trough name, image, email, pass
-  // const handleRegister = async (e) => {
-  //   e.preventDefault();
-  //   const name = e.target.name.value;
-  //   const photo = e.target.photo.value;
-  //   const email = e.target.email.value;
-  //   const password = e.target.password.value;
 
-  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-  //   if (!passwordRegex.test(password)) {
-  //     Swal.fire("Your Password is invalid to use");
-  //     return;
-  //   }
-
-  //   try {
-  //     const result = await createUser(email, password);
-  //     if (result.user) {
-  //       await updateUserProfile({ displayName: name, photoURL: photo });
-  //       e.target.reset();
-  //       navigate("/");
-  //     }
-  //   } catch (error) {
-  //     console.error("Registration error:", error);
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Registration Failed",
-  //       text: error.message,
-  //     });
-  //   }
-  // };
-  const onSubmit = data => {
-    console.log(data)
+  const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then(result => {
-        const user = result.user
-        console.log(user)
-        navigate('/')
-        updateUserProfile(data.name, data.photoUrl)
+      .then(() => {
+        updateUserProfile({
+          displayName: data.name,
+          photoURL: data.photoUrl,
+        })
           .then(() => {
             const userInfo = {
               name: data.name,
               email: data.email,
               role: data.role,
-              photoUrl: data.photoUrl
-            }
-            axiosPublic.post('/users', userInfo)
-              .then(res => {
-                if (res.data.insertedId) {
-                  console.log('user added database')
-                  reset()
-                  navigate('/')
-                }
-              })
+              photoUrl: data.photoUrl,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  icon: "success",
+                  title: "Registration Successful",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
           })
-          .catch(error => console.log(error))
+          .catch((error) =>
+            console.error("Profile update error:", error)
+          );
       })
+      .catch((error) => console.error("User creation error:", error));
+  };
 
-  }
   return (
     <div className="flex flex-col md:flex-row ">
       {/* Animation Section */}
@@ -100,46 +91,47 @@ const Registration = () => {
               type="text"
               {...register("name", { required: true })}
               placeholder="Full Name"
-              required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
-            {errors.name && <span>This field is required</span>}
+            {errors.name && <span className="text-red-500">Name is required</span>}
+
             <input
               type="url"
               {...register("photoUrl", { required: true })}
-              placeholder="Photo url..."
-              required
+              placeholder="Photo URL"
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
-            {errors.photoUrl && <span>This field is required</span>}
-            <div className="form-control">
+            {errors.photoUrl && <span className="text-red-500">Photo URL is required</span>}
+
+            <div className="form-control text-left">
               <label className="label">
                 <span className="label-text">Role</span>
               </label>
-              <select defaultValue={'default'} {...register("role")}
-                className="select select-bordered w-full ">
-                <option disabled value={'default'}>Select ROle</option>
-                <option value="seeker">seeker</option>
-                <option value="publisher">Publiser</option>
+              <select defaultValue={'default'} {...register("role", { required: true })}
+                className="select select-bordered w-full">
+                <option disabled value={'default'}>Select Role</option>
+                <option value="seeker">Seeker</option>
+                <option value="publisher">Publisher</option>
               </select>
-              {errors.photoUrl && <span>This field is required</span>}
+              {errors.role && <span className="text-red-500">Role is required</span>}
             </div>
+
             <input
               type="email"
               {...register("email", { required: true })}
               placeholder="Email"
-              required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
-            {errors.email && <span>This field is required</span>}
+            {errors.email && <span className="text-red-500">Email is required</span>}
+
             <input
               type="password"
               {...register("password", { required: true })}
               placeholder="Password"
-              required
               className="w-full p-3 bg-cb-white text-cb-primary border border-cb-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-cb-secondary"
             />
-            {errors.password && <span>This field is required</span>}
+            {errors.password && <span className="text-red-500">Password is required</span>}
+
             <button
               type="submit"
               className="w-full cursor-pointer bg-cb-primary text-white py-3 rounded-md hover:bg-cb-secondary transition"
@@ -147,7 +139,9 @@ const Registration = () => {
               Register
             </button>
           </form>
+
           <div className="divider text-cb-primary">OR</div>
+
           {/* Google Register Button */}
           <button
             type="button"
@@ -157,6 +151,7 @@ const Registration = () => {
             <FcGoogle className="text-2xl mr-3" />
             Register with Google
           </button>
+
           <p className="text-cb-secondary mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-cb-primary hover:underline">
