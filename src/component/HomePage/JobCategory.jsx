@@ -79,7 +79,7 @@ export default function JobCategory() {
     <>
       <div className="mt-12 py-6  w-11/12 mx-auto">
         <div className="flex items-center gap-3">
-          <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">
+          <h2 className="text-3xl md:text-4xl font-bold text-cb-card">
             Popular Categories
           </h2>
           <div className="w-44 h-[2px] bg-cb-btn"></div>
