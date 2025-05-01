@@ -12,7 +12,7 @@ export default function AboutBanner() {
       />
     
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/80"></div>
+      <div className="absolute inset-0 bg-black"></div>
     
       {/* Content */}
       <div className="absolute z-10 md:left-1/2 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 px-2 md:px-3 text-center">
