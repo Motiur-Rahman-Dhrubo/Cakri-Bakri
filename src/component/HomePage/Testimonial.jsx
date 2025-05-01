@@ -27,7 +27,7 @@ export default function Testimonials() {
     },
   ];
   return (
-    <section className="py-5 bg-blue-500 mb-14">
+    <section className="py-5 bg-blue-100 mb-12">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">What Our Users Say</h2>
         <p className="text-lg text-cb-secondary/80 mt-4">See how Cakri-Bakri has helped professionals grow.</p>
