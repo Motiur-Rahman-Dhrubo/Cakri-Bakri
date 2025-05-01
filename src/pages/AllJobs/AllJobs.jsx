@@ -52,7 +52,7 @@ export default function AllJobs() {
             <input
               type="text"
               placeholder="Search for jobs.."
-              className="w-full bg-white/80 p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
+              className="w-full  p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
               name="search"
             />
             <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
