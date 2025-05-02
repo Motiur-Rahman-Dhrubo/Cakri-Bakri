@@ -71,7 +71,7 @@ export default function AllJobs() {
           allJobs.map((job) => (
             <div
               key={job._id}
-              className="flex flex-col bg-cb-card p-6 rounded-xl hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
+              className="flex flex-col bg-cb-card p-6 rounded-xl hover:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,75,97,0.6)] transition-all duration-400"
             >
               <div className="flex items-center gap-3">
                 <img

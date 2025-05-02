@@ -60,7 +60,7 @@ export default function AboutUs() {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-cb-primary flex flex-col p-6 rounded-lg shadow-lg text-center hover:scale-105 hover:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] transition-all duration-500"
+              className="bg-cb-primary flex flex-col p-6 rounded-lg shadow-lg text-center hover:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] active:scale-105 active:drop-shadow-[0px_0px_10px_rgba(10,172,247,0.7)] transition-all duration-500"
             >
               <img
                 src={member.image}
@@ -87,7 +87,7 @@ export default function AboutUs() {
                   href={member.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn bg-cb-white text-cb-secondary"
+                  className="btn bg-cb-white text-cb-secondary hover:bg-cb-secondary hover:text-cb-white"
                 >
                   GitHub
                 </a>
