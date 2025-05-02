@@ -7,34 +7,35 @@ import { NavLink } from 'react-router';
 
 const FavoriteJobs = () => {
 
-     const { user } = useContext(AuthContext);
-      // console.log(user)
-    
-      // use tanstak query for data fatching
-    
-      const {
-        isPending,
-        error,
-        data: favoriteJobs = [],
-      } = useQuery({
-        queryKey: [`applied-jobs?email=${user?.email}`],
-        queryFn: async () => {
-          const { data } = await axios.get(
-            `https://cakri-bakri-server.vercel.app/favorite-jobs?email=${user?.email}`
-          );
-          return data;
-        },
-      });
-    
-      if (isPending) return "Loading...";
-    
-      if (error) return "An error has occurred: " + error.message;
-      
-    return (
-        <div className="w-11/12 mx-auto">
-        <div className="py-4">
-            <h1 className="font-bold text-4xl text-center mx-auto">My Favorite Jobs : {favoriteJobs?.length}</h1>
-        </div>
+  const { user } = useContext(AuthContext);
+  // console.log(user)
+
+  // use tanstak query for data fatching
+
+  const {
+    isPending,
+    error,
+    data: favoriteJobs = [],
+  } = useQuery({
+    queryKey: [`applied-jobs?email=${user?.email}`],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/favorite-jobs?email=${user?.email}`
+      );
+      return data;
+    },
+  });
+
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
+  return (
+    <div className="w-11/12 mx-auto">
+      <div className="py-4">
+        <h1 className="font-bold text-4xl text-center mx-auto">My Favorite Jobs : {favoriteJobs?.length}</h1>
+      </div>
       <section>
         {/* search and filter section */}
         <div className="flex flex-col md:flex-row gap-2 items-center justify-between bg-cb-card p-4 rounded-2xl shadow-lg">
@@ -43,8 +44,8 @@ const FavoriteJobs = () => {
               type="text"
               placeholder="Search for jobs..."
               className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-              // value={searchQuery}
-              // onChange={(e) => setSearchQuery(e.target.value)}
+            // value={searchQuery}
+            // onChange={(e) => setSearchQuery(e.target.value)}
             />
             <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
           </div>
@@ -99,7 +100,7 @@ const FavoriteJobs = () => {
                       <th>
                         <div className="flex">
                           <button
-                            
+
                             className="btn btn-ghost btn-xs"
                           >
                             Remove from Favorite
@@ -120,7 +121,7 @@ const FavoriteJobs = () => {
         </div>
       </section>
     </div>
-    );
+  );
 };
 
 export default FavoriteJobs;

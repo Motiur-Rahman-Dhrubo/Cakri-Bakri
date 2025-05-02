@@ -7,12 +7,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 export default function ManageApplications() {
 
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
- 
+
   // Tanstak quiery for fetaching data form sever
 
- 
+
   const {
     isPending,
     error,
@@ -21,7 +21,8 @@ export default function ManageApplications() {
     queryKey: [`manage-applications?email=${user?.email}`],
     queryFn: async () => {
       const { data } = await axios.get(
-      `http://localhost:5000/manage-applications?email=${user?.email}`
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/manage-applications?email=${user?.email}`
       );
       return data;
     },
@@ -31,8 +32,8 @@ export default function ManageApplications() {
 
   if (error) return "An error has occurred: " + error.message;
   console.log(manageApplications);
-  
- 
+
+
   return (
     <div>
       <div className="mx-auto py-6">
@@ -70,10 +71,10 @@ export default function ManageApplications() {
                           <h1 className="font-bold ">data not found</h1>
                           {/* {allUsers.find(user=>user?.email === data?.email? user?.name :'data not found')} */}
                         </td>
-                        <td>{data?.email?data?.email:'data not found'}</td>
-                        <td>{data?.jobTitle?data?.jobTitle:'data not found'}</td>
-                        <td>{data?.companyName?data?.companyName:'data not found'}</td>
-                        <td>{data?.date?data?.date:'data not found'}</td>
+                        <td>{data?.email ? data?.email : 'data not found'}</td>
+                        <td>{data?.jobTitle ? data?.jobTitle : 'data not found'}</td>
+                        <td>{data?.companyName ? data?.companyName : 'data not found'}</td>
+                        <td>{data?.date ? data?.date : 'data not found'}</td>
                         <th>
                           <div className="flex">
                             <button className="btn btn-ghost btn-xs">
@@ -81,12 +82,12 @@ export default function ManageApplications() {
                             </button>
                             <NavLink to={`/job-details/${data._id}`}>
                               <button className="btn btn-ghost btn-xs ml-2 ">
-                              Delete
+                                Delete
                               </button>
                             </NavLink>
                             <NavLink to={`/dashboard/live-chats/${data._id}`}>
-                            <button className="btn btn-ghost btn-xs ml-2 ">
-                              Contact
+                              <button className="btn btn-ghost btn-xs ml-2 ">
+                                Contact
                               </button>
                             </NavLink>
                           </div>
