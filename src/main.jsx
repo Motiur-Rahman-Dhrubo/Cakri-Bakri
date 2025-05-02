@@ -28,8 +28,10 @@ import UpdateJob from "./pages/DashboardPages/JobPublisher/UpdateJob";
 import EmployeeApplications from "./pages/DashboardPages/JobPublisher/EmployeeApplications";
 import LiveChats from "./pages/DashboardPages/JobPublisher/LiveChats";
 import CategorisedJobs from "./pages/CategorisedJobs/CategorisedJobs";
+
 const root = document.getElementById("root");
 const queryClient = new QueryClient();
+
 ReactDOM.createRoot(root).render(
   <AuthProvider>
     <BrowserRouter>
@@ -38,44 +40,36 @@ ReactDOM.createRoot(root).render(
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="all-jobs" element={<AllJobs />} />
-            <Route path={`job-details/:id`} element={<JobDetails />} />
-            <Route path={`jobs-category/:category`} element={<CategorisedJobs />} />
+            <Route path="job-details/:id" element={<JobDetails />} />
+            <Route path="jobs-category/:category" element={<CategorisedJobs />} />
             <Route path="about-us" element={<AboutUs />} />
-            <Route path="login" element={<Login></Login>} />
-            <Route path="register" element={<Register></Register>} />
-            <Route path="/profileUpdate" element={<ProfileUpdate />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="profileUpdate" element={<ProfileUpdate />} />
           </Route>
+
           <Route path="/dashboard" element={<Dashboard />}>
-          {/* admin dashboard pages */}
-            <Route path="/dashboard/overview" element={<DashboardOverview />} />
-            <Route path="/dashboard/manage-users" element={<ManageUsers />} />
+            {/* Default redirect when accessing /dashboard */}
+            <Route index element={<Myprofile />} />
 
+            {/* Admin Dashboard Pages */}
+            <Route path="overview" element={<DashboardOverview />} />
+            <Route path="manage-users" element={<ManageUsers />} />
 
-            {/* employer dashboard pages routes */}
-            <Route path="/dashboard/myprofile" element={<Myprofile />} />
-            <Route
-              path="/dashboard/myprofile/profileUpdate"
-              element={<ProfileUpdate />}
-            />
-            <Route path="/dashboard/applied-Jobs" element={<AppliedJobs />} />
-            <Route path="/dashboard/favorite-Jobs" element={<FavoriteJobs />} />
+            {/* Employer Dashboard Pages */}
+            <Route path="myprofile" element={<Myprofile />} />
+            <Route path="myprofile/profileUpdate" element={<ProfileUpdate />} />
+            <Route path="applied-Jobs" element={<AppliedJobs />} />
+            <Route path="favorite-Jobs" element={<FavoriteJobs />} />
 
-             {/* job publisher routes */}
-             <Route
-              path="/dashboard/publisher-overview"
-              element={<PublisherOverview />}
-            />
-            <Route path="/dashboard/manage-jobs" element={<ManageJobs />} />
-            <Route path="/dashboard/update-job/:id" element={<UpdateJob />} />
-            <Route
-              path="/dashboard/manage-applications"
-              element={<ManageApplications />}
-            />
-            <Route path="/dashboard/post-job" element={<PostJob />} />
-            <Route path="/dashboard/employee-applications" element={<EmployeeApplications/>} />
-            <Route path={`/dashboard/live-chats/:id`} element={<LiveChats/>} />
+            {/* Job Publisher Routes */}
+            <Route path="manage-jobs" element={<ManageJobs />} />
+            <Route path="update-job/:id" element={<UpdateJob />} />
+            <Route path="manage-applications" element={<ManageApplications />} />
+            <Route path="post-job" element={<PostJob />} />
+            <Route path="employee-applications" element={<EmployeeApplications />} />
+            <Route path="live-chats/:id" element={<LiveChats />} />
           </Route>
-          
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>
