@@ -35,8 +35,8 @@ export default function Testimonials() {
       <div className="divider w-11/12 mx-auto my-0"></div>
       <div className="carousel w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 max-sm:gap-y-3 md:gap-x-4 mt-2 ">
         {testimonials.map((testimonial) => (
-          <div key={testimonial.id} className="carousel-item w-full justify-center transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
-            <div className="bg-gradient-to-r from-[#175A87] to-[#177C87] p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
+          <div key={testimonial.id} className="carousel-item w-full justify-center transform transition-all duration-500 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+            <div className="bg-[#175A87] p-6 rounded-lg shadow-lg max-w-lg flex flex-col items-center text-center">
               <FaQuoteLeft className="text-4xl text-cb-white mb-3" />
               <p className="text-cb-white/95 text-lg font-medium">{testimonial.message}</p>
               <div className="mt-4 flex items-center gap-3">

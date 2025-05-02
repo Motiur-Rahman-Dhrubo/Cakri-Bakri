@@ -117,7 +117,7 @@ export default function JobCategory() {
           >
             {jobCategories.map((category, idx) => (
               <SwiperSlide key={idx}>
-                <div className="bg-gradient-to-r from-[#177C87] to-[#64CCC5] p-6 rounded-lg transition-all duration-300 hover:shadow-md">
+                <div className="bg-[#175A87] p-6 rounded-lg transition-all duration-300 hover:shadow-md">
                   <Link to={`jobs-category/${category.categoryName}`}>
                     <p className="bg-[#64CCC5] p-3 w-fit rounded-lg">{category.icon}</p>
                     <div className="mt-4">
