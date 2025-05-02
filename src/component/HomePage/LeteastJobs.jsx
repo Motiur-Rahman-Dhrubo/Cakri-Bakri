@@ -43,7 +43,7 @@ export default function LeteastJobs() {
                 <p className="text-cb-primary font-medium">{job.company}</p>
                 <p className="text-gray-600">💰 {job.salary}</p>
                 <p className="text-gray-600">📍 {job.location}</p>
-                <button className="btn bg-cb-primary text-cb-white hover:bg-cb-btn mt-4">
+                <button className="btn border-0 bg-cb-primary text-cb-white hover:bg-cb-btn mt-4">
                   View Details
                 </button>
               </div>
