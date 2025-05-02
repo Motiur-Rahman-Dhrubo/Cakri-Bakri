@@ -8,6 +8,7 @@ import {
   FaDollarSign,
 } from "react-icons/fa";
 import { Link } from "react-router";
+import Loading from "../Loading/Loading";
 
 export default function AllJobs() {
   const [search, setSearch] = useState("");
@@ -33,37 +34,31 @@ export default function AllJobs() {
   });
 
   const handleSearch = (e) => {
-    const formSearch = e.target.value;  // Get the current value of the search input
-    setSearch(formSearch);  // Update the search state
-    refetch();  // Refetch data based on the new search value
+    const value = e.target.value;
+    setSearch(value);
+    refetch();
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <section className="w-11/12 mx-auto py-10">
-      {/* Simple Search Bar */}
-      <form
-        onSubmit={handleSearch}
-        className="flex items-center justify-start w-full max-w-sm"
-      >
+      {/* Search Bar */}
+      <form className="flex items-center justify-start w-full max-w-sm">
         <div className="relative w-full">
           <input
             type="text"
             placeholder="Search for jobs..."
             className="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
             name="search"
-            value={search}  // Bind the value to the state
-            onChange={handleSearch}  // Call the handleSearch function on input change
+            value={search}
+            onChange={handleSearch}
           />
           <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
         </div>
       </form>
-
-
-      {isLoading && (
-        <h3 className="py-10 text-3xl text-center text-cb-primary/70">
-          Loading...
-        </h3>
-      )}
 
       {/* Job Cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
@@ -90,15 +85,15 @@ export default function AllJobs() {
               </div>
 
               <div className="mt-3">
-                <p className="flex items-center gap-2 ">
+                <p className="flex items-center gap-2">
                   <FaMapMarkerAlt className="text-cb-primary" />
                   <span className="text-black/60">{job?.location}</span>
                 </p>
-                <p className="flex items-center gap-2 ">
+                <p className="flex items-center gap-2">
                   <FaBriefcase className="text-cb-primary" />
                   <span className="text-black/60">{job.employmentType}</span>
                 </p>
-                <p className="flex items-center gap-2 ">
+                <p className="flex items-center gap-2">
                   <FaDollarSign className="text-cb-primary" />
                   <span className="text-black/60">{job.salary}</span>
                 </p>

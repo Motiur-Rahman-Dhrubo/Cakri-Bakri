@@ -14,7 +14,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 export default function JobDetails() {
   const { id } = useParams();
 const {user} = useContext(AuthContext);
-  const { data: job = {}, isLoading } = useQuery({
+  const { data: job = {} } = useQuery({
     queryKey: ["jobDetails"],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -119,7 +119,7 @@ const {user} = useContext(AuthContext);
   return (
     <>
       <section className="w-11/12 mx-auto py-10">
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="bg-[#DBEAFE] rounded-xl shadow-lg p-8">
           {/* Job Header */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">

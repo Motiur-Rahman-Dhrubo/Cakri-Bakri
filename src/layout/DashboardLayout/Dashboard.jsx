@@ -14,13 +14,10 @@ import Navbar from "../../component/SharedComponent/Navbar";
 import useAdmin from "../../hooks/useAdmin";
 import usePublisher from "../../hooks/usePublisher";
 import useSeeker from "../../hooks/useSeeker";
+import Loading from "../../pages/Loading/Loading";
 
 // Loading component
-const Loading = () => (
-  <div className="flex justify-center items-center min-h-screen">
-    <div className="w-16 h-16 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-  </div>
-);
+
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
@@ -29,7 +26,7 @@ const Dashboard = () => {
 
   // Show loading screen while any hook is loading
   if (isAdminLoading || isPublisherLoading || isSeekerLoading) {
-    return <Loading />;
+    return <Loading></Loading>;
   }
 
   return (
