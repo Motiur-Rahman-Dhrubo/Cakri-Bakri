@@ -32,9 +32,9 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex bg-cb-white">
+      <div className="min-h-screen flex">
         {/* Sidebar */}
-        <aside className="fixed z-50 transform ease-in-out duration-700 w-12 md:w-16 md:ms-5 my-5 bg-cb-card shadow-lg rounded-lg">
+        <aside className="fixed z-50 transform ease-in-out duration-700 w-12 md:w-16 md:ms-13 my-5 bg-cb-card shadow-lg rounded-lg">
           <div className="h-full flex flex-col">
             <nav>
               {/* Seeker Links */}
