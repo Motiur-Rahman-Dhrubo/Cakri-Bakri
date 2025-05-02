@@ -73,14 +73,6 @@ export default function ManageApplications() {
                         {!isAdmin && (
                           <td>
                             <div className="flex">
-                              <button className="btn btn-ghost btn-xs">
-                                Approve
-                              </button>
-                              <NavLink to={`/job-details/${data._id}`}>
-                                <button className="btn btn-ghost btn-xs ml-2 ">
-                                  Delete
-                                </button>
-                              </NavLink>
                               <NavLink to={`/dashboard/live-chats/${data._id}`}>
                                 <button className="btn btn-ghost btn-xs ml-2 ">
                                   Contact
