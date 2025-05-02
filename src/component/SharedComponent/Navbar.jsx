@@ -1,199 +1,162 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
-  const location = useLocation();
-  const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef(null);
 
   const handleSignOut = () => {
     logOut()
-      .then(() => {
-        console.log("Signed Out");
-      })
+      .then(() => console.log("Signed Out"))
       .catch((error) => console.log(error));
   };
 
-  const toggleDropdown = () => setShowDropdown(!showDropdown);
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "All Jobs", path: "/all-jobs" },
+    { label: "About Us", path: "/about-us" },
+  ];
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const navLink = (
-    <>
-      <li>
-        <NavLink className="max-sm:text-xl" to={"/"}>
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="max-sm:text-xl" to={"/all-jobs"}>
-          All Jobs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="max-sm:text-xl" to={"/about-us"}>
-          About Us
-        </NavLink>
-      </li>
-    </>
-  );
+  const navLinks = navItems.map(({ label, path }) => (
+    <li key={path}>
+      <NavLink
+        to={path}
+        className={({ isActive }) =>
+          `relative px-1 py-1 text-base transition-all duration-300
+          hover:bg-transparent focus:bg-transparent active:bg-transparent focus:outline-none
+          after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#18311D]
+          after:transition-all after:duration-300
+          ${isActive
+            ? "after:w-full"
+            : "text-[#18311D] after:w-0 hover:after:w-full"}`
+        }
+      >
+        {label}
+      </NavLink>
+    </li>
+  ));
 
   return (
     <div className="navbar px-0 w-11/12 mx-auto font-bold text-[#18311D]">
-      {/* Left side logo */}
+      {/* Logo */}
       <div className="navbar-start">
-        <div className="flex items-center gap-2">
-          <Link to={"/"} className="text-lg md:text-2xl font-bold">Chakri Bakri</Link>
-        </div>
+        <Link to="/" className="text-lg md:text-2xl font-bold">
+          Chakri Bakri
+        </Link>
       </div>
 
-      {/* Middle links for lg device */}
-      {!location.pathname.includes("dashboard") && (
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal">{navLink}</ul>
-        </div>
-      )}
+      {/* Center Navigation - Always visible on desktop */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal gap-4">{navLinks}</ul>
+      </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Dropdown - Shared for all users */}
       <div className="navbar-end lg:hidden">
-        <div className="dropdown relative">
-          <div
-            tabIndex={0}
-            role="button"
-            className={`${location.pathname.includes("dashboard") ? "hidden" : ""
-              } btn bg-cb-white text-cb-secondary lg:hidden`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
+        <div className="dropdown dropdown-end">
+          {user ? (
+            <>
+              <img
+                src={user.photoURL}
+                tabIndex={0}
+                className="w-10 h-10 rounded-full border-2 border-[#18311D] cursor-pointer object-cover object-center"
+                alt="profile"
               />
-            </svg>
-          </div>
-
-          <ul
-            tabIndex={0}
-            className={`${location.pathname.includes("dashboard") ? "hidden" : ""
-              } menu menu-sm absolute right-0 dropdown-content bg-cb-primary text-cb-white border border-cb-card rounded-box z-1 mt-3 w-52 p-2 shadow uppercase`}
-          >
-            {navLink}
-            {user ? (
-              <>
-                <div className="divider h-[1px] bg-white/70"></div>
-                <img
-                  className="w-14 h-14 mx-auto border-2 border-cb-card rounded-full"
-                  src={user.photoURL}
-                  alt=""
-                />
-                <h1 className="my-3 text-center text-white/70 text-xl md:text-2xl">
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D]"
+              >
+                <li className="text-center font-semibold text-[#18311D]">
                   {user.displayName}
-                </h1>
-                <div className="text-center  py-2 flex flex-col gap-2">
-                  <Link className="hover:underline uppercase" to="/dashboard">
-                    Dashboard
-                  </Link>
-                  <button
-                    className="hover:underline uppercase"
-                    onClick={handleSignOut}
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              </>
-            ) : (
-              <li>
-                <NavLink className="max-sm:text-xl" to="/login">
-                  Login
-                </NavLink>
-              </li>
-            )}
-          </ul>
-
-          {location.pathname.includes("dashboard") && (
-            <ul className="flex items-center gap-3">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/all-jobs">All Jobs</Link>
-              </li>
-            </ul>
+                </li>
+                <div className="divider my-1"></div>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/all-jobs">All Jobs</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/about-us">About Us</Link>
+                </li>
+                <div className="divider my-1"></div>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <button onClick={handleSignOut}>Sign Out</button>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <label
+                tabIndex={0}
+                className="btn bg-cb-white text-[#18311D] border-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D]"
+              >
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/all-jobs">All Jobs</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/about-us">About Us</Link>
+                </li>
+                <li className="hover:bg-[#18311D] hover:text-white">
+                  <Link to="/login">Login</Link>
+                </li>
+              </ul>
+            </>
           )}
         </div>
       </div>
 
-      {/* Right links for lg device */}
+      {/* Desktop Right - Profile or Login Button */}
       <div className="navbar-end hidden lg:flex gap-x-4">
         {user ? (
-          <div
-            ref={dropdownRef}
-            className={`relative dropdown ${location.pathname.includes("dashboard") ? "flex items-center gap-3" : ""
-              }`}
-          >
-            {!location.pathname.includes("dashboard") && (
-              <>
-                <img
-                  className={`w-10 h-10 rounded-full border-2 border-cb-white cursor-pointer`}
-                  referrerPolicy="no-referrer"
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  onClick={toggleDropdown}
-                />
-                {showDropdown && (
-                  <ul className="absolute w-[260px] top-12 right-0 text-center space-y-3 bg-cb-white text-cb-primary rounded-box z-[1] px-3 py-4 shadow">
-                    <h1 className="text-xl font-bold text-cb-secondary/90">
-                      {user.displayName}
-                    </h1>
-                    <div className="divider my-0"></div>
-                    <Link
-                      className="text-md font-semibold hover:underline"
-                      to="/dashboard"
-                      onClick={() => setShowDropdown(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <button
-                      className="text-md font-semibold hover:underline"
-                      onClick={() => {
-                        handleSignOut();
-                        setShowDropdown(false);
-                      }}
-                    >
-                      Sign Out
-                    </button>
-                  </ul>
-                )}
-              </>
-            )}
-            {location.pathname.includes("dashboard") && (
-              <>
-                <Link to="/">Home</Link>
-                <Link to="/all-jobs">All Jobs</Link>
-              </>
-            )}
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <img
+              src={user.photoURL}
+              tabIndex={0}
+              className="w-10 h-10 rounded-full border-2 border-[#18311D] cursor-pointer object-cover object-center"
+              alt="profile"
+            />
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-base"
+            >
+              <li className="text-center font-semibold text-[#18311D]">
+                {user.displayName}
+              </li>
+              <div className="divider my-1"></div>
+              <li className="hover:bg-[#18311D] hover:text-white">
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li className="hover:bg-[#18311D] hover:text-white">
+                <button onClick={handleSignOut}>Sign Out</button>
+              </li>
+            </ul>
           </div>
         ) : (
           <Link to="/login">
-            <button className="btn btn-outline mr-1">Login</button>
+            <button className="btn btn-outline border-2 border-[#18311D] hover:bg-[#18311D] hover:text-white text-base">
+              Login
+            </button>
           </Link>
         )}
       </div>

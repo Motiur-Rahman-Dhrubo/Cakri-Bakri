@@ -24,16 +24,11 @@ const Dashboard = () => {
   const [isPublisher] = usePublisher();
   const [isSeeker] = useSeeker();
   console.log(isAdmin, isPublisher, isSeeker)
-  // const role = {
-  //   isAdmin: true,
-  //   isJobPublisher: false,
-  //   isJobSeeker: false,
-  // };
 
   return (
     <>
       <section>
-        <div className="bg-cb-primary">
+        <div>
           <Navbar />
         </div>
         <div className="min-h-screen flex bg-cb-white">
