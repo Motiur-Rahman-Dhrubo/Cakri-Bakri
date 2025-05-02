@@ -40,7 +40,7 @@ export default function AllJobs() {
   };
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading className='max-h-screen'/>;
   }
 
   return (
