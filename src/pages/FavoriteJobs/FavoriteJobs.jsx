@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'; // Import SweetAlert2
+import Loading from '../Loading/Loading';
 
 const FavoriteJobs = () => {
   const { user } = useContext(AuthContext);
@@ -43,7 +44,7 @@ const FavoriteJobs = () => {
     },
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading></Loading>;
 
   if (error) return "An error has occurred: " + error.message;
 
