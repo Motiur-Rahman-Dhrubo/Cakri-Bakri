@@ -1,14 +1,30 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     logOut()
-      .then(() => console.log("Signed Out"))
-      .catch((error) => console.log(error));
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Signed out successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message || "Something went wrong!",
+        });
+      });
   };
 
   const navItems = [
@@ -63,7 +79,7 @@ export default function Navbar() {
               />
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D]"
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D] border"
               >
                 <li className="text-center font-semibold text-[#18311D]">
                   {user.displayName}
@@ -91,7 +107,7 @@ export default function Navbar() {
             <>
               <label
                 tabIndex={0}
-                className="btn bg-cb-white text-[#18311D] border-none"
+                className="btn text-[#18311D] border-[#18311D] bg-transparent"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +122,7 @@ export default function Navbar() {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D]"
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D] border"
               >
                 <li className="hover:bg-[#18311D] hover:text-white">
                   <Link to="/">Home</Link>
@@ -138,7 +154,7 @@ export default function Navbar() {
             />
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-base"
+              className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-base border"
             >
               <li className="text-center font-semibold text-[#18311D]">
                 {user.displayName}
