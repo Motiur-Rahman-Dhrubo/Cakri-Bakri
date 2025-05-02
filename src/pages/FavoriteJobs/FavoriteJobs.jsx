@@ -1,75 +1,82 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { FaSearch } from 'react-icons/fa';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const FavoriteJobs = () => {
-
   const { user } = useContext(AuthContext);
-  // console.log(user)
 
-  // use tanstak query for data fatching
+  // Use queryClient to invalidate queries
+  const queryClient = useQueryClient();
 
+  // Fetch favorite jobs using react-query
   const {
-    isPending,
+    isLoading,
     error,
     data: favoriteJobs = [],
   } = useQuery({
-    queryKey: [`applied-jobs?email=${user?.email}`],
+    queryKey: [`favorite-jobs?email=${user?.email}`],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_API_URL
-        }/favorite-jobs?email=${user?.email}`
+        `${import.meta.env.VITE_SERVER_API_URL}/favorite-jobs?email=${user?.email}`
       );
       return data;
     },
   });
 
-  if (isPending) return "Loading...";
+  // Mutation to remove a job from favorites
+  const removeFavoriteJob = useMutation({
+    mutationFn: async (jobId) => {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_SERVER_API_URL}/favorite-jobs/${jobId}`
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries([`favorite-jobs?email=${user?.email}`]);
+      Swal.fire("Deleted!", "The job has been removed.", "success");
+    },
+    onError: () => {
+      Swal.fire("Error!", "Something went wrong.", "error");
+    },
+  });
+
+  if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
+
+  const handleRemoveFavorite = (jobId) => {
+    // Show SweetAlert confirmation before removal
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, remove it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed to remove the favorite job
+        removeFavoriteJob.mutate(jobId);
+      }
+    });
+  };
 
   return (
     <div className="w-11/12 mx-auto">
       <div className="py-4">
-        <h1 className="font-bold text-4xl text-center mx-auto">My Favorite Jobs : {favoriteJobs?.length}</h1>
+        <h1 className="font-bold text-4xl text-center mx-auto">
+          My Favorite Jobs: {favoriteJobs?.length}
+        </h1>
       </div>
-      <section>
-        {/* search and filter section */}
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between bg-cb-card p-4 rounded-2xl shadow-lg">
-          <div className="relative w-full ">
-            <input
-              type="text"
-              placeholder="Search for jobs..."
-              className="w-full bg-white p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0"
-            // value={searchQuery}
-            // onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
-          </div>
-          <div className="relative w-full md:w-1/3">
-            <select className="w-full bg-white p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cb-primary outline-0">
-              <option value="">All Categories</option>
-              <option value="frontend">Frontend Development</option>
-              <option value="backend">Backend Development</option>
-              <option value="fullstack">Full Stack Development</option>
-              <option value="uiux">UI/UX Design</option>
-              <option value="devops">DevOps</option>
-              <option value="qa">Quality Assurance</option>
-            </select>
-          </div>
-          <button className="btn bg-cb-primary text-white px-6 py-4 rounded-lg">
-            Filter
-          </button>
-        </div>
-      </section>
 
-      {/* applied jobs data table section */}
+      {/* Applied jobs data table section */}
       <section>
         <div>
-          {favoriteJobs?.length == 0 ? (
+          {favoriteJobs?.length === 0 ? (
             <div className="flex justify-center items-center min-h-screen">
               <h1 className="text-4xl font-bold text-center my-4">
                 No job added yet
@@ -78,40 +85,40 @@ const FavoriteJobs = () => {
           ) : (
             <div className="overflow-x-auto bg-[cb]">
               <table className="table">
-                {/* head */}
+                {/* Head */}
                 <thead>
                   <tr className="text-lg font-bold">
                     <th>Company Name</th>
                     <th>Job Title</th>
                     <th>Job Type</th>
-                    <th>Salay</th>
+                    <th>Salary</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {favoriteJobs?.map((data) => (
-                    <tr>
+                  {favoriteJobs?.map((job) => (
+                    <tr key={job.jobId}>
                       <td>
-                        <h1 className="font-bold ">{data.companyName}</h1>
+                        <h1 className="font-bold">{job.companyName}</h1>
                       </td>
-                      <td>{data?.jobTitle}</td>
-                      <td>{data?.employmentType}</td>
-                      <td>{data?.salary}</td>
-                      <th>
+                      <td>{job?.jobTitle}</td>
+                      <td>{job?.employmentType}</td>
+                      <td>{job?.salary}</td>
+                      <td>
                         <div className="flex">
                           <button
-
-                            className="btn btn-ghost btn-xs"
+                            onClick={() => handleRemoveFavorite(job.jobId)}
+                            className="btn btn-ghost btn-xs text-red-500"
                           >
-                            Remove from Favorite
+                            Remove
                           </button>
-                          <NavLink to={`/job-details/${data.jobId}`}>
-                            <button className="btn btn-ghost btn-xs ml-2 ">
+                          <NavLink to={`/job-details/${job.jobId}`}>
+                            <button className="btn btn-ghost btn-xs ml-2">
                               Details
                             </button>
                           </NavLink>
                         </div>
-                      </th>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
