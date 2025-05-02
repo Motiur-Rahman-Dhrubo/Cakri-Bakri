@@ -15,12 +15,13 @@ const Home = () => {
     <Banner />
     </div>
     <OurCompany />
+    <StatsOverlay />
     <Overview />
     <JobCategory />
     <LeteastJobs />
 
     <Testimonials />
-    <StatsOverlay />
+    
     </>
   );
 };
