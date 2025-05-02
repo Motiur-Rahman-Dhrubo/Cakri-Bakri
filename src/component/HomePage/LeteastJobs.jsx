@@ -37,13 +37,13 @@ export default function LeteastJobs() {
         {/* Job Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {jobs.map((job) => (
-            <div key={job.id} className="card shadow-xl bg-cb-card p-4  transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+            <div key={job.id} className="card shadow-xl bg-cb-card p-4  transform transition-all duration-500 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
               <div className="card-body ">
                 <h3 className="text-xl font-semibold text-cb-secondary ">{job.title}</h3>
                 <p className="text-cb-primary font-medium">{job.company}</p>
                 <p className="text-gray-600">💰 {job.salary}</p>
                 <p className="text-gray-600">📍 {job.location}</p>
-                <button className="btn bg-cb-primary text-cb-white hover:bg-cb-btn mt-4">
+                <button className="btn border-0 bg-cb-primary text-cb-white hover:bg-cb-btn mt-4">
                   View Details
                 </button>
               </div>

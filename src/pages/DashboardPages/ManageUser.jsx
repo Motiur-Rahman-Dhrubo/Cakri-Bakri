@@ -19,7 +19,7 @@ const ManageUsers = () => {
   );
 
   return (
-    <section className="p-3 md:p-6">
+    <section className="w-11/12 mx-auto py-3 md:py-6">
       <h2 className="text-3xl md:text-5xl font-semibold text-cb-secondary mb-4">Manage Users</h2>
 
       {/* Search & Filter */}
@@ -57,7 +57,7 @@ const ManageUsers = () => {
               <th className="p-3 text-left">Email</th>
               <th className="p-3 text-left">Role</th>
               <th className="p-3 text-left">Status</th>
-              <th className="p-3 text-left">Actions</th>
+              {/* Removed Actions column header */}
             </tr>
           </thead>
           <tbody>
@@ -70,17 +70,7 @@ const ManageUsers = () => {
                 <td className={`p-3 font-semibold ${user.status === "Active" ? "text-green-600" : user.status === "Pending" ? "text-yellow-600" : "text-red-600"}`}>
                   {user.status}
                 </td>
-                <td className="p-3 flex gap-3">
-                  <button className="text-blue-500 hover:text-blue-700">
-                    <FaEye />
-                  </button>
-                  <button className="text-yellow-500 hover:text-yellow-700">
-                    <FaUserEdit />
-                  </button>
-                  <button className="text-red-500 hover:text-red-700">
-                    <FaTrash />
-                  </button>
-                </td>
+                {/* Removed actions column */}
               </tr>
             ))}
           </tbody>

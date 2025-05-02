@@ -21,7 +21,8 @@ export default function UpdateJob() {
     queryKey: ["jobDetails", id],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/job-details/${id}`
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/job-details/${id}`
       );
       return data;
     },
@@ -119,7 +120,8 @@ export default function UpdateJob() {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/update-job/${id}`,
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/update-job/${id}`,
         formData
       );
       if (data.modifiedCount > 0) {
@@ -151,7 +153,7 @@ export default function UpdateJob() {
   }
 
   return (
-    <div className="m-2 md:m-10 bg-cb-card px-4 py-8 rounded-lg">
+    <div className="w-11/12 mx-auto bg-cb-card px-4 py-8 rounded-lg">
       <h1 className="text-3xl md:text-5xl text-cb-secondary font-bold mb-2 text-center">
         Update Job
       </h1>
@@ -211,29 +213,29 @@ export default function UpdateJob() {
 
         {/* category */}
         <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Job Category
-            </label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            >
-              <option value="">Select Category</option>
-              <option value="Software Development">Software Development</option>
-              <option value="Design & Creative">Design & Creative</option>
-              <option value="Marketing & Sales">Marketing & Sales</option>
-              <option value="Human Resources">Human Resources</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Education">Education</option>
-              <option value="Advertising & Media">Advertising & Media</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Security Services">Security Services</option>
-            </select>
-          </div>
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Job Category
+          </label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          >
+            <option value="">Select Category</option>
+            <option value="Software Development">Software Development</option>
+            <option value="Design & Creative">Design & Creative</option>
+            <option value="Marketing & Sales">Marketing & Sales</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Education">Education</option>
+            <option value="Advertising & Media">Advertising & Media</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Security Services">Security Services</option>
+          </select>
+        </div>
 
         {/* Location */}
         <div className="col-span-1">

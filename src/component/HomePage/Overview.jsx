@@ -19,7 +19,7 @@ export default function Overview() {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Step 1 */}
-          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-[#175A87] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineUserAdd />
             </div>
@@ -32,7 +32,7 @@ export default function Overview() {
             </p>
           </div>
           {/* Step 2 */}
-          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-[#175A87] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineSearch />
             </div>
@@ -45,7 +45,7 @@ export default function Overview() {
             </p>
           </div>
           {/* Step 3 */}
-          <div className="bg-gradient-to-l from-[#175A87] via-[#177C87] to-[#64CCC5] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
+          <div className="bg-[#175A87] rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_4px_10px_rgba(4,164,217,0.8)]">
             <div className="text-cb-white text-4xl mb-4 flex justify-center">
               <AiOutlineCheckCircle />
             </div>

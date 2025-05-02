@@ -31,7 +31,6 @@ export default function PostJob() {
     jobLink: "",
   });
 
-  // Handle change for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "companyName") {
@@ -69,7 +68,6 @@ export default function PostJob() {
     }
   };
 
-  // generate html email content
   const generateEmailContent = (formData) => {
     return `
       <!DOCTYPE html>
@@ -157,7 +155,6 @@ export default function PostJob() {
     `;
   };
 
-  // Handle form submission
   const handlePostJob = async (e) => {
     e.preventDefault();
     console.log("Job Post Data:", formData);
@@ -168,7 +165,6 @@ export default function PostJob() {
         formData
       );
       if (data.insertedId) {
-        // email notification send to jobseeker
         try {
           const res = await axios.post(
             `${import.meta.env.VITE_SERVER_API_URL}/send-email`,
@@ -183,18 +179,13 @@ export default function PostJob() {
         }
         Swal.fire({
           title: "Successfully post the job",
-          text: "Please scheack the 'All Jobs' page",
+          text: "Please check the 'All Jobs' page",
           icon: "success",
         });
         e.target.reset();
         setFormData({
-          // Reset form data to initial state
           title: "",
-          company: {
-            name: "",
-            logo: "",
-            rating: 0,
-          },
+          company: { name: "", logo: "", rating: 0 },
           location: "",
           employmentType: "",
           salary: "",
@@ -214,249 +205,244 @@ export default function PostJob() {
   };
 
   return (
-    <>
-      <div className="m-2 md:m-10 bg-cb-card px-4 py-8 rounded-lg">
-        <h1 className="text-3xl md:text-5xl text-cb-secondary font-bold mb-2 text-center">
-          Post a New Job
-        </h1>
-        <div className="divider mb-0"></div>
+    <div className="m-2 md:m-10 bg-cb-card px-4 py-8 rounded-lg">
+      <h1 className="text-3xl md:text-5xl text-cb-secondary font-bold mb-2 text-center">
+        Post a New Job
+      </h1>
+      <div className="divider mb-0"></div>
 
-        <form
-          onSubmit={handlePostJob}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2 md:p-4"
-        >
-          {/* Job Title */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Job Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              placeholder="e.g., UI/UX Designer"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-              required
-            />
-          </div>
+      <form
+        onSubmit={handlePostJob}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2 md:p-4"
+      >
+        {/* Job Title */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Job Title
+          </label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="e.g., UI/UX Designer"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Company Name */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaBuilding className="mr-2" /> Company Name
-            </label>
-            <input
-              type="text"
-              name="companyName"
-              value={formData.company.name}
-              onChange={handleChange}
-              required
-              placeholder="e.g., Creative Minds"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Company Name */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
+            <FaBuilding className="mr-2" /> Company Name
+          </label>
+          <input
+            type="text"
+            name="companyName"
+            value={formData.company.name}
+            onChange={handleChange}
+            required
+            placeholder="e.g., Creative Minds"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          />
+        </div>
 
-          {/* Company Logo URL */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Company Logo URL
-            </label>
-            <input
-              type="url"
-              name="companyLogo"
-              value={formData.company.logo}
-              onChange={handleChange}
-              required
-              placeholder="https://example.com/logo.jpg"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Company Logo URL */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Company Logo URL
+          </label>
+          <input
+            type="url"
+            name="companyLogo"
+            value={formData.company.logo}
+            onChange={handleChange}
+            required
+            placeholder="https://example.com/logo.jpg"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          />
+        </div>
 
-          {/* Location */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaMapMarkerAlt className="mr-2" /> Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              required
-              placeholder="e.g., Berlin, Germany"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Location */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            <FaMapMarkerAlt className="inline mr-2" />
+            Location
+          </label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            placeholder="e.g., Dhaka, Bangladesh"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Employment Type */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Employment Type
-            </label>
-            <select
-              name="employmentType"
-              value={formData.employmentType}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            >
-              <option value="">Select Type</option>
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-              <option value="Contract">Contract</option>
-              <option value="Internship">Internship</option>
-            </select>
-          </div>
+        {/* Employment Type */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Employment Type
+          </label>
+          <input
+            type="text"
+            name="employmentType"
+            value={formData.employmentType}
+            onChange={handleChange}
+            placeholder="e.g., Full-Time"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Salary */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaMoneyBillWave className="mr-2" /> Salary Range
-            </label>
-            <input
-              type="text"
-              name="salary"
-              value={formData.salary}
-              onChange={handleChange}
-              placeholder="e.g., €50,000 - €70,000 per year"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Salary */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            <FaMoneyBillWave className="inline mr-2" />
+            Salary
+          </label>
+          <input
+            type="text"
+            name="salary"
+            value={formData.salary}
+            onChange={handleChange}
+            placeholder="e.g., $1000 - $2000"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Skills Required */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaCogs className="mr-2" /> Skills Required
-            </label>
-            <input
-              type="text"
-              name="skills"
-              value={formData.skillsRequired.join(", ")}
-              onChange={handleChange}
-              placeholder="e.g., Figma, Adobe XD, User Research"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-            <small className="text-gray-500">Separate skills with commas</small>
-          </div>
+        {/* Posted Date */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            <FaCalendarAlt className="inline mr-2" />
+            Posted Date
+          </label>
+          <input
+            type="date"
+            name="postedDate"
+            value={formData.postedDate}
+            onChange={handleChange}
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Perks */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Perks
-            </label>
-            <input
-              type="text"
-              name="perks"
-              value={formData.perks.join(", ")}
-              onChange={handleChange}
-              placeholder="e.g., Flexible Hours, Work From Home"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-            <small className="text-gray-500">Separate perks with commas</small>
-          </div>
+        {/* Expiry Date */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Expiry Date
+          </label>
+          <input
+            type="date"
+            name="expiryDate"
+            value={formData.expiryDate}
+            onChange={handleChange}
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Experience Level */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Experience Level
-            </label>
-            <select
-              name="experienceLevel"
-              value={formData.experienceLevel}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            >
-              <option value="">Select Level</option>
-              <option value="Entry (0-2 years)">Entry (0-2 years)</option>
-              <option value="Mid (2-5 years)">Mid (2-5 years)</option>
-              <option value="Senior (5+ years)">Senior (5+ years)</option>
-            </select>
-          </div>
+        {/* Experience Level */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Experience Level
+          </label>
+          <input
+            type="text"
+            name="experienceLevel"
+            value={formData.experienceLevel}
+            onChange={handleChange}
+            placeholder="e.g., Entry Level"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+            required
+          />
+        </div>
 
-          {/* Responsibilities */}
-          <div className="col-span-1 md:col-span-3">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaListUl className="mr-2" /> Responsibilities
-            </label>
-            <textarea
-              name="responsibilities"
-              value={formData.responsibilities.join("\n")}
-              onChange={handleChange}
-              placeholder="Enter responsibilities, one per line..."
-              rows="4"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Skills */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Skills (comma separated)
+          </label>
+          <input
+            type="text"
+            name="skills"
+            onChange={handleChange}
+            placeholder="e.g., React, Node.js, MongoDB"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          />
+        </div>
 
-          {/* Qualifications */}
-          <div className="col-span-1 md:col-span-3">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaListUl className="mr-2" /> Qualifications
-            </label>
-            <textarea
-              name="qualifications"
-              value={formData.qualifications.join("\n")}
-              onChange={handleChange}
-              placeholder="Enter qualifications, one per line..."
-              rows="4"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Perks */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Perks (comma separated)
+          </label>
+          <input
+            type="text"
+            name="perks"
+            onChange={handleChange}
+            placeholder="e.g., Health Insurance, Remote Work"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          />
+        </div>
 
-          {/* Posted Date */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaCalendarAlt className="mr-2" /> Posted Date
-            </label>
-            <input
-              type="date"
-              name="postedDate"
-              value={formData.postedDate}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Job Link */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            Apply Job Link
+          </label>
+          <input
+            type="url"
+            name="jobLink"
+            value={formData.jobLink}
+            onChange={handleChange}
+            placeholder="https://example.com/apply"
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          />
+        </div>
 
-          {/* Expiry Date */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1 md:flex items-center">
-              <FaCalendarAlt className="mr-2" /> Expiry Date
-            </label>
-            <input
-              type="date"
-              name="expiryDate"
-              value={formData.expiryDate}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
-          {/* Job Link */}
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
-              Job Link
-            </label>
-            <input
-              type="text"
-              name="jobLink"
-              value={formData.jobLink}
-              onChange={handleChange}
-              placeholder="Enter Job Link"
-              className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
-            />
-          </div>
+        {/* Responsibilities */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-3">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            <FaListUl className="inline mr-2" />
+            Responsibilities (one per line)
+          </label>
+          <textarea
+            name="responsibilities"
+            onChange={handleChange}
+            placeholder="e.g., Design UI components..."
+            rows={4}
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          ></textarea>
+        </div>
 
-          {/* Submit Button */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-3">
-            <button
-              type="submit"
-              className="w-fit bg-cb-primary text-white px-6 py-3 rounded-lg hover:bg-cb-secondary transition duration-300"
-            >
-              Post Job
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+        {/* Qualifications */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-3">
+          <label className="block text-sm font-medium text-cb-secondary/80 mb-1">
+            <FaCogs className="inline mr-2" />
+            Qualifications (one per line)
+          </label>
+          <textarea
+            name="qualifications"
+            onChange={handleChange}
+            placeholder="e.g., Bachelor's Degree in Computer Science..."
+            rows={4}
+            className="w-full px-3 py-2 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-cb-primary"
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center mt-4">
+          <button
+            type="submit"
+            className="px-8 py-3 bg-cb-primary text-white rounded-lg font-semibold hover:bg-cb-secondary transition duration-300"
+          >
+            Post Job
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

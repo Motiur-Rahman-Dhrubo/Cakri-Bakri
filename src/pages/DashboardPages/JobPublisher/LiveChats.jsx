@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,  useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../../index.css";
 import io from "socket.io-client";
 import axios from "axios";
@@ -6,12 +6,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
-const socket = io("http://localhost:5000", {
+const socket = io(`${import.meta.env.VITE_SERVER_API_URL}`, {
   transports: ["websocket"],
 });
 
 const LiveChats = () => {
-  
+
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [publisherMessages, setPublisherMessages] = useState([]);
@@ -26,50 +26,53 @@ const LiveChats = () => {
     queryKey: ["live-chats", id],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/live-chats/${id}`
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/live-chats/${id}`
       );
       return data;
     },
   });
 
   // user info petiching
-  
+
   const { data: userInfo = [] } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/users?email=${user?.email}`
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/users?email=${user?.email}`
       );
       return data;
     },
   });
 
-// applier and message sender variable
+  // applier and message sender variable
 
-const messageSender = user?.email;
-const jobApplierEmail = applierInfo?.email;
+  const messageSender = user?.email;
+  const jobApplierEmail = applierInfo?.email;
 
-// message api using tanstak query
+  // message api using tanstak query
 
-const { data: allMessages = [] } = useQuery({
-  queryKey: ["messages", jobApplierEmail],
-  queryFn: async () => {
-    const { data } = await axios.get(
-      `http://localhost:5000/messages?applierEmail=${jobApplierEmail}`
-    );
-    return data;
-  },
-});
+  const { data: allMessages = [] } = useQuery({
+    queryKey: ["messages", jobApplierEmail],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_API_URL
+        }/messages?applierEmail=${jobApplierEmail}`
+      );
+      return data;
+    },
+  });
 
-// message distribution
+  // message distribution
 
-useEffect(() => {
-  const publisher = allMessages.filter((msg) => msg.sender === "publisher");
-  const seeker = allMessages.filter((msg) => msg.sender === "seeker");
+  useEffect(() => {
+    const publisher = allMessages.filter((msg) => msg.sender === "publisher");
+    const seeker = allMessages.filter((msg) => msg.sender === "seeker");
 
-  setPublisherMessages(publisher);
-  setSeekerMessages(seeker);
-}, [allMessages]);
+    setPublisherMessages(publisher);
+    setSeekerMessages(seeker);
+  }, [allMessages]);
 
   // socket io implentation
 
@@ -93,7 +96,7 @@ useEffect(() => {
         // socket.off(messageSender, handleMessage);
       };
     }
-  }, [jobApplierEmail,messageSender]);
+  }, [jobApplierEmail, messageSender]);
 
   if (isPending) return "Loading...";
 
@@ -124,13 +127,13 @@ useEffect(() => {
   };
   // console.log(publisherMessages, seekerMessages);
   return (
-    
+
     <div className="flex">
       <div className="p-2 w-[96%] mx-auto lg:w-[70%] lg:p-4">
         <h1 className="text-xl font-bold mb-4">Live Chat</h1>
         <div className="w-[100%] border p-2 h-80 overflow-y-auto mb-4 bg-gray-100 rounded">
           <div>
-            {publisherMessages.map((msg, index)=>(<div key={index} className="chat chat-start">
+            {publisherMessages.map((msg, index) => (<div key={index} className="chat chat-start">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full bg-gray-300 flex justify-center item-center ">
                   <h1 className="text-center pt-2 ">P</h1>
@@ -142,10 +145,10 @@ useEffect(() => {
               <div className="chat-bubble">{msg?.text} </div>
               <div className="chat-footer opacity-50">Delivered</div>
             </div>))}
-            {seekerMessages.map((msg,index)=>(<div key={index} className="chat chat-end">
+            {seekerMessages.map((msg, index) => (<div key={index} className="chat chat-end">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full bg-gray-300 flex justify-center item-center">
-                <h1 className="text-center pt-2 ">S</h1>
+                  <h1 className="text-center pt-2 ">S</h1>
                 </div>
               </div>
               <div className="chat-header">
@@ -167,7 +170,7 @@ useEffect(() => {
           onClick={sendMessage}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-        Send
+          Send
         </button>
       </div>
     </div>

@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaUser } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import useAdmin from "../../../hooks/useAdmin";
 
 const ManageJobs = () => {
+  const [isAdmin] = useAdmin();
   const {
     data: jobs = [],
-    isLoading,
     refetch,
   } = useQuery({
     queryKey: ["jobs"],
@@ -20,7 +20,7 @@ const ManageJobs = () => {
     },
   });
 
-  // delete specipic job
+  // delete specific job
   const handleDeleteJob = async (id) => {
     try {
       Swal.fire({
@@ -63,15 +63,9 @@ const ManageJobs = () => {
           <table className="table w-full text-cb-secondary">
             <thead>
               <tr className="border-b border-cb-secondary/80">
-                <th className="text-sm md:text-base  py-3">Job Title</th>
-                <th className="text-sm md:text-base  py-3">Company</th>
-                <th className="text-sm md:text-base  py-3 text-center">
-                  <div className="flex items-center justify-center gap-1.5">
-                    <FaUser className="w-4 h-4" />
-                    <span className="hidden sm:inline">Applied</span>
-                  </div>
-                </th>
-                <th className="text-sm md:text-base  py-3 text-right">
+                <th className="text-sm md:text-base py-3">Job Title</th>
+                <th className="text-sm md:text-base py-3">Company</th>
+                <th className="text-sm md:text-base py-3 text-right">
                   Actions
                 </th>
               </tr>
@@ -80,8 +74,8 @@ const ManageJobs = () => {
               {jobs.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={5}
-                    className="text-center py-8  text-base md:text-lg"
+                    colSpan={3}
+                    className="text-center py-8 text-base md:text-lg"
                   >
                     No jobs found.
                   </td>
@@ -92,10 +86,10 @@ const ManageJobs = () => {
                     key={job._id}
                     className="hover:bg-gray-750 transition-colors"
                   >
-                    <td className="py-4 font-medium  text-sm sm:text-base md:text-lg">
+                    <td className="py-4 font-medium text-sm sm:text-base md:text-lg">
                       {job.title}
                     </td>
-                    <td className="py-4  text-sm md:text-base flex items-center gap-2">
+                    <td className="py-4 text-sm md:text-base flex items-center gap-2">
                       <div className="flex items-center gap-2">
                         <img
                           src={job?.company?.logo}
@@ -105,18 +99,17 @@ const ManageJobs = () => {
                         <span className="truncate">{job?.company?.name}</span>
                       </div>
                     </td>
-                    <td className="py-4 text-center  text-sm md:text-base">
-                      {job?.applications}
-                    </td>
                     <td className="py-4 text-right">
                       <div className="flex justify-end gap-2 sm:gap-3">
-                        <Link
-                          to={`/dashboard/update-job/${job._id}`}
-                          className="p-2 rounded-md   border border-cb-primary/30 transition-all"
-                          aria-label="Edit job"
-                        >
-                          <FaEdit className="h-4 w-4" />
-                        </Link>
+                        {!isAdmin && (
+                          <Link
+                            to={`/dashboard/update-job/${job._id}`}
+                            className="p-2 rounded-md border border-cb-primary/30 transition-all"
+                            aria-label="Edit job"
+                          >
+                            <FaEdit className="h-4 w-4" />
+                          </Link>
+                        )}
                         <button
                           onClick={() => handleDeleteJob(job._id)}
                           className="p-2 rounded-md text-red-500 hover:text-red-600 hover:bg-red-500/20 border border-red-500/30 transition-all"

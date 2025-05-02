@@ -52,8 +52,8 @@ export const OurCompany = () => {
     },
   ];
   return (
-    <div className="py-5 mt-12 w-11/12 mx-auto">
-      <div className="flex items-center gap-3">
+    <div className="py-5 mt-12">
+      <div className="flex items-center gap-3 w-11/12 mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-cb-secondary">
           Our Trustworthy Companies
         </h2>
