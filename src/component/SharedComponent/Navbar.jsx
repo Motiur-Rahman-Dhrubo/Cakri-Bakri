@@ -40,11 +40,11 @@ export default function Navbar() {
         className={({ isActive }) =>
           `relative px-1 py-1 text-base transition-all duration-300
           hover:bg-transparent focus:bg-transparent active:bg-transparent focus:outline-none
-          after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#18311D]
+          after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#176B87]
           after:transition-all after:duration-300
           ${isActive
             ? "after:w-full"
-            : "text-[#18311D] after:w-0 hover:after:w-full"}`
+            : "text-[#176B87] after:w-0 hover:after:w-full"}`
         }
       >
         {label}
@@ -53,7 +53,7 @@ export default function Navbar() {
   ));
 
   return (
-    <div className="navbar px-0 w-11/12 mx-auto font-bold text-[#18311D]">
+    <div className="navbar px-0 w-11/12 mx-auto font-bold text-[#176B87]">
       {/* Logo */}
       <div className="navbar-start">
         <Link to="/" className="text-lg md:text-2xl font-bold">
@@ -74,31 +74,31 @@ export default function Navbar() {
               <img
                 src={user.photoURL}
                 tabIndex={0}
-                className="w-10 h-10 rounded-full border-2 border-[#18311D] cursor-pointer object-cover object-center"
+                className="w-10 h-10 rounded-full border-2 border-[#176B87] cursor-pointer object-cover object-center"
                 alt="profile"
               />
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D] border"
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#176B87] border"
               >
-                <li className="text-center font-semibold text-[#18311D]">
+                <li className="text-center font-semibold text-[#176B87]">
                   {user.displayName}
                 </li>
                 <div className="divider my-1"></div>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/">Home</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/all-jobs">All Jobs</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/about-us">About Us</Link>
                 </li>
                 <div className="divider my-1"></div>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <button onClick={handleSignOut}>Sign Out</button>
                 </li>
               </ul>
@@ -107,7 +107,7 @@ export default function Navbar() {
             <>
               <label
                 tabIndex={0}
-                className="btn text-[#18311D] border-[#18311D] bg-transparent"
+                className="btn text-[#176B87] border-[#176B87] bg-transparent"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -122,18 +122,18 @@ export default function Navbar() {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#18311D] border"
+                className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-xm font-medium text-[#176B87] border"
               >
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/">Home</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/all-jobs">All Jobs</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/about-us">About Us</Link>
                 </li>
-                <li className="hover:bg-[#18311D] hover:text-white">
+                <li className="hover:bg-[#176B87] hover:text-white">
                   <Link to="/login">Login</Link>
                 </li>
               </ul>
@@ -149,28 +149,28 @@ export default function Navbar() {
             <img
               src={user.photoURL}
               tabIndex={0}
-              className="w-10 h-10 rounded-full border-2 border-[#18311D] cursor-pointer object-cover object-center"
+              className="w-10 h-10 rounded-full border-2 border-[#176B87] cursor-pointer object-cover object-center"
               alt="profile"
             />
             <ul
               tabIndex={0}
               className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-base border"
             >
-              <li className="text-center font-semibold text-[#18311D]">
+              <li className="text-center font-semibold text-[#176B87]">
                 {user.displayName}
               </li>
               <div className="divider my-1"></div>
-              <li className="hover:bg-[#18311D] hover:text-white">
+              <li className="hover:bg-[#176B87] hover:text-white">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-              <li className="hover:bg-[#18311D] hover:text-white">
+              <li className="hover:bg-[#176B87] hover:text-white">
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
             </ul>
           </div>
         ) : (
           <Link to="/login">
-            <button className="btn btn-outline border-2 border-[#18311D] hover:bg-[#18311D] hover:text-white text-base">
+            <button className="btn btn-outline border-2 border-[#176B87] hover:bg-[#176B87] hover:text-white text-base">
               Login
             </button>
           </Link>
