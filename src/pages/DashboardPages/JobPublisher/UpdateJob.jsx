@@ -153,7 +153,7 @@ export default function UpdateJob() {
   }
 
   return (
-    <div className="m-2 md:m-10 bg-cb-card px-4 py-8 rounded-lg">
+    <div className="w-11/12 mx-auto bg-cb-card px-4 py-8 rounded-lg">
       <h1 className="text-3xl md:text-5xl text-cb-secondary font-bold mb-2 text-center">
         Update Job
       </h1>

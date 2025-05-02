@@ -156,8 +156,8 @@ export default function Navbar() {
               tabIndex={0}
               className="dropdown-content z-[1] mt-3 menu p-3 shadow bg-base-100 rounded-box w-60 text-base border"
             >
-              <li className="text-center font-semibold text-[#176B87]">
-                {user.displayName}
+              <li className="px-3 font-semibold text-[#176B87]">
+                Name: {user.displayName}
               </li>
               <div className="divider my-1"></div>
               <li className="hover:bg-[#176B87] hover:text-white">
