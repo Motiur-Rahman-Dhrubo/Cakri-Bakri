@@ -14,14 +14,12 @@ const Home = () => {
     <div className="h-[500px] w-full">
     <Banner />
     </div>
-    <OurCompany />
+    <OurCompany className="w-full" />
     <StatsOverlay />
     <Overview />
     <JobCategory />
     <LeteastJobs />
-
     <Testimonials />
-    
     </>
   );
 };
