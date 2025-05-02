@@ -6,7 +6,7 @@ import Navbar from "../../component/SharedComponent/Navbar";
 const MainLayout = () => {
   return (
     <>
-      <header className="sticky top-0 bg-white z-50">
+      <header className="sticky top-0 bg-white z-50 border-b border-[#EFEFEF]">
         <Navbar />
       </header>
       <main className="bg-white min-h-[calc(100vh-337px)]">
