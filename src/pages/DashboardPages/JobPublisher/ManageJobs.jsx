@@ -52,7 +52,7 @@ const ManageJobs = () => {
   };
 
   return (
-    <div className="mx-2 md:mx-6 lg:mx-10 my-4 bg-cb-card px-4 py-6 sm:px-6 sm:py-8 rounded-lg shadow-lg">
+    <div className="w-11/12 mx-auto my-4 bg-cb-card px-4 py-6 sm:px-6 sm:py-8 rounded-lg shadow-lg">
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-cb-primary font-bold mb-4 text-center tracking-tight">
         Manage Jobs
       </h1>
