@@ -43,19 +43,20 @@ const Dashboard = () => {
                 {isPublisher && (
                   <>
                     {/* Dashboard Overview */}
+
                     <NavLink
-                      to="/dashboard/publisher-overview"
+                      to="/dashboard/myprofile"
                       className={({ isActive }) =>
                         isActive
                           ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
                           : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
                       }
-                      data-tooltip-id="dashboard-tooltip"
-                      data-tooltip-content="Dashboard Overview"
+                      data-tooltip-id="user-profile-tooltip"
+                      data-tooltip-content="My Profile"
                     >
-                      <FaTachometerAlt className="w-6 h-6" />
+                      <ImProfile className="w-6 h-6" />
                       <small className="hidden max-sm:block text-[8px]">
-                        Overview
+                        My Profile
                       </small>
                     </NavLink>
 
@@ -166,6 +167,23 @@ const Dashboard = () => {
                 {isAdmin && (
                   <>
                     {/* Dashboard Overview */}
+
+                    <NavLink
+                      to="/dashboard/myprofile"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 bg-cb-primary text-white rounded-lg"
+                          : "flex max-sm:flex-col items-center justify-center px-3 py-1 md:p-4 hover:bg-cb-secondary hover:text-white transition rounded-lg"
+                      }
+                      data-tooltip-id="user-profile-tooltip"
+                      data-tooltip-content="My Profile"
+                    >
+                      <ImProfile className="w-6 h-6" />
+                      <small className="hidden max-sm:block text-[8px]">
+                        My Profile
+                      </small>
+                    </NavLink>
+
                     <NavLink
                       to="/dashboard/overview"
                       className={({ isActive }) =>
